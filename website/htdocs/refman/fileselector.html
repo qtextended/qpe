@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/fileselector.cpp:74 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>FileSelector Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>FileSelector Class Reference</h1>
+
+<p>The FileSelector widget allows the user to select DocLnk objects.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="fileselector-h.html">fileselector.h</a>&gt;</tt>
+<p><a href="fileselector-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#FileSelector"><b>FileSelector</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;f, QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name, bool&nbsp;newVisible&nbsp;=&nbsp;TRUE, bool&nbsp;closeVisible&nbsp;=&nbsp;TRUE&nbsp;)</div></li>
+<li><div class=fn><a href="#~FileSelector"><b>~FileSelector</b></a>&nbsp;()</div></li>
+<li><div class=fn>void&nbsp;<a href="#setNewVisible"><b>setNewVisible</b></a>&nbsp;(&nbsp;bool&nbsp;b&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#setCloseVisible"><b>setCloseVisible</b></a>&nbsp;(&nbsp;bool&nbsp;b&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#reread"><b>reread</b></a>&nbsp;()</div></li>
+<li><div class=fn>int&nbsp;<a href="#fileCount"><b>fileCount</b></a>&nbsp;()</div></li>
+<li><div class=fn>const DocLnk *&nbsp;<a href="#selected"><b>selected</b></a>&nbsp;()</div></li>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class=fn>void&nbsp;<a href="#fileSelected"><b>fileSelected</b></a>&nbsp;(&nbsp;const&nbsp;DocLnk&nbsp;&amp;&nbsp;f&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#newSelected"><b>newSelected</b></a>&nbsp;(&nbsp;const&nbsp;DocLnk&nbsp;&amp;&nbsp;f&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#closeMe"><b>closeMe</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The FileSelector widget allows the user to select <a href="doclnk.html">DocLnk</a> objects.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="FileSelector"></a>FileSelector::FileSelector&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;f, QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name, bool&nbsp;newVisible = TRUE, bool&nbsp;closeVisible = TRUE&nbsp;)
+</h3>
+Constructs a FileSelector with mime filter <em>f</em>.
+The standard Qt <em>parent</em> and <em>name</em> parameters are passed to the
+parent.
+<p> If <em>newVisible</em> is TRUE, the widget has an button allowing the user
+the create "new" documents - editor applications will have this while
+viewer applications will not.
+<p> If <em>closeVisible</em> is TRUE, the widget has an button allowinf the user
+to select "no document".
+<p> <p>See also <a href="doclnkset.html#DocLnkSet">DocLnkSet::DocLnkSet</a>().
+
+<h3 class=fn><a name="~FileSelector"></a>FileSelector::~FileSelector&nbsp;()
+</h3>
+Destroys the widget.
+
+<h3 class=fn>void&nbsp;<a name="closeMe"></a>FileSelector::closeMe&nbsp;()<tt> [signal]</tt>
+</h3>
+
+<p> This signal is emitted when the user no longer needs to view the widget.
+
+<h3 class=fn>int&nbsp;<a name="fileCount"></a>FileSelector::fileCount&nbsp;()
+</h3>
+Returns the number of files in the view. If this is zero, and editor
+application might avoid using the selector and immediately start with
+a "new" document.
+
+<h3 class=fn>void&nbsp;<a name="fileSelected"></a>FileSelector::fileSelected&nbsp;(&nbsp;const&nbsp;<a href="doclnk.html">DocLnk</a>&nbsp;&amp;&nbsp;f&nbsp;)<tt> [signal]</tt>
+</h3>
+
+<p> This signal is emitted when the user selects a file.
+<em>f</em> is the file.
+
+<h3 class=fn>void&nbsp;<a name="newSelected"></a>FileSelector::newSelected&nbsp;(&nbsp;const&nbsp;<a href="doclnk.html">DocLnk</a>&nbsp;&amp;&nbsp;f&nbsp;)<tt> [signal]</tt>
+</h3>
+
+<p> This signal is emitted when the user selects "new" file.
+<em>f</em> is a <a href="doclnk.html">DocLnk</a> for the file. You will need to set the type
+of the value after copying it.
+
+<h3 class=fn>void&nbsp;<a name="reread"></a>FileSelector::reread&nbsp;()
+</h3>
+Rereads the list of files.
+
+<h3 class=fn>const&nbsp;<a href="doclnk.html">DocLnk</a>&nbsp;*&nbsp;<a name="selected"></a>FileSelector::selected&nbsp;()
+</h3>
+Returns the selected <a href="doclnk.html">DocLnk</a>. The caller is responsible for deleting
+the returned value.
+
+<h3 class=fn>void&nbsp;<a name="setCloseVisible"></a>FileSelector::setCloseVisible&nbsp;(&nbsp;bool&nbsp;b&nbsp;)
+</h3>
+Sets whether a "no document" button is visible, according to <em>b</em>.
+
+<h3 class=fn>void&nbsp;<a name="setNewVisible"></a>FileSelector::setNewVisible&nbsp;(&nbsp;bool&nbsp;b&nbsp;)
+</h3>
+Sets whether a "new document" button is visible, according to <em>b</em>.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

@@ -1,0 +1,9 @@
+Files: bin/appearance apps/Settings/Appearance.desktop
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Appearance settings dialog
+ For the Qt Palmtop environment.

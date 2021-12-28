@@ -1,0 +1,404 @@
+<!DOCTYPE UI><UI>
+<class>DateBookDayHeaderBase</class>
+<comment>*********************************************************************
+** Copyright (C) 2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Palmtop Environment.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+*********************************************************************</comment>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>DateBookDayHeaderBase</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>238</width>
+            <height>24</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>sizePolicy</name>
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>0</vsizetype>
+        </sizepolicy>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <property>
+        <name>layoutMargin</name>
+    </property>
+    <property>
+        <name>layoutSpacing</name>
+    </property>
+    <hbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>0</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>0</number>
+        </property>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>back</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string></string>
+            </property>
+            <property stdset="1">
+                <name>pixmap</name>
+                <pixmap>image0</pixmap>
+            </property>
+            <property stdset="1">
+                <name>autoRepeat</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>date</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>1</vsizetype>
+                </sizepolicy>
+            </property>
+            <property stdset="1">
+                <name>font</name>
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>Jan 02 00</string>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>monday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>M</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Monday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>tuesday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>T</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Tuesday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>wednesday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>W</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Wednesday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>thursday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>T</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Thursday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>friday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>F</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Friday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>saturday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>S</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Saturday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>sunday</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>S</string>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>toggleButton</name>
+                <bool>true</bool>
+            </property>
+            <property>
+                <name>toolTip</name>
+                <string>Sunday</string>
+            </property>
+        </widget>
+        <widget>
+            <class>QToolButton</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>forward</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string></string>
+            </property>
+            <property stdset="1">
+                <name>pixmap</name>
+                <pixmap>image1</pixmap>
+            </property>
+            <property stdset="1">
+                <name>autoRepeat</name>
+                <bool>true</bool>
+            </property>
+            <property stdset="1">
+                <name>autoRaise</name>
+                <bool>true</bool>
+            </property>
+        </widget>
+    </hbox>
+</widget>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="630">789c55cfcd6ac3300c07f07b9ec224b730dad4ab03a5ec1136761c8c1d144b6ed2361fcdc7618cbdfb2cdb648ec841bfbf65a3ec73f1f1fe2af27d32cd30375ae81a4691e3d2b6df9f5f2f3f497a380afbc96771489f92b4125abcf51d71df467d16f53aea77510fb6cf0a574cc394853c4a475c7962364c2555a124730a3c29603e1c41a1e7c0d4a84123b30f24cf85890a4b54ccbb2359baad3a265950c99c1d8980dce98d694a22e34e474f233debc0d2f3ea682c0df312089e14683c779bfa4f3280aa8a138db44d3263d78328b1137401e08b3ee109ae7a4d1ae6f572bbdb219fb4f652ddf5c3b026d503ebb107f75048aa09e73e7ed9450b7b4d3882cd3e1c716dfe6b4d7ecfc91f5d959db8</data>
+    </image>
+    <image>
+        <name>image1</name>
+        <data format="XPM.GZ" length="639">789c5dd1c16ec2300c80e17b9f2222373401cdd28869da236cda71d2b44362276d815228e5304d7bf7d576c660a6877c7fadaaa8cbb97a7b7d56f365711afdd88282c60f6a8ee7aefb7cff78fa2a66a555d365ee5539bb2b6641817ae9f791ce8babb39ece7ac54344a259d18fd8645ae140b4a55d597ee68ee9edda7a622256be42678851e84aa1273ae31e1c2f1f8980e0018923112b8858110f4234c22d33a2437ee753a61776c4e8a2898eb867c6e823df6d89c9c598f8ee46988cf09ce98435334d4cc43ed30b213309173773295afb106e0b60e47455001325297a1a80baa1940bd0d42d6df1e7cb65b3ddee2ea5eef6fde670c4219740cfe94f6333e8df1d6ae769630a971274cb1be1fa9d25fc95c0b3f85ff87f7d3f163faf949a2a</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>back</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>goBack()</slot>
+    </connection>
+    <connection>
+        <sender>forward</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>goForward()</slot>
+    </connection>
+    <connection>
+        <sender>monday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setMonday()</slot>
+    </connection>
+    <connection>
+        <sender>tuesday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setTuesday()</slot>
+    </connection>
+    <connection>
+        <sender>wednesday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setWednesday()</slot>
+    </connection>
+    <connection>
+        <sender>thursday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setThursday()</slot>
+    </connection>
+    <connection>
+        <sender>friday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setFriday()</slot>
+    </connection>
+    <connection>
+        <sender>saturday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setSaturday()</slot>
+    </connection>
+    <connection>
+        <sender>sunday</sender>
+        <signal>clicked()</signal>
+        <receiver>DateBookDayHeaderBase</receiver>
+        <slot>setSunday()</slot>
+    </connection>
+    <slot access="public">goBack()</slot>
+    <slot access="public">goForward()</slot>
+    <slot access="public">setDate( int, int, int )</slot>
+    <slot access="public">setFriday()</slot>
+    <slot access="public">setMonday()</slot>
+    <slot access="public">setSaturday()</slot>
+    <slot access="public">setSunday()</slot>
+    <slot access="public">setThursday()</slot>
+    <slot access="public">setTuesday()</slot>
+    <slot access="public">setWednesday()</slot>
+</connections>
+</UI>

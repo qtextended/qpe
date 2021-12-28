@@ -1,0 +1,10 @@
+DESTDIR		= ../bin
+TEMPLATE	= app
+CONFIG		= qt warn_on release
+HEADERS		= networksettings.h
+SOURCES		= main.cpp networksettings.cpp
+INCLUDEPATH	+= ../library
+DEPENDPATH	+= ../library
+LIBS            += -lqpe
+INTERFACES	= networksettingsbase.ui
+TARGET		= netsetup

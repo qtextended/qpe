@@ -1,0 +1,55 @@
+<!DOCTYPE UI><UI>
+<class>HelpDialog</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>HelpDialog</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>240</width>
+            <height>379</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>How To Play</string>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QTextView</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>TextView1</cstring>
+            </property>
+            <property stdset="1">
+                <name>text</name>
+                <string>&lt;P&gt;In this game, you try to guess the secret four
+color code by dragging four pegs to the brightened row.
+&lt;P&gt;After placing four pegs, tap to the right
+of your guess and the computer
+will respond by placing small pegs there.&lt;/P&gt; 
+&lt;P&gt;For each peg you guess correctly, you get a black peg, then for each
+remaining peg of the correct color (but wrong position), you get
+a white peg.
+&lt;P&gt;The positions of the black and white pegs do &lt;i&gt;not&lt;/i&gt;
+relate to the positions of your guess pegs.&lt;/P&gt;</string>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+</connections>
+</UI>

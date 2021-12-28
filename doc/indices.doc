@@ -1,0 +1,127 @@
+/*! 
+
+\page index.html
+
+\title Qt Palmtop Developer Documention
+
+<h2>Overview</h2>
+
+Qt Palmtop is a suite of applications which share a common application
+framework. This documentation describes that framework to the audience
+of developers intended to write new applications and to modify existing
+applications.
+
+<ul>
+ <li> <a href=mainfunc.html>The <tt>main()</tt> function.</a>
+ <li> <a href=docwidget.html>The main document widget.</a>
+ <li> <a href=qcop.html>QCop messages.</a>
+ <li> <a href=classes.html>Library classes.</a>
+ <li> <a href=functions.html>All fucntions.</a>
+ <li> <a href=headers.html>All classes.</a>
+</ul>
+*/
+
+/*!
+
+\page mainfunc.html
+
+\title The <tt>main()</tt> function
+
+The <tt>main()</tt> function of all applications should following
+this example:
+
+\code
+int main( int argc, char **argv )
+{
+    QPEApplication a( argc, argv );
+    
+    Main m;
+    a.showMainWidget(&m);
+
+    a.exec();
+}
+\endcode
+
+If the application is <a href=docwidget.html>document-oriented</a>, the
+call to <tt>QPEApplication::showMainWidget()</tt>
+should be replaced by a cal to
+<tt>\l QPEApplication::showMainDocumentWidget() </tt>.
+
+*/
+
+/*!
+
+\page docwidget.html
+
+\title The main document widget
+
+Applications which view or edit a particular type or types of files are
+called <i>document-oriented</i> applications. Qt Palmtop has framework
+support to simplify the implementation of such applications. The
+<a href=mainfunc.html>main()</a> function is slightly different in
+these applications.
+
+The top-level widget of a document-oriented application must have a
+Qt slot named:
+
+\code
+public slot:
+    void setDocument( const QString& applnk_filename );
+\endcode
+
+This slot should then be implemented to save the applications current
+document (if any) and show/edit the specified document. An example
+implementation is:
+
+\code
+void Main::setDocument( const QString& applnk_filename )
+{
+    FileManager fm;
+
+    if ( current ) {
+	if ( !fm.saveFile( *current, data ) ) {
+	    // error
+	    return;
+	}
+	delete current;
+    }
+
+    current = new DocLnk(applnk_filename);
+
+    if ( !fm.loadFile(*current, data ) ) {
+	// error
+    }
+}
+\endcode
+
+*/
+
+/*!
+
+\page classes.html
+
+\title Library Classes
+
+\annotatedclasslist
+
+*/
+
+/*!
+
+\page headers.html
+
+\title Header Files
+
+\headerfilelist
+
+*/
+
+/*!
+
+\page functions.html
+
+\title All Functions
+
+\functionindex
+
+*/

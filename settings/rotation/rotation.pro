@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		+= qt warn_on release
+DESTDIR		= ../../bin
+HEADERS		= settings.h
+SOURCES		= rotation.cpp main.cpp
+INTERFACES	= rotationsettingsbase.ui
+INCLUDEPATH	+= ../../library
+DEPENDPATH	+= ../../library
+LIBS            += -lqpe
+TARGET		= rotation 

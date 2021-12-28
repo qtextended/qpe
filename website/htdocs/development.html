@@ -1,0 +1,153 @@
+<a name=development>
+<h2>Writing your own applications</h2>
+</a>
+
+<p>
+Developing an application to add to your Qt Palmtop is just like developing
+any other application with the Qt API. You have all the same classes
+and functionality.
+
+
+<h3>Special design considerations with Qt Palmtop</h3>
+
+You can develop your application using Qt/X11 or Qt/Window
+and just recompile it for Qt/Embedded, but you should keep in mind
+a number of differences in the devices that are commonly running Qt Palmtop:
+
+<p>
+<dl>
+    <dt><b>Smaller display</b>
+    <dd>Require no more than about 240x240 pixels. Use QTabBar to organize
+	functionality into separate groups, or just
+	<i>reduce the functionality</i> - you don't need to provide every
+	possible feature on a palm-sized version of your application.
+	Note that the default font in Qt/Embedded is smaller than that
+	for Qt/X11 and Qt/Windows.
+	</p>
+    <dt><b>Worse Keyboard</b>
+    <dd>Organize functionality to be less dependent on keyboard input and
+	more dependent on mouse input. Try using a QComboBox where you
+	might otherwise have used a QLineEdit and thus provide a "History"
+	list of previously typed choices.
+	</p>
+    <dt><b>Different Mouse</b>
+    <dd>Handheld devices commonly use a stylus, which means only one mouse button,
+	and no mouseMoveEvent() if the "mouse button" is not "pressed".
+	You can provide "right mouse-button" functionality with the
+	"press and hold" convention (eg. the menu in Filebrowser, flags in
+	Minesweep). Avoid "mouse over" type events.
+	</p>
+</dl>
+
+
+<p>
+As with any application development with Qt/Embedded,
+the Qt Virtual Framebuffer
+tool in <tt>$QTDIR/src/tools/qvfb</tt> is a very useful development aide,
+since you can control the display size and run with the exact fonts.
+
+<p>
+As with any development with Qt, the Qt Designer tool in
+<tt>$QTDIR/tools/designer</tt> helps you organize functionality visually
+so you can more easily create a small yet logical and functional GUI.
+
+<p>
+Qt Palmtop is less file-oriented than a typical Unix workstation: the user
+probably doesn't want to worry about file and directories, just the names
+of the document they have written that are appropriate for the application
+they are running.
+
+<p>
+To support this more document-centric model, the Qt Palmtop library classes provide
+a basic document selector and file manager. See the FileSelector and
+FileManager classes defined in
+<tt>library/fileselector.h</tt> and <tt>library/filemanager.h</tt>. These
+mechanism are very simplistic currently, and they'll develop as the system
+improves.
+
+<h3>File structure for new applications in Qt Palmtop</h3>
+
+A new application (let's call it <tt>foo</tt>) can be incorporated into
+the directory structure of Qt Palmtop with these easy steps:
+
+<ol>
+    <li>Install the latest version of
+<a href=http://www.trolltech.com/products/download/freebies/tmake.html>tmake</a>.
+    </p>
+
+    <li>Create a new subdirectory <tt>qpe/foo</tt>.
+    </p>
+    <li>Write your source code in <tt>qpe/foo</tt> and
+	write a tmake project file, <tt>qpe/foo/foo.pro</tt>,
+	file that looks like the other <tt>qpr/*/*.pro</tt> files.
+    <li>Add your directory to <tt>qpe/Makefile</tt> and re-run the
+	<tt>configure</tt> script. This will create a <tt>Makefile.in</tt>
+	and a <tt>Makefile</tt>. The <tt>Makefile.in</tt> should be distributed
+	with you package so that others don't need tmake to install Qt Palmtop.
+    </p>
+    <li>Compile your application:
+<pre>
+    cd qpe/foo
+    make
+</pre>
+    </p>
+    <li>Add a <tt>foo.desktop</tt> file somewhere in <tt>qpe/apps</tt>,
+	such as <tt>qpe/apps/Applications/foo.desktop</tt>. This file
+	supports a subset of the functionality of standard <tt>.desktop</tt>
+	files found in KDE. For example:
+<pre>
+    [Desktop Entry]
+    Name=Foo Viewer
+    Icon=foo_icon
+    MimeType=video/foo
+    Exec=foo
+</pre>
+	Unrecognized fields are ignored, and if they are used in the future,
+	it will be according to the standard interpretations.
+    </p>
+    <li>Create an icon for your application in <tt>pics/foo/icon.png</tt>
+    </p>
+    <li>Package up your application, including your pics/ and apps/ files...
+<pre>
+    tar cfz foo.tar.gz qpe/pics/foo/* \
+	qpe/apps/Applications/foo.desktop qpe/foo
+</pre>
+    and put the package on a web site for others to share!
+    <li>If you want to make it easy to build binary packages of your application
+	on the iPAQ, make a control file similar to the other */*.control files -
+	running <tt>mkipks</tt> on your control file will package up an iPAQ binary.
+    </p>
+</ol>
+
+<h3>Adding applications to the single-application build</h3>
+
+To add an application to the
+<a href=build.html#single>single-application build</a>, follow the procedure above, but 
+with the following extras:
+
+<ul>
+    <li>Put your <tt>main()</tt> in a file called <tt>main.cpp</tt>
+    <li>Ensure your mainwindow class has a constructor that has
+	the standard arguments <tt>(QWidget* parent, const char* name, WFlags )</tt>.
+    <li>Add your program to the list in <pre>taskbar/apps.h</pre>
+    <li>In <tt>single/</tt>, run <tt>makepro</tt> - this adds all <tt>.h</tt>
+	and <tt>.cpp</tt> files in <tt>single/../*</tt> to <tt>single.pro</tt>.
+    <li>Re-generate the Makefile from the generated <tt>single.pro</tt> file:
+    <pre>
+	cd qpe/single
+	export TMAKEPATH=~/tmake/lib/qws/linux-<i>generic</i>-g++
+	tmake -o Makefile single.pro
+    </pre>
+    <li>Follow the <a href=build.html#single>single-application build</a> instructions.
+</ul>
+
+<h3>Running Qt Palmtop applications on your device</h3>
+
+<ol>
+ <li>Ensure that <tt>$QTDIR/lib/fonts/</tt> contains fonts and the <tt>fontdir</tt> file.
+ <li>Ensure that <tt>$QPEDIR/pics/</tt> contains the pictures for the applications.
+ <li>Set and export <tt>QWS_DISPLAY=Transformed:Rot270:0</tt> if you're running
+	on a device that requires screen rotation (eg. iPAQ).
+ <li>The recommended locations for installing are the components are
+	<tt>QTDIR="/usr"</tt> and <tt>QPEDIR="/opt/QtPalmtop"</tt>.
+</ol>

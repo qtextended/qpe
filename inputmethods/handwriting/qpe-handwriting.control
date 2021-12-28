@@ -1,0 +1,9 @@
+Files: plugins/inputmethods/libqhandwriting.so*
+Priority: optional
+Section: qpe
+Maintainer: Martin Jones <mjones@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Handwriting input method
+ Handwriting recognition input method for the Qt Palmtop environment.

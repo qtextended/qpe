@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=netsetup
+Icon=LanConnect
+Type=Application
+Name=Setup LAN

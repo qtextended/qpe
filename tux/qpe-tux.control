@@ -1,0 +1,9 @@
+Files: bin/tux apps/Games/tux.desktop
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Toy: drag around a plush penguin
+ A toy for the Qt Palmtop environment.

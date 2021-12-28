@@ -1,0 +1,10 @@
+Files: bin/qcop
+Priority: required
+Section: qpe
+Maintainer: Martin Jones <mjones@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Pre-Depends: libc6 (>= 2.1.2)
+Depends: qt-embedded (>=$QTE_VERSION)
+Description: Interprocess communication client
+ Interprocess communication client for the Qt Palmtop environment.

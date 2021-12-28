@@ -1,0 +1,537 @@
+<!DOCTYPE UI><UI>
+<class>AbEditorPage2Base</class>
+<comment>/**********************************************************************
+** Copyright (C) 2001 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Palmtop Environment.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+** $Id: abeditorpage2base.ui,v 1.7 2001/08/27 12:54:40 twschulz Exp $
+**
+**********************************************************************/</comment>
+<widget>
+    <class>QWidget</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>AbEditorPage2Base</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>220</width>
+            <height>607</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>sizePolicy</name>
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+        </sizepolicy>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Extra Address Information</string>
+    </property>
+    <property>
+        <name>layoutMargin</name>
+    </property>
+    <property>
+        <name>layoutSpacing</name>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>0</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>3</number>
+        </property>
+        <widget>
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout6</cstring>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <spacer>
+                    <property>
+                        <name>name</name>
+                        <cstring>Spacer4</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>orientation</name>
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>sizeType</name>
+                        <enum>Expanding</enum>
+                    </property>
+                    <property>
+                        <name>sizeHint</name>
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget>
+                    <class>QToolButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmdBack</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Back...</string>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QToolButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>cmdNote</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Note...</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget>
+            <class>QLayoutWidget</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Layout5</cstring>
+            </property>
+            <property>
+                <name>layoutSpacing</name>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>0</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>3</number>
+                </property>
+                <widget row="17"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra18</cstring>
+                    </property>
+                </widget>
+                <widget row="9"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra10</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra10</string>
+                    </property>
+                </widget>
+                <widget row="5"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra6</cstring>
+                    </property>
+                </widget>
+                <widget row="0"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra1</cstring>
+                    </property>
+                </widget>
+                <widget row="18"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra19</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra19</string>
+                    </property>
+                </widget>
+                <widget row="10"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra11</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra11</string>
+                    </property>
+                </widget>
+                <widget row="18"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra19</cstring>
+                    </property>
+                </widget>
+                <widget row="14"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra15</cstring>
+                    </property>
+                </widget>
+                <widget row="11"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra12</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra12</string>
+                    </property>
+                </widget>
+                <widget row="7"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra8</cstring>
+                    </property>
+                </widget>
+                <widget row="12"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra13</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra13</string>
+                    </property>
+                </widget>
+                <widget row="13"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra14</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra14</string>
+                    </property>
+                </widget>
+                <widget row="10"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra11</cstring>
+                    </property>
+                </widget>
+                <widget row="8"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra9</cstring>
+                    </property>
+                </widget>
+                <widget row="14"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra15</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra15</string>
+                    </property>
+                </widget>
+                <widget row="15"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra16</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra16</string>
+                    </property>
+                </widget>
+                <widget row="16"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra17</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra17</string>
+                    </property>
+                </widget>
+                <widget row="11"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra12</cstring>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra2</string>
+                    </property>
+                </widget>
+                <widget row="17"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra18</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra18</string>
+                    </property>
+                </widget>
+                <widget row="15"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra16</cstring>
+                    </property>
+                </widget>
+                <widget row="13"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra14</cstring>
+                    </property>
+                </widget>
+                <widget row="12"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra13</cstring>
+                    </property>
+                </widget>
+                <widget row="2"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra3</cstring>
+                    </property>
+                </widget>
+                <widget row="2"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra3</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra3</string>
+                    </property>
+                </widget>
+                <widget row="9"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra10</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string></string>
+                    </property>
+                </widget>
+                <widget row="3"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra4</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra4</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra1</string>
+                    </property>
+                </widget>
+                <widget row="4"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra5</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra5</string>
+                    </property>
+                </widget>
+                <widget row="5"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra6</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra6</string>
+                    </property>
+                </widget>
+                <widget row="4"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra5</cstring>
+                    </property>
+                </widget>
+                <widget row="1"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra2</cstring>
+                    </property>
+                </widget>
+                <widget row="16"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra17</cstring>
+                    </property>
+                </widget>
+                <widget row="6"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra7</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra7</string>
+                    </property>
+                </widget>
+                <widget row="7"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra8</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra8</string>
+                    </property>
+                </widget>
+                <widget row="6"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra7</cstring>
+                    </property>
+                </widget>
+                <widget row="8"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lblExtra9</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Extra9</string>
+                    </property>
+                </widget>
+                <widget row="3"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>txtExtra4</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>cmdBack</sender>
+        <signal>clicked()</signal>
+        <receiver>AbEditorPage2Base</receiver>
+        <slot>slotHide()</slot>
+    </connection>
+    <slot access="public">slotHide()</slot>
+</connections>
+<tabstops>
+    <tabstop>txtExtra1</tabstop>
+    <tabstop>txtExtra2</tabstop>
+    <tabstop>txtExtra3</tabstop>
+    <tabstop>txtExtra4</tabstop>
+    <tabstop>txtExtra5</tabstop>
+    <tabstop>txtExtra6</tabstop>
+    <tabstop>txtExtra7</tabstop>
+    <tabstop>txtExtra8</tabstop>
+    <tabstop>txtExtra9</tabstop>
+    <tabstop>txtExtra10</tabstop>
+    <tabstop>txtExtra11</tabstop>
+    <tabstop>txtExtra12</tabstop>
+    <tabstop>txtExtra13</tabstop>
+    <tabstop>txtExtra14</tabstop>
+    <tabstop>txtExtra15</tabstop>
+    <tabstop>txtExtra16</tabstop>
+    <tabstop>txtExtra17</tabstop>
+    <tabstop>txtExtra18</tabstop>
+    <tabstop>txtExtra19</tabstop>
+</tabstops>
+</UI>

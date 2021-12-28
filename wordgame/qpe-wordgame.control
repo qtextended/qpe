@@ -1,0 +1,10 @@
+Files: bin/wordgame apps/Games/wordgame.desktop
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Crossword game
+ A crossword game for the Qt Palmtop environment.
+ Play against the computer or human opponents.

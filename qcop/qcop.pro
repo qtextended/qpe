@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		= qt warn_on release
+DESTDIR		= ../bin
+HEADERS		= 
+SOURCES		= main.cpp
+INCLUDEPATH	+= ../library
+DEPENDPATH	+= ../library
+LIBS            += -lqpe
+INTERFACES	= 
+TARGET		= qcop

@@ -1,0 +1,459 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS) $(SYSCONF_CXXFLAGS_LIB)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS) $(SYSCONF_CFLAGS_LIB)
+INCPATH =	-I.
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -ldl $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = $(QTDIR)/lib$(PROJMAK)/
+VER_MAJ = 1
+VER_MIN = 3
+VER_PATCH = 1
+TARGET	= qpe
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	calendar.h \
+		global.h \
+		organizer.h \
+		resource.h \
+		xmlreader.h \
+		mimetype.h \
+		menubutton.h \
+		filemanager.h \
+		fontmanager.h \
+		qdawg.h \
+		datebookmonth.h \
+		fileselector.h \
+		imageedit.h \
+		qcopenvelope_qws.h \
+		qpedecoration_qws.h \
+		qpeapplication.h \
+		qpestyle.h \
+		lightstyle.h \
+		config.h \
+		applnk.h \
+		sound.h \
+		tzselect.h \
+		qmath.h \
+		datebookdb.h \
+		alarmserver.h \
+		process.h \
+		timestring.h \
+		fontfactoryinterface.h \
+		fontdatabase.h \
+		qpedebug.h \
+		quuid.h \
+		qcom.h \
+		qlibrary.h \
+		qlibrary_p.h
+SOURCES =	calendar.cpp \
+		global.cpp \
+		organizer.cpp \
+		xmlreader.cpp \
+		mimetype.cpp \
+		menubutton.cpp \
+		filemanager.cpp \
+		fontmanager.cpp \
+		qdawg.cpp \
+		datebookmonth.cpp \
+		fileselector.cpp \
+		imageedit.cpp \
+		resource.cpp \
+		qpedecoration_qws.cpp \
+		qcopenvelope_qws.cpp \
+		qpeapplication.cpp \
+		qpestyle.cpp \
+		lightstyle.cpp \
+		config.cpp \
+		applnk.cpp \
+		sound.cpp \
+		tzselect.cpp \
+		qmath.c \
+		datebookdb.cpp \
+		alarmserver.cpp \
+		process.cpp \
+		process_unix.cpp \
+		timestring.cpp \
+		fontdatabase.cpp \
+		qpedebug.cpp \
+		quuid.cpp \
+		qlibrary.cpp \
+		qlibrary_unix.cpp
+OBJECTS =	calendar.o \
+		global.o \
+		organizer.o \
+		xmlreader.o \
+		mimetype.o \
+		menubutton.o \
+		filemanager.o \
+		fontmanager.o \
+		qdawg.o \
+		datebookmonth.o \
+		fileselector.o \
+		imageedit.o \
+		resource.o \
+		qpedecoration_qws.o \
+		qcopenvelope_qws.o \
+		qpeapplication.o \
+		qpestyle.o \
+		lightstyle.o \
+		config.o \
+		applnk.o \
+		sound.o \
+		tzselect.o \
+		qmath.o \
+		datebookdb.o \
+		alarmserver.o \
+		process.o \
+		process_unix.o \
+		timestring.o \
+		fontdatabase.o \
+		qpedebug.o \
+		quuid.o \
+		qlibrary.o \
+		qlibrary_unix.o
+INTERFACES =    
+UICDECLS =      
+UICIMPLS =      
+SRCMOC	=	moc_menubutton.cpp \
+		moc_datebookmonth.cpp \
+		moc_fileselector.cpp \
+		moc_imageedit.cpp \
+		moc_qpedecoration_qws.cpp \
+		moc_qpeapplication.cpp \
+		moc_tzselect.cpp \
+		moc_process.cpp \
+		moc_qlibrary_p.cpp \
+		global.moc \
+		process_unix.moc
+OBJMOC	=	moc_menubutton.o \
+		moc_datebookmonth.o \
+		moc_fileselector.o \
+		moc_imageedit.o \
+		moc_qpedecoration_qws.o \
+		moc_qpeapplication.o \
+		moc_tzselect.o \
+		moc_process.o \
+		moc_qlibrary_p.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(SYSCONF_LINK_TARGET)
+
+$(DESTDIR)$(SYSCONF_LINK_TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK_LIB)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: library.pro
+	tmake library.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+calendar.o: calendar.cpp \
+		calendar.h
+
+global.o: global.cpp \
+		global.moc \
+		qpedebug.h \
+		global.h \
+		qdawg.h \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		resource.h \
+		qcopenvelope_qws.h \
+		applnk.h
+
+organizer.o: organizer.cpp \
+		organizer.h \
+		xmlreader.h
+
+xmlreader.o: xmlreader.cpp \
+		xmlreader.h
+
+mimetype.o: mimetype.cpp \
+		mimetype.h \
+		applnk.h \
+		qpeapplication.h \
+		qpedecoration_qws.h
+
+menubutton.o: menubutton.cpp \
+		menubutton.h
+
+filemanager.o: filemanager.cpp \
+		filemanager.h \
+		applnk.h
+
+fontmanager.o: fontmanager.cpp \
+		fontmanager.h
+
+qdawg.o: qdawg.cpp \
+		qdawg.h
+
+datebookmonth.o: datebookmonth.cpp \
+		datebookmonth.h \
+		organizer.h \
+		xmlreader.h \
+		calendar.h \
+		datebookdb.h \
+		resource.h
+
+fileselector.o: fileselector.cpp \
+		fileselector.h \
+		filemanager.h \
+		applnk.h \
+		global.h \
+		resource.h \
+		config.h
+
+imageedit.o: imageedit.cpp \
+		imageedit.h
+
+resource.o: resource.cpp \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		resource.h \
+		inlinepics.h
+
+qpedecoration_qws.o: qpedecoration_qws.cpp \
+		qcopenvelope_qws.h \
+		qpedecoration_qws.h \
+		qpeapplication.h \
+		resource.h \
+		global.h
+
+qcopenvelope_qws.o: qcopenvelope_qws.cpp \
+		qcopenvelope_qws.h \
+		global.h
+
+qpeapplication.o: qpeapplication.cpp \
+		qcopenvelope_qws.h \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		qpestyle.h \
+		lightstyle.h \
+		global.h \
+		resource.h \
+		config.h \
+		fontmanager.h \
+		alarmserver.h
+
+qpestyle.o: qpestyle.cpp \
+		qpestyle.h \
+		qpeapplication.h \
+		qpedecoration_qws.h
+
+lightstyle.o: lightstyle.cpp \
+		lightstyle.h
+
+config.o: config.cpp \
+		config.h
+
+applnk.o: applnk.cpp \
+		global.h \
+		mimetype.h \
+		config.h \
+		resource.h \
+		applnk.h \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		qcopenvelope_qws.h
+
+sound.o: sound.cpp \
+		resource.h \
+		sound.h
+
+tzselect.o: tzselect.cpp \
+		tzselect.h \
+		resource.h \
+		global.h \
+		config.h
+
+qmath.o: qmath.c \
+		qmath.h
+
+datebookdb.o: datebookdb.cpp \
+		alarmserver.h \
+		global.h \
+		datebookdb.h \
+		organizer.h \
+		xmlreader.h
+
+alarmserver.o: alarmserver.cpp \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		resource.h \
+		global.h \
+		qcopenvelope_qws.h \
+		alarmserver.h
+
+process.o: process.cpp \
+		process.h
+
+process_unix.o: process_unix.cpp \
+		process_unix.moc \
+		process.h
+
+timestring.o: timestring.cpp \
+		timestring.h
+
+fontdatabase.o: fontdatabase.cpp \
+		qpeapplication.h \
+		qpedecoration_qws.h \
+		fontfactoryinterface.h \
+		qcom.h \
+		quuid.h \
+		fontdatabase.h \
+		qlibrary.h
+
+qpedebug.o: qpedebug.cpp \
+		qpedebug.h
+
+quuid.o: quuid.cpp \
+		quuid.h
+
+qlibrary.o: qlibrary.cpp \
+		qlibrary_p.h \
+		qlibrary.h \
+		qcom.h \
+		quuid.h
+
+qlibrary_unix.o: qlibrary_unix.cpp \
+		qlibrary_p.h \
+		qlibrary.h \
+		qcom.h \
+		quuid.h
+
+moc_menubutton.o: moc_menubutton.cpp \
+		menubutton.h
+
+moc_datebookmonth.o: moc_datebookmonth.cpp \
+		datebookmonth.h \
+		organizer.h \
+		xmlreader.h \
+		calendar.h
+
+moc_fileselector.o: moc_fileselector.cpp \
+		fileselector.h \
+		filemanager.h \
+		applnk.h
+
+moc_imageedit.o: moc_imageedit.cpp \
+		imageedit.h
+
+moc_qpedecoration_qws.o: moc_qpedecoration_qws.cpp \
+		qpedecoration_qws.h
+
+moc_qpeapplication.o: moc_qpeapplication.cpp \
+		qpeapplication.h \
+		qpedecoration_qws.h
+
+moc_tzselect.o: moc_tzselect.cpp \
+		tzselect.h
+
+moc_process.o: moc_process.cpp \
+		process.h
+
+moc_qlibrary_p.o: moc_qlibrary_p.cpp \
+		qlibrary_p.h \
+		qlibrary.h \
+		qcom.h \
+		quuid.h
+
+moc_menubutton.cpp: menubutton.h
+	$(MOC) menubutton.h -o moc_menubutton.cpp
+
+moc_datebookmonth.cpp: datebookmonth.h
+	$(MOC) datebookmonth.h -o moc_datebookmonth.cpp
+
+moc_fileselector.cpp: fileselector.h
+	$(MOC) fileselector.h -o moc_fileselector.cpp
+
+moc_imageedit.cpp: imageedit.h
+	$(MOC) imageedit.h -o moc_imageedit.cpp
+
+moc_qpedecoration_qws.cpp: qpedecoration_qws.h
+	$(MOC) qpedecoration_qws.h -o moc_qpedecoration_qws.cpp
+
+moc_qpeapplication.cpp: qpeapplication.h
+	$(MOC) qpeapplication.h -o moc_qpeapplication.cpp
+
+moc_tzselect.cpp: tzselect.h
+	$(MOC) tzselect.h -o moc_tzselect.cpp
+
+moc_process.cpp: process.h
+	$(MOC) process.h -o moc_process.cpp
+
+moc_qlibrary_p.cpp: qlibrary_p.h
+	$(MOC) qlibrary_p.h -o moc_qlibrary_p.cpp
+
+global.moc: global.cpp
+	$(MOC) global.cpp -o global.moc
+
+process_unix.moc: process_unix.cpp
+	$(MOC) process_unix.cpp -o process_unix.moc
+
+

@@ -1,0 +1,291 @@
+/**********************************************************************
+** Copyright (C) 2001 Trolltech AS.  All rights reserved.
+**
+** This file is part of Qt Palmtop Environment.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+STARTTYPE Weight
+STND Grams
+
+NAME mg
+RATIO 1000
+
+NAME g
+RATIO 1
+
+NAME kg
+RATIO 0.001
+
+NAME Tons
+RATIO 1e-06
+
+NAME Carats
+RATIO 5
+
+NAME oz
+RATIO 0.03527336860670194
+
+NAME lb
+RATIO 0.002204585537918871
+
+NAME st
+RATIO 0.0001574703955656337
+
+NAME St tons
+RATIO 1.102292768959636e-06
+
+NAME Lg tons
+RATIO 9.841899722852103e-07
+
+NAME  
+RATIO 1.
+
+NAME  
+RATIO 1.
+
+ENDTYPE
+
+
+
+STARTTYPE Distance
+STND M
+
+NAME mm
+RATIO 1000
+
+NAME cm
+RATIO 100
+
+NAME m
+RATIO 1
+
+NAME km
+RATIO 0.001
+
+NAME points
+RATIO 2834.645669273483
+
+NAME in
+RATIO 39.370748
+
+NAME ft
+RATIO 3.280839895013123
+
+NAME yd
+RATIO 1.093613298337708
+
+NAME mi
+RATIO 0.0006213711922373339
+
+NAME naut. mi
+RATIO 0.0005399568034557236
+
+NAME  
+RATIO 1.
+
+NAME  
+RATIO 1.
+
+ENDTYPE
+
+
+
+STARTTYPE Area
+STND Sq m
+
+NAME Sq mm
+RATIO 1000000
+
+NAME Sq cm
+RATIO 10000
+
+NAME Sq m
+RATIO 1
+
+NAME Sq km
+RATIO 1e-06
+
+NAME Hectares
+RATIO 0.0001
+
+NAME Sq in
+RATIO 1550.0031000062
+
+NAME Sq ft
+RATIO 10.7642626
+
+NAME Sq yd
+RATIO 1.196092
+
+NAME Sq mi
+RATIO 0.0000003861006
+
+NAME Acres
+RATIO 0.0002471053814671653
+
+NAME  
+RATIO 1.
+
+NAME  
+RATIO 1.
+
+ENDTYPE
+
+
+
+STARTTYPE Volume
+STND Litres
+
+NAME Cu cm
+RATIO 1000
+
+NAME ml
+RATIO 1000
+
+NAME l
+RATIO 1
+
+NAME Tblspoon
+RATIO 67.6479744
+
+NAME Teaspoons
+RATIO 202.9439232
+
+NAME Cu in
+RATIO 61.0237589903253
+
+NAME Cu ft
+RATIO 0.03531466247128476
+
+NAME pt
+RATIO 2.1139992
+
+NAME qt
+RATIO 1.0569996
+
+NAME gal
+RATIO 0.2642499
+
+NAME  
+RATIO 1.
+
+NAME  
+RATIO 1.
+
+ENDTYPE
+
+
+
+
+
+Just some extra units if you want to customize
+
+NAME Cables
+RATIO 0.004556722076407116
+
+NAME Cubits
+RATIO 2.187226596675416
+
+NAME Fathoms
+RATIO 0.5468066491688539
+
+NAME Furlongs
+RATIO 0.004970969537898671
+
+NAME Hands
+RATIO 9.84251968503937
+
+NAME Rods
+RATIO 0.1988387815159469
+
+NAME Spans
+RATIO 4.374453193350831
+
+NAME Barrels (UK)
+RATIO 0.006110266429645065
+
+NAME Barrels (US oil)
+RATIO 0.006289810770352982
+
+NAME Bushels (UK)
+RATIO 0.02749619893281476
+
+NAME Bushels (US)
+RATIO 0.02837785718658835
+
+NAME Cu yards
+RATIO 0.001307950619321235
+
+NAME Cups
+RATIO 4.226752837730374
+
+NAME Drams (UK, flu)
+RATIO 281.5610770781547
+
+NAME Drams (US, flu)
+RATIO 270.5121816156587
+
+NAME Firkins (UK, flu)
+RATIO 0.02444106571858026
+
+NAME Fluid ounces (US)
+RATIO 33.81402270127131
+
+NAME Gallons (UK)
+RATIO 0.2199695914661471
+
+NAME Gallons (US, dry)
+RATIO 0.2270228574952838
+
+NAME Gills (UK)
+RATIO 7.039026926854771
+
+NAME Gills (US)
+RATIO 8.453505675460748
+
+NAME Minims (UK)
+RATIO 16893.66462459415
+
+NAME Minims (US)
+RATIO 16230.73089685171
+
+NAME Ounces (UK, flu)
+RATIO 35.19513463427386
+
+NAME Ounces (US, flu)
+RATIO 33.81402270127131
+
+NAME Pecks (UK)
+RATIO 0.1099847957330735
+
+NAME Pecks (US)
+RATIO 0.1135114287476419
+
+NAME Pints (UK)
+RATIO 1.759756731713693
+
+NAME Pints (US, dry)
+RATIO 1.81618285996227
+
+NAME Quarts (UK)
+RATIO 0.8798783658258791
+
+NAME Quarts (US, dry)
+RATIO 0.9080914299811351
+
+NAME Sq rods
+RATIO 0.03953686103474646

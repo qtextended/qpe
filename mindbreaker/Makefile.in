@@ -1,0 +1,139 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= mindbreaker
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	mindbreaker.h
+SOURCES =	main.cpp \
+		mindbreaker.cpp
+OBJECTS =	main.o \
+		mindbreaker.o \
+		helpdialog.o
+INTERFACES =    helpdialog.ui
+UICDECLS =      helpdialog.h
+UICIMPLS =      helpdialog.cpp
+SRCMOC	=	moc_mindbreaker.cpp \
+		moc_helpdialog.cpp
+OBJMOC	=	moc_mindbreaker.o \
+		moc_helpdialog.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: mindbreaker.pro
+	tmake mindbreaker.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+main.o: main.cpp \
+		mindbreaker.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h
+
+mindbreaker.o: mindbreaker.cpp \
+		mindbreaker.h \
+		helpdialog.h \
+		../library/resource.h \
+		../library/config.h
+
+helpdialog.h: helpdialog.ui
+	$(UIC) helpdialog.ui -o $(INTERFACE_DECL_PATH)/helpdialog.h
+
+helpdialog.cpp: helpdialog.ui
+	$(UIC) helpdialog.ui -i helpdialog.h -o helpdialog.cpp
+
+helpdialog.o: helpdialog.cpp \
+		helpdialog.h \
+		helpdialog.ui
+
+moc_mindbreaker.o: moc_mindbreaker.cpp \
+		mindbreaker.h
+
+moc_helpdialog.o: moc_helpdialog.cpp \
+		helpdialog.h
+
+moc_mindbreaker.cpp: mindbreaker.h
+	$(MOC) mindbreaker.h -o moc_mindbreaker.cpp
+
+moc_helpdialog.cpp: helpdialog.h
+	$(MOC) helpdialog.h -o moc_helpdialog.cpp
+
+

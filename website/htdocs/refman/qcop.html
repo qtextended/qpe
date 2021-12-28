@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/doc/qcop.doc:1 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QCop Messages</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>QCop Messages</h1>
+
+
+<p> 
+<p> QCop messages allow applications to communicate with each other.
+These messages are send using <a href="qcopenvelope.html">QCopEnvelope</a>, and received by connecting
+to a QCopChannel.
+<p> The <tt>channelname</tt> of channels within Qt Palmtop all start with "QPE/".
+The <tt>messagename</tt> is a function identifier followed by a list of types
+in parentheses. There are no spaces in the message name.
+<p> The variable names shown in this documentation are purely for information
+purposes.  A message shown as
+"messageName(Type1 varname1, Type2 varname2, Type2 varname3)" would be
+used in program code as:
+<p> <pre>
+   <a href="qcopenvelope.html">QCopEnvelope</a> e(channelname, "messageName(Type1,Type2,Type2)");
+   e &lt;&lt; parameter1 &lt;&lt; parameter2 &lt;&lt; parameter3;
+</pre>
+ 
+<p> The system-wide channels and messages.
+<p> <dl>
+<dt><b>QPE/System</b>
+<dd>
+<ul>
+<li>busy()
+<br> Causes a wait indicator to be shown to the user.
+<li>notBusy()
+<br> Cancels the wait indicator.
+<li>linkChanged(QString)
+<br> Sent whenever a link is changed.
+It is sent by <a href="filemanager.html#saveFile">FileManager::saveFile</a>() and others, and
+received by the Launcher.
+<li>applyStyle()
+<br> Sent when user changes style.
+It is received by <a href="qpeapplication.html">QPEApplication</a> and the application
+will redraw accordingly.
+<li>quit()
+<br> Terminates the Qt Palmtop environment.
+<li>shutdown()
+<br> Terminates the system.
+<li>restart()
+<br> Restarts the Qt Palmtop environment.
+<li>execute(QString)
+<br> Executes or raises the given application.
+<li>execute(QString,QString)
+<br> Executes or raises the given application, passing an argument.
+Note that you should consider using the 
+<b>QPE/Application/<i>appname</i></b> channels described below.
+<li>addAlarm(QDateTime,QCString,QCString,int)
+<br> Internal. See <a href="alarmserver.html#addAlarm">AlarmServer::addAlarm</a>()
+<li>deleteAlarm(QDateTime,QCString,QCString,int)
+<br> Internal. See <a href="alarmserver.html#deleteAlarm">AlarmServer::deleteAlarm</a>()
+<li>setDefaultRotation(int)
+<br> Internal.
+<li>grabKeyboard(QString)
+<br> Internal.
+<li>timeChange(QString)
+<br> Internal.
+<li>clockChange(bool)
+<br> Internal.
+<li>setScreenSaverInterval(int)
+<br> Internal.
+<li>language(QString)
+<br> Internal.
+</ul>
+<p> <dt><b>QPE/Sync</b>
+<ul>
+<li>flush()
+<br> Sent at the start of synchronization. Synchable applications
+should save any synchable data to disk.
+<i>Note: this message is currently asynchronous. Stay tuned
+to discussions regarding synchronization, as this message
+may become synchronous, requiring slight midification to
+your code. For now, just respond in a timely fashion,
+since the sync server merely waits a small time.</i>
+<li>reload()
+<br> Sent at the end of synchronization. Synchable applications
+should reload any synchable data from disk.
+</ul>
+<p> <dt><b>QPE/TaskBar</b>
+<ul>
+<li>message(QString)
+<br> Internal. See <a href="global.html#statusMessage">Global::statusMessage</a>()
+<li>showInputMethod()
+<br> Internal.
+<li>hideInputMethod()
+<br> Internal.
+<li>reloadInputMethods()
+<br> Internal.
+<li>reloadApplets()
+<br> Internal.
+</ul>
+<p> <dt><b>Qt/Tray</b>
+This channel allows Qt applications (not just Qt Palmtop applications)
+to show system-tray status in a cross-platform manner,
+but it is not currently supported. See TaskbarAppletInterface for
+a more powerful alternative for system tray applications.
+<ul>
+<li>popup(int,QPoint)
+<li>remove(int)
+<li>setIcon(int,QPixmap)
+<li>setToolTip(int,QString)
+<li>doubleClicked(int,QPoint)
+<li>clicked(int,QPoint)
+</ul>
+</dl>
+<p> Each application listens on a channel called
+<b>QPE/Application/<i>appname</i></b>, where <b><i>appname</i></b> is
+the executable name (the application identifier). Standard messages on
+this channel are:
+<p> <dl>
+<dt><b>QPE/Application/<i>appname</i></b>
+<ul>
+<li>setDocument(QString)
+<br>Internal. Causes the setDocument(const QString&) slot
+of <a href=docwidget.html>the main document widget</a>
+to be called.
+<li>nextView()
+<br>Applications connected to hardware buttons will receive
+this message if they are already visible.
+<li>raise()
+<br>Internal. Causes the the main document widget and the
+current modal widget to be raised.
+<li>quit()
+<br>Internal. Terminates the application.
+<li>quitIfInvisible()
+<br>Internal. Terminates the application if it is not shown.
+</ul>
+</dl>
+<p> The QPE/Application/<i>appname</i> channel has a special property: when
+messages are sent to these channels vie <a href="qcopenvelope.html">QCopEnvelope</a>, the message is
+delivered even if the application is not yet running (the application
+is run and the message is then sent).
+<p> Applications also respond to messages specific to the application.
+Such messages in the base Qt Palmtop applications are:
+<p> <dl>
+<dt><b>QPE/Application/helpbrowser</b>
+<ul>
+<li>showFile(QString <i>file</i>)
+<br>Send this message to have the Help Browser show a file.
+The <i>file</i> may be an absolute filename or relative
+to the system HTML documentation directory ($QPEDIR/help/html).
+</ul>
+<dt><b>QPE/Application/datebook</b>
+<ul>
+<li>alarm(QDateTime,int)
+<br>Internal. Causes the Calendar application to sound alarms.
+</ul>
+</dl>
+<p> 
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

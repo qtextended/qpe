@@ -1,0 +1,9 @@
+TEMPLATE	= app
+CONFIG		+= qt warn_on release
+DESTDIR		= ../bin
+HEADERS		= ledmeter.h  sprites.h  toplevel.h  view.h
+SOURCES		= ledmeter.cpp  toplevel.cpp  view.cpp main.cpp
+TARGET		= qasteroids
+INCLUDEPATH	+= ../library
+DEPENDPATH	+= ../library
+LIBS            += -lqpe

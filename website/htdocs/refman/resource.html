@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/resource.cpp:29 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Resource Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>Resource Class Reference</h1>
+
+<p>The Resource class provides access to named resources.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="resource-h.html">resource.h</a>&gt;</tt>
+<p><a href="resource-members.html">List of all member functions.</a>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class=fn>QImage&nbsp;<a href="#loadImage"><b>loadImage</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)</div></li>
+<li><div class=fn>QPixmap&nbsp;<a href="#loadPixmap"><b>loadPixmap</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)</div></li>
+<li><div class=fn>QBitmap&nbsp;<a href="#loadBitmap"><b>loadBitmap</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)</div></li>
+<li><div class=fn>QString&nbsp;<a href="#findPixmap"><b>findPixmap</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)</div></li>
+<li><div class=fn>QString&nbsp;<a href="#findSound"><b>findSound</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)</div></li>
+<li><div class=fn>QStringList&nbsp;<a href="#allSounds"><b>allSounds</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The Resource class provides access to named resources.
+<p> The resources may be provided from files or other sources.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn>QStringList&nbsp;<a name="allSounds"></a>Resource::allSounds&nbsp;()<tt> [static]</tt>
+</h3>
+Returns a list of all sound names.
+
+<h3 class=fn>QString&nbsp;<a name="findPixmap"></a>Resource::findPixmap&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)<tt> [static]</tt>
+</h3>
+Returns the filename of a pixmap named <em>pix</em>. You should avoid including
+any filename type extension (eg. .png, .xpm).
+<p> Normally you will use <a href="#loadPixmap">loadPixmap</a>() rather than this function.
+
+<h3 class=fn>QString&nbsp;<a name="findSound"></a>Resource::findSound&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)<tt> [static]</tt>
+</h3>
+Returns a sound file for a sound named <em>name</em>.
+You should avoid including any filename type extension (eg. .wav, .au, .mp3).
+
+<h3 class=fn>QBitmap&nbsp;<a name="loadBitmap"></a>Resource::loadBitmap&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)<tt> [static]</tt>
+</h3>
+Returns the QBitmap named <em>pix</em>. You should avoid including
+any filename type extension (eg. .png, .xpm).
+
+<h3 class=fn>QImage&nbsp;<a name="loadImage"></a>Resource::loadImage&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)<tt> [static]</tt>
+</h3>
+Returns the QImage named <em>name</em>. You should avoid including
+any filename type extension (eg. .png, .xpm).
+
+<h3 class=fn>QPixmap&nbsp;<a name="loadPixmap"></a>Resource::loadPixmap&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;pix&nbsp;)<tt> [static]</tt>
+</h3>
+Returns the QPixmap named <em>pix</em>. You should avoid including
+any filename type extension (eg. .png, .xpm).
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

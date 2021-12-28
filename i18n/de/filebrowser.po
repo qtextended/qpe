@@ -1,0 +1,168 @@
+# This is a Qt message file in .po format.  Each msgid starts with
+# a scope.  This scope should *NOT* be translated - eg. translating
+# from French to English, "Foo::Bar" would be translated to "Pub",
+# not "Foo::Pub".
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2001-03-07 14:57:29 EST\n"
+"PO-Revision-Date: 2001-03-14\n"
+"Last-Translator: Patricia Jung <trish@trolltech.com>\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+
+#: filebrowser.cpp:612
+msgid "FileBrowser::&Dir"
+msgstr "&Verzeichnis"
+
+#: filebrowser.cpp:615
+msgid "FileBrowser::&Sort"
+msgstr "&Sortieren"
+
+#: filebrowser.cpp:725
+msgid "FileBrowser::/"
+msgstr "/"
+
+#: filebrowser.cpp:625
+msgid "FileBrowser::Close"
+msgstr "Schließen"
+
+#: filebrowser.cpp:650
+msgid "FileBrowser::Copy"
+msgstr "Kopieren"
+
+#: filebrowser.cpp:663
+msgid "FileBrowser::Cut"
+msgstr "Ausschneiden"
+
+#: filebrowser.cpp:597
+msgid "FileBrowser::File Browser"
+msgstr "Filebrowser"
+
+#: filebrowser.cpp:644
+msgid "FileBrowser::New folder"
+msgstr "Neues Verzeichnis"
+
+#: filebrowser.cpp:638
+msgid "FileBrowser::Parent dir"
+msgstr "Übergeordnetes Verzeichnis"
+
+#: filebrowser.cpp:656
+msgid "FileBrowser::Paste"
+msgstr "Einfügen"
+
+#: filebrowser.cpp:632
+msgid "FileBrowser::Previous dir"
+msgstr "Letztes Verzeichnis"
+
+#: filebrowser.cpp:617
+msgid "FileBrowser::by &Date "
+msgstr "nach &Datum"
+
+#: filebrowser.cpp:616
+msgid "FileBrowser::by &Name "
+msgstr "nach &Namen"
+
+#: filebrowser.cpp:618
+msgid "FileBrowser::by &Size "
+msgstr "nach &Größe"
+
+#: filebrowser.cpp:619
+msgid "FileBrowser::by &Type "
+msgstr "nach Datei&typ"
+
+#: filebrowser.cpp:566
+msgid "FileView::&Copy"
+msgstr "&Kopieren"
+
+#: filebrowser.cpp:570
+msgid "FileView::&Cut"
+msgstr "Auss&chneiden"
+
+#: filebrowser.cpp:395
+msgid "FileView::&No"
+msgstr "&Nein"
+
+#: filebrowser.cpp:500
+msgid "FileView::&Ok"
+msgstr "&OK"
+
+#: filebrowser.cpp:568
+msgid "FileView::&Paste"
+msgstr "&Einfügen"
+
+#: filebrowser.cpp:555
+msgid "FileView::&Run"
+msgstr "St&arten"
+
+#: filebrowser.cpp:572
+msgid "FileView::&Select all"
+msgstr "Alles &markieren"
+
+#: filebrowser.cpp:561
+msgid "FileView::&View as text"
+msgstr "Als &Text anzeigen"
+
+#: filebrowser.cpp:395
+msgid "FileView::&Yes"
+msgstr "&Ja"
+
+#: filebrowser.cpp:394
+msgid "FileView::Are you sure?"
+msgstr "Sind Sie sicher?"
+
+#: filebrowser.cpp:404
+msgid "FileView::Cut failed!"
+msgstr "Kein Ausschneiden möglich!"
+
+#: filebrowser.cpp:404
+msgid "FileView::Cut"
+msgstr "Ausschneiden"
+
+#: filebrowser.cpp:573
+msgid "FileView::Dese&lect all"
+msgstr "Auswahl &rückgängig machen"
+
+#: filebrowser.cpp:425
+msgid "FileView::Folder creation failed!"
+msgstr "Verzeichnis kann nicht angelegt werden!"
+
+#: filebrowser.cpp:499
+msgid "FileView::Launch Application"
+msgstr "Starte Programm"
+
+#: filebrowser.cpp:500
+msgid "FileView::Launch failed!"
+msgstr "Programmstart gescheitert!"
+
+#: filebrowser.cpp:424
+msgid "FileView::New folder"
+msgstr "Neues Verzeichnis"
+
+#: filebrowser.cpp:321
+msgid "FileView::Paste failed!"
+msgstr "Einfügen gescheitert!"
+
+#: filebrowser.cpp:321
+msgid "FileView::Paste file"
+msgstr "Datei einfügen"
+
+#: filebrowser.cpp:564
+msgid "FileView::R&ename"
+msgstr "&Umbenennen"
+
+#: filebrowser.cpp:262
+msgid "FileView::Rename failed!"
+msgstr "Umbenennung gescheitert!"
+
+#: filebrowser.cpp:261
+msgid "FileView::Rename file"
+msgstr "Datei umbenennen"
+
+#: filebrowser.cpp:479
+msgid "FileView::Unable to open file!"
+msgstr "Datei kann nicht geöffnet werden!"
+
+#: filebrowser.cpp:478
+msgid "FileView::View as text"
+msgstr "Als Text anzeigen"
+

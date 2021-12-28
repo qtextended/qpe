@@ -1,0 +1,276 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= addressbook
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	addressbook.h \
+		abeditor.h \
+		abeditorpage2.h \
+		abentry.h \
+		ablabel.h \
+		abtable.h \
+		addresssettings.h
+SOURCES =	main.cpp \
+		addressbook.cpp \
+		abeditor.cpp \
+		abeditorpage2.cpp \
+		abentry.cpp \
+		ablabel.cpp \
+		abtable.cpp \
+		addresssettings.cpp
+OBJECTS =	main.o \
+		addressbook.o \
+		abeditor.o \
+		abeditorpage2.o \
+		abentry.o \
+		ablabel.o \
+		abtable.o \
+		addresssettings.o \
+		abeditorbase.o \
+		abeditorpage2base.o \
+		addresssettingsbase.o
+INTERFACES =    abeditorbase.ui \
+		abeditorpage2base.ui \
+		addresssettingsbase.ui
+UICDECLS =      abeditorbase.h \
+		abeditorpage2base.h \
+		addresssettingsbase.h
+UICIMPLS =      abeditorbase.cpp \
+		abeditorpage2base.cpp \
+		addresssettingsbase.cpp
+SRCMOC	=	moc_addressbook.cpp \
+		moc_abeditor.cpp \
+		moc_abeditorpage2.cpp \
+		moc_ablabel.cpp \
+		moc_abtable.cpp \
+		moc_addresssettings.cpp \
+		moc_abeditorbase.cpp \
+		moc_abeditorpage2base.cpp \
+		moc_addresssettingsbase.cpp
+OBJMOC	=	moc_addressbook.o \
+		moc_abeditor.o \
+		moc_abeditorpage2.o \
+		moc_ablabel.o \
+		moc_abtable.o \
+		moc_addresssettings.o \
+		moc_abeditorbase.o \
+		moc_abeditorpage2base.o \
+		moc_addresssettingsbase.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: addressbook.pro
+	tmake addressbook.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+main.o: main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		addressbook.h
+
+addressbook.o: addressbook.cpp \
+		addressbook.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/global.h \
+		../library/resource.h \
+		abentry.h \
+		abeditor.h \
+		ablabel.h \
+		addresssettings.h \
+		addresssettingsbase.h \
+		abtable.h
+
+abeditor.o: abeditor.cpp \
+		abeditor.h \
+		../library/config.h \
+		abeditorbase.h \
+		abeditorpage2.h \
+		abeditorpage2base.h \
+		abentry.h
+
+abeditorpage2.o: abeditorpage2.cpp \
+		../library/config.h \
+		abeditorpage2.h \
+		abeditorpage2base.h
+
+abentry.o: abentry.cpp \
+		abentry.h \
+		../library/xmlreader.h
+
+ablabel.o: ablabel.cpp \
+		ablabel.h \
+		abentry.h
+
+abtable.o: abtable.cpp \
+		abtable.h \
+		abentry.h \
+		../library/config.h
+
+addresssettings.o: addresssettings.cpp \
+		addresssettings.h \
+		addresssettingsbase.h \
+		../library/config.h
+
+abeditorbase.h: abeditorbase.ui
+	$(UIC) abeditorbase.ui -o $(INTERFACE_DECL_PATH)/abeditorbase.h
+
+abeditorbase.cpp: abeditorbase.ui
+	$(UIC) abeditorbase.ui -i abeditorbase.h -o abeditorbase.cpp
+
+abeditorpage2base.h: abeditorpage2base.ui
+	$(UIC) abeditorpage2base.ui -o $(INTERFACE_DECL_PATH)/abeditorpage2base.h
+
+abeditorpage2base.cpp: abeditorpage2base.ui
+	$(UIC) abeditorpage2base.ui -i abeditorpage2base.h -o abeditorpage2base.cpp
+
+addresssettingsbase.h: addresssettingsbase.ui
+	$(UIC) addresssettingsbase.ui -o $(INTERFACE_DECL_PATH)/addresssettingsbase.h
+
+addresssettingsbase.cpp: addresssettingsbase.ui
+	$(UIC) addresssettingsbase.ui -i addresssettingsbase.h -o addresssettingsbase.cpp
+
+abeditorbase.o: abeditorbase.cpp
+
+abeditorpage2base.o: abeditorpage2base.cpp
+
+addresssettingsbase.o: addresssettingsbase.cpp
+
+moc_addressbook.o: moc_addressbook.cpp \
+		addressbook.h
+
+moc_abeditor.o: moc_abeditor.cpp \
+		abeditor.h
+
+moc_abeditorpage2.o: moc_abeditorpage2.cpp \
+		abeditorpage2.h \
+		abeditorpage2base.h
+
+moc_ablabel.o: moc_ablabel.cpp \
+		ablabel.h
+
+moc_abtable.o: moc_abtable.cpp \
+		abtable.h
+
+moc_addresssettings.o: moc_addresssettings.cpp \
+		addresssettings.h \
+		addresssettingsbase.h
+
+moc_abeditorbase.o: moc_abeditorbase.cpp \
+		abeditorbase.h
+
+moc_abeditorpage2base.o: moc_abeditorpage2base.cpp \
+		abeditorpage2base.h
+
+moc_addresssettingsbase.o: moc_addresssettingsbase.cpp \
+		addresssettingsbase.h
+
+moc_addressbook.cpp: addressbook.h
+	$(MOC) addressbook.h -o moc_addressbook.cpp
+
+moc_abeditor.cpp: abeditor.h
+	$(MOC) abeditor.h -o moc_abeditor.cpp
+
+moc_abeditorpage2.cpp: abeditorpage2.h
+	$(MOC) abeditorpage2.h -o moc_abeditorpage2.cpp
+
+moc_ablabel.cpp: ablabel.h
+	$(MOC) ablabel.h -o moc_ablabel.cpp
+
+moc_abtable.cpp: abtable.h
+	$(MOC) abtable.h -o moc_abtable.cpp
+
+moc_addresssettings.cpp: addresssettings.h
+	$(MOC) addresssettings.h -o moc_addresssettings.cpp
+
+moc_abeditorbase.cpp: abeditorbase.h
+	$(MOC) abeditorbase.h -o moc_abeditorbase.cpp
+
+moc_abeditorpage2base.cpp: abeditorpage2base.h
+	$(MOC) abeditorpage2base.h -o moc_abeditorpage2base.cpp
+
+moc_addresssettingsbase.cpp: addresssettingsbase.h
+	$(MOC) addresssettingsbase.h -o moc_addresssettingsbase.cpp
+
+

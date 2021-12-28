@@ -1,0 +1,166 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= spreadsheet
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	spreadsheet.h \
+		pimspreadsheetwindow.h
+SOURCES =	spreadsheet.cpp \
+		pimspreadsheetwindow.cpp \
+		main.cpp
+OBJECTS =	spreadsheet.o \
+		pimspreadsheetwindow.o \
+		main.o \
+		spreadsheetwidget.o
+INTERFACES =    spreadsheetwidget.ui
+UICDECLS =      spreadsheetwidget.h
+UICIMPLS =      spreadsheetwidget.cpp
+SRCMOC	=	moc_spreadsheet.cpp \
+		moc_pimspreadsheetwindow.cpp \
+		moc_spreadsheetwidget.cpp
+OBJMOC	=	moc_spreadsheet.o \
+		moc_pimspreadsheetwindow.o \
+		moc_spreadsheetwidget.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: spreadsheet.pro
+	tmake spreadsheet.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+spreadsheet.o: spreadsheet.cpp \
+		spreadsheet.h \
+		../library/applnk.h \
+		../library/fileselector.h \
+		../library/filemanager.h \
+		../library/global.h
+
+pimspreadsheetwindow.o: pimspreadsheetwindow.cpp \
+		pimspreadsheetwindow.h \
+		spreadsheetwidget.h \
+		../library/applnk.h \
+		../library/fileselector.h \
+		../library/filemanager.h \
+		spreadsheet.h \
+		../library/global.h \
+		../library/resource.h
+
+main.o: main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		pimspreadsheetwindow.h \
+		spreadsheetwidget.h \
+		../library/applnk.h
+
+spreadsheetwidget.h: spreadsheetwidget.ui
+	$(UIC) spreadsheetwidget.ui -o $(INTERFACE_DECL_PATH)/spreadsheetwidget.h
+
+spreadsheetwidget.cpp: spreadsheetwidget.ui
+	$(UIC) spreadsheetwidget.ui -i spreadsheetwidget.h -o spreadsheetwidget.cpp
+
+spreadsheetwidget.o: spreadsheetwidget.cpp \
+		spreadsheetwidget.h \
+		spreadsheetwidget.ui
+
+moc_spreadsheet.o: moc_spreadsheet.cpp \
+		spreadsheet.h \
+		../library/applnk.h
+
+moc_pimspreadsheetwindow.o: moc_pimspreadsheetwindow.cpp \
+		pimspreadsheetwindow.h \
+		spreadsheetwidget.h \
+		../library/applnk.h
+
+moc_spreadsheetwidget.o: moc_spreadsheetwidget.cpp \
+		spreadsheetwidget.h
+
+moc_spreadsheet.cpp: spreadsheet.h
+	$(MOC) spreadsheet.h -o moc_spreadsheet.cpp
+
+moc_pimspreadsheetwindow.cpp: pimspreadsheetwindow.h
+	$(MOC) pimspreadsheetwindow.h -o moc_pimspreadsheetwindow.cpp
+
+moc_spreadsheetwidget.cpp: spreadsheetwidget.h
+	$(MOC) spreadsheetwidget.h -o moc_spreadsheetwidget.cpp
+
+

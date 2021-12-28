@@ -1,0 +1,10 @@
+DESTDIR		= ../bin
+TEMPLATE	= app
+CONFIG		= qt warn_on release
+HEADERS		= pppconnect.h
+SOURCES		= main.cpp pppconnect.cpp
+INCLUDEPATH	+= ../library
+DEPENDPATH	+= ../library
+LIBS            += -lqpe
+INTERFACES	= pppconnectbase.ui
+TARGET		= qppp

@@ -1,0 +1,516 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library -I. -I../launcher -I../calibrate
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe -lcrypt $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= qpe
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	background.h \
+		desktop.h \
+		info.h \
+		appicons.h \
+		taskbar.h \
+		sidething.h \
+		mrulist.h \
+		inputmethods.h \
+		systray.h \
+		wait.h \
+		shutdownimpl.h \
+		../launcher/launcher.h \
+		../launcher/launcherview.h \
+		../launcher/lnkproperties.h \
+		../launcher/categorylist.h \
+		../calibrate/calibrate.h \
+		transferserver.h
+SOURCES =	background.cpp \
+		desktop.cpp \
+		info.cpp \
+		appicons.cpp \
+		taskbar.cpp \
+		sidething.cpp \
+		mrulist.cpp \
+		inputmethods.cpp \
+		systray.cpp \
+		wait.cpp \
+		shutdownimpl.cpp \
+		../launcher/launcher.cpp \
+		../launcher/launcherview.cpp \
+		../launcher/lnkproperties.cpp \
+		../launcher/categorylist.cpp \
+		../calibrate/calibrate.cpp \
+		transferserver.cpp \
+		main.cpp
+OBJECTS =	background.o \
+		desktop.o \
+		info.o \
+		appicons.o \
+		taskbar.o \
+		sidething.o \
+		mrulist.o \
+		inputmethods.o \
+		systray.o \
+		wait.o \
+		shutdownimpl.o \
+		../launcher/launcher.o \
+		../launcher/launcherview.o \
+		../launcher/lnkproperties.o \
+		../launcher/categorylist.o \
+		../calibrate/calibrate.o \
+		transferserver.o \
+		main.o \
+		shutdown.o \
+		../launcher/lnkpropertiesbase.o
+INTERFACES =    shutdown.ui \
+		../launcher/lnkpropertiesbase.ui
+UICDECLS =      shutdown.h \
+		../launcher/lnkpropertiesbase.h
+UICIMPLS =      shutdown.cpp \
+		../launcher/lnkpropertiesbase.cpp
+SRCMOC	=	moc_background.cpp \
+		moc_desktop.cpp \
+		moc_info.cpp \
+		moc_appicons.cpp \
+		moc_taskbar.cpp \
+		moc_sidething.cpp \
+		moc_inputmethods.cpp \
+		moc_systray.cpp \
+		moc_shutdownimpl.cpp \
+		../launcher/moc_launcher.cpp \
+		../launcher/moc_launcherview.cpp \
+		../launcher/moc_lnkproperties.cpp \
+		../launcher/moc_categorylist.cpp \
+		../calibrate/moc_calibrate.cpp \
+		moc_transferserver.cpp \
+		appicons.moc \
+		moc_shutdown.cpp \
+		../launcher/moc_lnkpropertiesbase.cpp
+OBJMOC	=	moc_background.o \
+		moc_desktop.o \
+		moc_info.o \
+		moc_appicons.o \
+		moc_taskbar.o \
+		moc_sidething.o \
+		moc_inputmethods.o \
+		moc_systray.o \
+		moc_shutdownimpl.o \
+		../launcher/moc_launcher.o \
+		../launcher/moc_launcherview.o \
+		../launcher/moc_lnkproperties.o \
+		../launcher/moc_categorylist.o \
+		../calibrate/moc_calibrate.o \
+		moc_transferserver.o \
+		moc_shutdown.o \
+		../launcher/moc_lnkpropertiesbase.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: taskbar.pro
+	tmake taskbar.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+background.o: background.cpp \
+		../library/resource.h \
+		background.h \
+		desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		shutdownimpl.h \
+		shutdown.h
+
+desktop.o: desktop.cpp \
+		../launcher/launcher.h \
+		../launcher/launcherview.h \
+		shutdownimpl.h \
+		shutdown.h \
+		desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		info.h \
+		background.h \
+		mrulist.h \
+		../library/applnk.h \
+		taskbar.h \
+		../library/global.h \
+		../library/config.h
+
+info.o: info.cpp \
+		../library/resource.h \
+		info.h \
+		background.h \
+		desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		shutdownimpl.h \
+		shutdown.h \
+		../library/version.h
+
+appicons.o: appicons.cpp \
+		appicons.moc \
+		appicons.h \
+		../library/qcopenvelope_qws.h
+
+taskbar.o: taskbar.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qcopenvelope_qws.h \
+		taskbar.h \
+		inputmethods.h \
+		inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		mrulist.h \
+		../library/applnk.h \
+		systray.h \
+		taskbarappletinterface.h \
+		../library/global.h \
+		../calibrate/calibrate.h \
+		wait.h \
+		../library/resource.h \
+		appicons.h \
+		../taskbar/apps.h \
+		../addressbook/addressbook.h \
+		../datebook/datebook.h \
+		../library/datebookdb.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../helpbrowser/helpbrowser.h \
+		../minesweep/minesweep.h \
+		../textedit/textedit.h \
+		../library/filemanager.h \
+		../todo/mainwindow.h \
+		../citytime/citytime.h \
+		../clock/clock.h \
+		../calculator/calculatorimpl.h \
+		../tetrix/qtetrix.h \
+		../sysinfo/sysinfo.h \
+		../settings/appearance/settings.h \
+		../settings/language/settings.h \
+		../settings/light-and-power/settings.h \
+		../settings/rotation/settings.h \
+		../filebrowser/filebrowser.h \
+		../spreadsheet/pimspreadsheetwindow.h \
+		../snake/interface.h \
+		../tux/tux.h \
+		../parashoot/interface.h \
+		../library/sound.h \
+		../embeddedkonsole/konsole.h \
+		../wordgame/wordgame.h \
+		../library/qdawg.h
+
+sidething.o: sidething.cpp \
+		../library/resource.h \
+		sidething.h
+
+mrulist.o: mrulist.cpp \
+		../library/global.h \
+		../library/applnk.h \
+		../library/resource.h \
+		mrulist.h
+
+inputmethods.o: inputmethods.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		inputmethods.h \
+		inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../library/config.h \
+		../library/qlibrary.h
+
+systray.o: systray.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		quicklauncher.h \
+		systray.h \
+		taskbarappletinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../library/qlibrary.h \
+		../library/config.h
+
+wait.o: wait.cpp \
+		../library/resource.h \
+		wait.h
+
+shutdownimpl.o: shutdownimpl.cpp \
+		shutdownimpl.h \
+		shutdown.h \
+		../library/global.h
+
+../launcher/launcher.o: ../launcher/launcher.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qcopenvelope_qws.h \
+		../library/resource.h \
+		../library/applnk.h \
+		../library/config.h \
+		../launcher/launcherview.h \
+		../launcher/launcher.h \
+		../library/global.h \
+		../launcher/lnkproperties.h \
+		lnkpropertiesbase.h \
+		../taskbar/mrulist.h \
+		../library/mimetype.h
+
+../launcher/launcherview.o: ../launcher/launcherview.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/applnk.h \
+		../library/qpedebug.h \
+		../launcher/launcherview.h \
+		../library/menubutton.h
+
+../launcher/lnkproperties.o: ../launcher/lnkproperties.cpp \
+		../launcher/lnkproperties.h \
+		lnkpropertiesbase.h \
+		../library/applnk.h \
+		../library/global.h \
+		../library/qcopenvelope_qws.h \
+		../library/filemanager.h \
+		../library/config.h \
+		../launcher/categorylist.h
+
+../launcher/categorylist.o: ../launcher/categorylist.cpp \
+		../launcher/categorylist.h \
+		../library/config.h
+
+../calibrate/calibrate.o: ../calibrate/calibrate.cpp \
+		../library/resource.h \
+		../calibrate/calibrate.h
+
+transferserver.o: transferserver.cpp \
+		transferserver.h
+
+main.o: main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/qcopenvelope_qws.h \
+		desktop.h \
+		shutdownimpl.h \
+		shutdown.h \
+		taskbar.h \
+		transferserver.h \
+		../login/qdmdialogimpl.h \
+		../library/global.h
+
+shutdown.h: shutdown.ui
+	$(UIC) shutdown.ui -o $(INTERFACE_DECL_PATH)/shutdown.h
+
+shutdown.cpp: shutdown.ui
+	$(UIC) shutdown.ui -i shutdown.h -o shutdown.cpp
+
+../launcher/lnkpropertiesbase.h: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -o $(INTERFACE_DECL_PATH)/../launcher/lnkpropertiesbase.h
+
+lnkpropertiesbase.h: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -o lnkpropertiesbase.h
+
+../launcher/lnkpropertiesbase.cpp: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -i lnkpropertiesbase.h -o ../launcher/lnkpropertiesbase.cpp
+
+shutdown.o: shutdown.cpp
+
+../launcher/lnkpropertiesbase.o: ../launcher/lnkpropertiesbase.cpp
+
+moc_background.o: moc_background.cpp \
+		background.h
+
+moc_desktop.o: moc_desktop.cpp \
+		desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		shutdownimpl.h \
+		shutdown.h
+
+moc_info.o: moc_info.cpp \
+		info.h \
+		background.h
+
+moc_appicons.o: moc_appicons.cpp \
+		appicons.h
+
+moc_taskbar.o: moc_taskbar.cpp \
+		taskbar.h
+
+moc_sidething.o: moc_sidething.cpp \
+		sidething.h
+
+moc_inputmethods.o: moc_inputmethods.cpp \
+		inputmethods.h \
+		inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h
+
+moc_systray.o: moc_systray.cpp \
+		systray.h \
+		taskbarappletinterface.h \
+		../library/qcom.h \
+		../library/quuid.h
+
+moc_shutdownimpl.o: moc_shutdownimpl.cpp \
+		shutdownimpl.h \
+		shutdown.h
+
+../launcher/moc_launcher.o: ../launcher/moc_launcher.cpp \
+		../launcher/launcher.h \
+		../launcher/launcherview.h
+
+../launcher/moc_launcherview.o: ../launcher/moc_launcherview.cpp \
+		../launcher/launcherview.h
+
+../launcher/moc_lnkproperties.o: ../launcher/moc_lnkproperties.cpp \
+		../launcher/lnkproperties.h \
+		lnkpropertiesbase.h
+
+../launcher/moc_categorylist.o: ../launcher/moc_categorylist.cpp \
+		../launcher/categorylist.h
+
+../calibrate/moc_calibrate.o: ../calibrate/moc_calibrate.cpp \
+		../calibrate/calibrate.h
+
+moc_transferserver.o: moc_transferserver.cpp \
+		transferserver.h
+
+moc_shutdown.o: appicons.moc \
+		appicons.cpp \
+		appicons.h \
+		../library/qcopenvelope_qws.h
+
+../launcher/moc_lnkpropertiesbase.o: moc_shutdown.cpp \
+		shutdown.h
+
+moc_background.cpp: background.h
+	$(MOC) background.h -o moc_background.cpp
+
+moc_desktop.cpp: desktop.h
+	$(MOC) desktop.h -o moc_desktop.cpp
+
+moc_info.cpp: info.h
+	$(MOC) info.h -o moc_info.cpp
+
+moc_appicons.cpp: appicons.h
+	$(MOC) appicons.h -o moc_appicons.cpp
+
+moc_taskbar.cpp: taskbar.h
+	$(MOC) taskbar.h -o moc_taskbar.cpp
+
+moc_sidething.cpp: sidething.h
+	$(MOC) sidething.h -o moc_sidething.cpp
+
+moc_inputmethods.cpp: inputmethods.h
+	$(MOC) inputmethods.h -o moc_inputmethods.cpp
+
+moc_systray.cpp: systray.h
+	$(MOC) systray.h -o moc_systray.cpp
+
+moc_shutdownimpl.cpp: shutdownimpl.h
+	$(MOC) shutdownimpl.h -o moc_shutdownimpl.cpp
+
+../launcher/moc_launcher.cpp: ../launcher/launcher.h
+	$(MOC) ../launcher/launcher.h -o ../launcher/moc_launcher.cpp
+
+../launcher/moc_launcherview.cpp: ../launcher/launcherview.h
+	$(MOC) ../launcher/launcherview.h -o ../launcher/moc_launcherview.cpp
+
+../launcher/moc_lnkproperties.cpp: ../launcher/lnkproperties.h
+	$(MOC) ../launcher/lnkproperties.h -o ../launcher/moc_lnkproperties.cpp
+
+../launcher/moc_categorylist.cpp: ../launcher/categorylist.h
+	$(MOC) ../launcher/categorylist.h -o ../launcher/moc_categorylist.cpp
+
+../calibrate/moc_calibrate.cpp: ../calibrate/calibrate.h
+	$(MOC) ../calibrate/calibrate.h -o ../calibrate/moc_calibrate.cpp
+
+moc_transferserver.cpp: transferserver.h
+	$(MOC) transferserver.h -o moc_transferserver.cpp
+
+appicons.moc: appicons.cpp
+	$(MOC) appicons.cpp -o appicons.moc
+
+moc_shutdown.cpp: shutdown.h
+	$(MOC) shutdown.h -o moc_shutdown.cpp
+
+../launcher/moc_lnkpropertiesbase.cpp: ../launcher/lnkpropertiesbase.h
+	$(MOC) ../launcher/lnkpropertiesbase.h -o ../launcher/moc_lnkpropertiesbase.cpp
+
+

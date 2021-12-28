@@ -1,0 +1,2217 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS) -DSINGLE_APP -DQT_NO_COMPONENT -DQT_HAS_OK_IN_TITLEBAR -DUSE_MULTILINEEDIT -DQT_QPE_SMALL_BUILD
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS) -DSINGLE_APP -DQT_NO_COMPONENT -DQT_HAS_OK_IN_TITLEBAR -DUSE_MULTILINEEDIT -DQT_QPE_SMALL_BUILD
+INCPATH =	-I../calculator -I../todo -I../datebook -I../clock -I../library -I../minesweep -I../taskbar -I../taskbar/clockapplet -I../textedit -I../sysinfo -I../calibrate -I../addressbook -I../tetrix -I../citytime -I../settings -I../inputmethods/pickboard -I../inputmethods/handwriting -I../inputmethods/keyboard -I../launcher -I../helpbrowser
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ./
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= qpe
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	../calculator/calculatorimpl.h \
+		../todo/mainwindow.h \
+		../todo/todoentryimpl.h \
+		../todo/todotable.h \
+		../datebook/datebook.h \
+		../datebook/datebookday.h \
+		../datebook/datebookdayheaderimpl.h \
+		../datebook/datebooksettings.h \
+		../datebook/datebookweek.h \
+		../datebook/datebookweekheaderimpl.h \
+		../datebook/dateentryimpl.h \
+		../datebook/repeatentry.h \
+		../clock/clock.h \
+		../library/alarmserver.h \
+		../library/applnk.h \
+		../library/calendar.h \
+		../library/config.h \
+		../library/datebookdb.h \
+		../library/datebookmonth.h \
+		../library/filemanager.h \
+		../library/fileselector.h \
+		../library/fontmanager.h \
+		../library/global.h \
+		../library/imageedit.h \
+		../library/inlinepics.h \
+		../library/lightstyle.h \
+		../library/menubutton.h \
+		../library/mimetype.h \
+		../library/organizer.h \
+		../library/process.h \
+		../library/qcom.h \
+		../library/qcopenvelope_qws.h \
+		../library/qdawg.h \
+		../library/qmath.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qpestyle.h \
+		../library/quuid.h \
+		../library/resource.h \
+		../library/sound.h \
+		../library/timestring.h \
+		../library/tzselect.h \
+		../library/version.h \
+		../library/xmlreader.h \
+		../minesweep/minefield.h \
+		../minesweep/minesweep.h \
+		../taskbar/appicons.h \
+		../taskbar/apps.h \
+		../taskbar/background.h \
+		../taskbar/desktop.h \
+		../taskbar/info.h \
+		../taskbar/inputmethodinterface.h \
+		../taskbar/inputmethods.h \
+		../taskbar/mrulist.h \
+		../taskbar/quicklauncher.h \
+		../taskbar/sidething.h \
+		../taskbar/startmenu.h \
+		../taskbar/systray.h \
+		../taskbar/taskbar.h \
+		../taskbar/taskbarappletinterface.h \
+		../taskbar/wait.h \
+		../taskbar/clockapplet/clock.h \
+		../taskbar/clockapplet/clockappletimpl.h \
+		../textedit/textedit.h \
+		../sysinfo/graph.h \
+		../sysinfo/load.h \
+		../sysinfo/memory.h \
+		../sysinfo/storage.h \
+		../sysinfo/sysinfo.h \
+		../sysinfo/version.h \
+		../calibrate/calibrate.h \
+		../addressbook/abeditor.h \
+		../addressbook/abentry.h \
+		../addressbook/ablabel.h \
+		../addressbook/ablineedit.h \
+		../addressbook/abmultilineedit.h \
+		../addressbook/abname.h \
+		../addressbook/abtable.h \
+		../addressbook/addressbook.h \
+		../tetrix/gtetrix.h \
+		../tetrix/qtetrix.h \
+		../tetrix/qtetrixb.h \
+		../tetrix/tpiece.h \
+		../citytime/citytime.h \
+		../citytime/stylusnormalizer.h \
+		../citytime/sun.h \
+		../citytime/zonemap.h \
+		../settings/settime.h \
+		../settings/settings.h \
+		../inputmethods/pickboard/pickboard.h \
+		../inputmethods/pickboard/pickboardcfg.h \
+		../inputmethods/pickboard/pickboardimpl.h \
+		../inputmethods/pickboard/pickboardpicks.h \
+		../inputmethods/handwriting/handwritingimpl.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpencombining.h \
+		../inputmethods/handwriting/qimpenhelp.h \
+		../inputmethods/handwriting/qimpeninput.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpensetup.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../inputmethods/handwriting/qimpenwidget.h \
+		../inputmethods/handwriting/qimpenwordpick.h \
+		../inputmethods/keyboard/keyboard.h \
+		../inputmethods/keyboard/keyboardimpl.h \
+		../launcher/categorylist.h \
+		../launcher/launcher.h \
+		../launcher/launcherview.h \
+		../launcher/lnkproperties.h \
+		../helpbrowser/helpbrowser.h
+SOURCES =	../taskbar/main.cpp \
+		../calculator/calculatorimpl.cpp \
+		../todo/mainwindow.cpp \
+		../todo/todoentryimpl.cpp \
+		../todo/todotable.cpp \
+		../datebook/datebook.cpp \
+		../datebook/datebookday.cpp \
+		../datebook/datebookdayheaderimpl.cpp \
+		../datebook/datebooksettings.cpp \
+		../datebook/datebookweek.cpp \
+		../datebook/datebookweekheaderimpl.cpp \
+		../datebook/dateentryimpl.cpp \
+		../datebook/repeatentry.cpp \
+		../clock/clock.cpp \
+		../library/alarmserver.cpp \
+		../library/applnk.cpp \
+		../library/calendar.cpp \
+		../library/config.cpp \
+		../library/datebookdb.cpp \
+		../library/datebookmonth.cpp \
+		../library/filemanager.cpp \
+		../library/fileselector.cpp \
+		../library/fontmanager.cpp \
+		../library/global.cpp \
+		../library/imageedit.cpp \
+		../library/lightstyle.cpp \
+		../library/menubutton.cpp \
+		../library/mimetype.cpp \
+		../library/organizer.cpp \
+		../library/process.cpp \
+		../library/process_unix.cpp \
+		../library/qcopenvelope_qws.cpp \
+		../library/qdawg.cpp \
+		../library/qmath.c \
+		../library/qpeapplication.cpp \
+		../library/qpedecoration_qws.cpp \
+		../library/qpestyle.cpp \
+		../library/quuid.cpp \
+		../library/resource.cpp \
+		../library/sound.cpp \
+		../library/timestring.cpp \
+		../library/tzselect.cpp \
+		../library/xmlreader.cpp \
+		../minesweep/minefield.cpp \
+		../minesweep/minesweep.cpp \
+		../taskbar/appicons.cpp \
+		../taskbar/background.cpp \
+		../taskbar/desktop.cpp \
+		../taskbar/info.cpp \
+		../taskbar/inputmethods.cpp \
+		../taskbar/mrulist.cpp \
+		../taskbar/quicklauncher.cpp \
+		../taskbar/sidething.cpp \
+		../taskbar/startmenu.cpp \
+		../taskbar/systray.cpp \
+		../taskbar/taskbar.cpp \
+		../taskbar/wait.cpp \
+		../taskbar/clockapplet/clock.cpp \
+		../taskbar/clockapplet/clockappletimpl.cpp \
+		../textedit/textedit.cpp \
+		../sysinfo/graph.cpp \
+		../sysinfo/load.cpp \
+		../sysinfo/memory.cpp \
+		../sysinfo/storage.cpp \
+		../sysinfo/sysinfo.cpp \
+		../sysinfo/version.cpp \
+		../calibrate/calibrate.cpp \
+		../addressbook/abeditor.cpp \
+		../addressbook/abentry.cpp \
+		../addressbook/ablabel.cpp \
+		../addressbook/ablineedit.cpp \
+		../addressbook/abmultilineedit.cpp \
+		../addressbook/abname.cpp \
+		../addressbook/abtable.cpp \
+		../addressbook/addressbook.cpp \
+		../tetrix/gtetrix.cpp \
+		../tetrix/qtetrix.cpp \
+		../tetrix/qtetrixb.cpp \
+		../tetrix/tpiece.cpp \
+		../citytime/citytime.cpp \
+		../citytime/stylusnormalizer.cpp \
+		../citytime/sun.c \
+		../citytime/zonemap.cpp \
+		../settings/settime.cpp \
+		../settings/settings.cpp \
+		../inputmethods/pickboard/pickboard.cpp \
+		../inputmethods/pickboard/pickboardcfg.cpp \
+		../inputmethods/pickboard/pickboardimpl.cpp \
+		../inputmethods/pickboard/pickboardpicks.cpp \
+		../inputmethods/handwriting/handwritingimpl.cpp \
+		../inputmethods/handwriting/qimpenchar.cpp \
+		../inputmethods/handwriting/qimpencombining.cpp \
+		../inputmethods/handwriting/qimpenhelp.cpp \
+		../inputmethods/handwriting/qimpeninput.cpp \
+		../inputmethods/handwriting/qimpenmatch.cpp \
+		../inputmethods/handwriting/qimpensetup.cpp \
+		../inputmethods/handwriting/qimpenstroke.cpp \
+		../inputmethods/handwriting/qimpenwidget.cpp \
+		../inputmethods/handwriting/qimpenwordpick.cpp \
+		../inputmethods/keyboard/keyboard.cpp \
+		../inputmethods/keyboard/keyboardimpl.cpp \
+		../launcher/categorylist.cpp \
+		../launcher/launcher.cpp \
+		../launcher/launcherview.cpp \
+		../launcher/lnkproperties.cpp \
+		../helpbrowser/helpbrowser.cpp
+OBJECTS =	../taskbar/main.o \
+		../calculator/calculatorimpl.o \
+		../todo/mainwindow.o \
+		../todo/todoentryimpl.o \
+		../todo/todotable.o \
+		../datebook/datebook.o \
+		../datebook/datebookday.o \
+		../datebook/datebookdayheaderimpl.o \
+		../datebook/datebooksettings.o \
+		../datebook/datebookweek.o \
+		../datebook/datebookweekheaderimpl.o \
+		../datebook/dateentryimpl.o \
+		../datebook/repeatentry.o \
+		../clock/clock.o \
+		../library/alarmserver.o \
+		../library/applnk.o \
+		../library/calendar.o \
+		../library/config.o \
+		../library/datebookdb.o \
+		../library/datebookmonth.o \
+		../library/filemanager.o \
+		../library/fileselector.o \
+		../library/fontmanager.o \
+		../library/global.o \
+		../library/imageedit.o \
+		../library/lightstyle.o \
+		../library/menubutton.o \
+		../library/mimetype.o \
+		../library/organizer.o \
+		../library/process.o \
+		../library/process_unix.o \
+		../library/qcopenvelope_qws.o \
+		../library/qdawg.o \
+		../library/qmath.o \
+		../library/qpeapplication.o \
+		../library/qpedecoration_qws.o \
+		../library/qpestyle.o \
+		../library/quuid.o \
+		../library/resource.o \
+		../library/sound.o \
+		../library/timestring.o \
+		../library/tzselect.o \
+		../library/xmlreader.o \
+		../minesweep/minefield.o \
+		../minesweep/minesweep.o \
+		../taskbar/appicons.o \
+		../taskbar/background.o \
+		../taskbar/desktop.o \
+		../taskbar/info.o \
+		../taskbar/inputmethods.o \
+		../taskbar/mrulist.o \
+		../taskbar/quicklauncher.o \
+		../taskbar/sidething.o \
+		../taskbar/startmenu.o \
+		../taskbar/systray.o \
+		../taskbar/taskbar.o \
+		../taskbar/wait.o \
+		../taskbar/clockapplet/clock.o \
+		../taskbar/clockapplet/clockappletimpl.o \
+		../textedit/textedit.o \
+		../sysinfo/graph.o \
+		../sysinfo/load.o \
+		../sysinfo/memory.o \
+		../sysinfo/storage.o \
+		../sysinfo/sysinfo.o \
+		../sysinfo/version.o \
+		../calibrate/calibrate.o \
+		../addressbook/abeditor.o \
+		../addressbook/abentry.o \
+		../addressbook/ablabel.o \
+		../addressbook/ablineedit.o \
+		../addressbook/abmultilineedit.o \
+		../addressbook/abname.o \
+		../addressbook/abtable.o \
+		../addressbook/addressbook.o \
+		../tetrix/gtetrix.o \
+		../tetrix/qtetrix.o \
+		../tetrix/qtetrixb.o \
+		../tetrix/tpiece.o \
+		../citytime/citytime.o \
+		../citytime/stylusnormalizer.o \
+		../citytime/sun.o \
+		../citytime/zonemap.o \
+		../settings/settime.o \
+		../settings/settings.o \
+		../inputmethods/pickboard/pickboard.o \
+		../inputmethods/pickboard/pickboardcfg.o \
+		../inputmethods/pickboard/pickboardimpl.o \
+		../inputmethods/pickboard/pickboardpicks.o \
+		../inputmethods/handwriting/handwritingimpl.o \
+		../inputmethods/handwriting/qimpenchar.o \
+		../inputmethods/handwriting/qimpencombining.o \
+		../inputmethods/handwriting/qimpenhelp.o \
+		../inputmethods/handwriting/qimpeninput.o \
+		../inputmethods/handwriting/qimpenmatch.o \
+		../inputmethods/handwriting/qimpensetup.o \
+		../inputmethods/handwriting/qimpenstroke.o \
+		../inputmethods/handwriting/qimpenwidget.o \
+		../inputmethods/handwriting/qimpenwordpick.o \
+		../inputmethods/keyboard/keyboard.o \
+		../inputmethods/keyboard/keyboardimpl.o \
+		../launcher/categorylist.o \
+		../launcher/launcher.o \
+		../launcher/launcherview.o \
+		../launcher/lnkproperties.o \
+		../helpbrowser/helpbrowser.o \
+		../calculator/calculator.o \
+		../todo/todoentry.o \
+		../datebook/datebookdayheader.o \
+		../datebook/datebooksettingsbase.o \
+		../datebook/datebookweekheader.o \
+		../datebook/dateentry.o \
+		../datebook/repeatentrybase.o \
+		../taskbar/shutdown.o \
+		../addressbook/abeditorbase.o \
+		../addressbook/abnamebase.o \
+		../citytime/citytimebase.o \
+		../settings/appearancesettingsbase.o \
+		../settings/languagesettingsbase.o \
+		../settings/lightsettingsbase.o \
+		../settings/rotationsettingsbase.o \
+		../settings/soundsettingsbase.o \
+		../inputmethods/handwriting/qimpenprefbase.o \
+		../launcher/lnkpropertiesbase.o
+INTERFACES =    ../calculator/calculator.ui \
+		../todo/todoentry.ui \
+		../datebook/datebookdayheader.ui \
+		../datebook/datebooksettingsbase.ui \
+		../datebook/datebookweekheader.ui \
+		../datebook/dateentry.ui \
+		../datebook/repeatentrybase.ui \
+		../taskbar/shutdown.ui \
+		../addressbook/abeditorbase.ui \
+		../addressbook/abnamebase.ui \
+		../citytime/citytimebase.ui \
+		../settings/appearancesettingsbase.ui \
+		../settings/languagesettingsbase.ui \
+		../settings/lightsettingsbase.ui \
+		../settings/rotationsettingsbase.ui \
+		../settings/soundsettingsbase.ui \
+		../inputmethods/handwriting/qimpenprefbase.ui \
+		../launcher/lnkpropertiesbase.ui
+UICDECLS =      ../calculator/calculator.h \
+		../todo/todoentry.h \
+		../datebook/datebookdayheader.h \
+		../datebook/datebooksettingsbase.h \
+		../datebook/datebookweekheader.h \
+		../datebook/dateentry.h \
+		../datebook/repeatentrybase.h \
+		../taskbar/shutdown.h \
+		../addressbook/abeditorbase.h \
+		../addressbook/abnamebase.h \
+		../citytime/citytimebase.h \
+		../settings/appearancesettingsbase.h \
+		../settings/languagesettingsbase.h \
+		../settings/lightsettingsbase.h \
+		../settings/rotationsettingsbase.h \
+		../settings/soundsettingsbase.h \
+		../inputmethods/handwriting/qimpenprefbase.h \
+		../launcher/lnkpropertiesbase.h
+UICIMPLS =      ../calculator/calculator.cpp \
+		../todo/todoentry.cpp \
+		../datebook/datebookdayheader.cpp \
+		../datebook/datebooksettingsbase.cpp \
+		../datebook/datebookweekheader.cpp \
+		../datebook/dateentry.cpp \
+		../datebook/repeatentrybase.cpp \
+		../taskbar/shutdown.cpp \
+		../addressbook/abeditorbase.cpp \
+		../addressbook/abnamebase.cpp \
+		../citytime/citytimebase.cpp \
+		../settings/appearancesettingsbase.cpp \
+		../settings/languagesettingsbase.cpp \
+		../settings/lightsettingsbase.cpp \
+		../settings/rotationsettingsbase.cpp \
+		../settings/soundsettingsbase.cpp \
+		../inputmethods/handwriting/qimpenprefbase.cpp \
+		../launcher/lnkpropertiesbase.cpp
+SRCMOC	=	../calculator/moc_calculatorimpl.cpp \
+		../todo/moc_mainwindow.cpp \
+		../todo/moc_todoentryimpl.cpp \
+		../todo/moc_todotable.cpp \
+		../datebook/moc_datebook.cpp \
+		../datebook/moc_datebookday.cpp \
+		../datebook/moc_datebookdayheaderimpl.cpp \
+		../datebook/moc_datebookweek.cpp \
+		../datebook/moc_datebookweekheaderimpl.cpp \
+		../datebook/moc_dateentryimpl.cpp \
+		../datebook/moc_repeatentry.cpp \
+		../clock/moc_clock.cpp \
+		../library/moc_datebookmonth.cpp \
+		../library/moc_fileselector.cpp \
+		../library/moc_imageedit.cpp \
+		../library/moc_menubutton.cpp \
+		../library/moc_process.cpp \
+		../library/moc_qpeapplication.cpp \
+		../library/moc_qpedecoration_qws.cpp \
+		../library/moc_tzselect.cpp \
+		../minesweep/moc_minefield.cpp \
+		../minesweep/moc_minesweep.cpp \
+		../taskbar/moc_appicons.cpp \
+		../taskbar/moc_background.cpp \
+		../taskbar/moc_desktop.cpp \
+		../taskbar/moc_info.cpp \
+		../taskbar/moc_inputmethods.cpp \
+		../taskbar/moc_quicklauncher.cpp \
+		../taskbar/moc_sidething.cpp \
+		../taskbar/moc_startmenu.cpp \
+		../taskbar/moc_systray.cpp \
+		../taskbar/moc_taskbar.cpp \
+		../taskbar/clockapplet/moc_clock.cpp \
+		../textedit/moc_textedit.cpp \
+		../sysinfo/moc_graph.cpp \
+		../sysinfo/moc_load.cpp \
+		../sysinfo/moc_memory.cpp \
+		../sysinfo/moc_storage.cpp \
+		../sysinfo/moc_sysinfo.cpp \
+		../sysinfo/moc_version.cpp \
+		../calibrate/moc_calibrate.cpp \
+		../addressbook/moc_abeditor.cpp \
+		../addressbook/moc_ablabel.cpp \
+		../addressbook/moc_abtable.cpp \
+		../addressbook/moc_addressbook.cpp \
+		../tetrix/moc_qtetrix.cpp \
+		../tetrix/moc_qtetrixb.cpp \
+		../citytime/moc_citytime.cpp \
+		../citytime/moc_stylusnormalizer.cpp \
+		../citytime/moc_zonemap.cpp \
+		../inputmethods/pickboard/moc_pickboard.cpp \
+		../inputmethods/pickboard/moc_pickboardcfg.cpp \
+		../inputmethods/pickboard/moc_pickboardpicks.cpp \
+		../inputmethods/handwriting/moc_qimpenhelp.cpp \
+		../inputmethods/handwriting/moc_qimpeninput.cpp \
+		../inputmethods/handwriting/moc_qimpenmatch.cpp \
+		../inputmethods/handwriting/moc_qimpensetup.cpp \
+		../inputmethods/handwriting/moc_qimpenwidget.cpp \
+		../inputmethods/handwriting/moc_qimpenwordpick.cpp \
+		../inputmethods/keyboard/moc_keyboard.cpp \
+		../launcher/moc_categorylist.cpp \
+		../launcher/moc_launcher.cpp \
+		../launcher/moc_launcherview.cpp \
+		../launcher/moc_lnkproperties.cpp \
+		../helpbrowser/moc_helpbrowser.cpp \
+		../library/global.moc \
+		../library/process_unix.moc \
+		../taskbar/appicons.moc \
+		../calculator/moc_calculator.cpp \
+		../todo/moc_todoentry.cpp \
+		../datebook/moc_datebookdayheader.cpp \
+		../datebook/moc_datebooksettingsbase.cpp \
+		../datebook/moc_datebookweekheader.cpp \
+		../datebook/moc_dateentry.cpp \
+		../datebook/moc_repeatentrybase.cpp \
+		../taskbar/moc_shutdown.cpp \
+		../addressbook/moc_abeditorbase.cpp \
+		../addressbook/moc_abnamebase.cpp \
+		../citytime/moc_citytimebase.cpp \
+		../settings/moc_appearancesettingsbase.cpp \
+		../settings/moc_languagesettingsbase.cpp \
+		../settings/moc_lightsettingsbase.cpp \
+		../settings/moc_rotationsettingsbase.cpp \
+		../settings/moc_soundsettingsbase.cpp \
+		../inputmethods/handwriting/moc_qimpenprefbase.cpp \
+		../launcher/moc_lnkpropertiesbase.cpp
+OBJMOC	=	../calculator/moc_calculatorimpl.o \
+		../todo/moc_mainwindow.o \
+		../todo/moc_todoentryimpl.o \
+		../todo/moc_todotable.o \
+		../datebook/moc_datebook.o \
+		../datebook/moc_datebookday.o \
+		../datebook/moc_datebookdayheaderimpl.o \
+		../datebook/moc_datebookweek.o \
+		../datebook/moc_datebookweekheaderimpl.o \
+		../datebook/moc_dateentryimpl.o \
+		../datebook/moc_repeatentry.o \
+		../clock/moc_clock.o \
+		../library/moc_datebookmonth.o \
+		../library/moc_fileselector.o \
+		../library/moc_imageedit.o \
+		../library/moc_menubutton.o \
+		../library/moc_process.o \
+		../library/moc_qpeapplication.o \
+		../library/moc_qpedecoration_qws.o \
+		../library/moc_tzselect.o \
+		../minesweep/moc_minefield.o \
+		../minesweep/moc_minesweep.o \
+		../taskbar/moc_appicons.o \
+		../taskbar/moc_background.o \
+		../taskbar/moc_desktop.o \
+		../taskbar/moc_info.o \
+		../taskbar/moc_inputmethods.o \
+		../taskbar/moc_quicklauncher.o \
+		../taskbar/moc_sidething.o \
+		../taskbar/moc_startmenu.o \
+		../taskbar/moc_systray.o \
+		../taskbar/moc_taskbar.o \
+		../taskbar/clockapplet/moc_clock.o \
+		../textedit/moc_textedit.o \
+		../sysinfo/moc_graph.o \
+		../sysinfo/moc_load.o \
+		../sysinfo/moc_memory.o \
+		../sysinfo/moc_storage.o \
+		../sysinfo/moc_sysinfo.o \
+		../sysinfo/moc_version.o \
+		../calibrate/moc_calibrate.o \
+		../addressbook/moc_abeditor.o \
+		../addressbook/moc_ablabel.o \
+		../addressbook/moc_abtable.o \
+		../addressbook/moc_addressbook.o \
+		../tetrix/moc_qtetrix.o \
+		../tetrix/moc_qtetrixb.o \
+		../citytime/moc_citytime.o \
+		../citytime/moc_stylusnormalizer.o \
+		../citytime/moc_zonemap.o \
+		../inputmethods/pickboard/moc_pickboard.o \
+		../inputmethods/pickboard/moc_pickboardcfg.o \
+		../inputmethods/pickboard/moc_pickboardpicks.o \
+		../inputmethods/handwriting/moc_qimpenhelp.o \
+		../inputmethods/handwriting/moc_qimpeninput.o \
+		../inputmethods/handwriting/moc_qimpenmatch.o \
+		../inputmethods/handwriting/moc_qimpensetup.o \
+		../inputmethods/handwriting/moc_qimpenwidget.o \
+		../inputmethods/handwriting/moc_qimpenwordpick.o \
+		../inputmethods/keyboard/moc_keyboard.o \
+		../launcher/moc_categorylist.o \
+		../launcher/moc_launcher.o \
+		../launcher/moc_launcherview.o \
+		../launcher/moc_lnkproperties.o \
+		../helpbrowser/moc_helpbrowser.o \
+		../calculator/moc_calculator.o \
+		../todo/moc_todoentry.o \
+		../datebook/moc_datebookdayheader.o \
+		../datebook/moc_datebooksettingsbase.o \
+		../datebook/moc_datebookweekheader.o \
+		../datebook/moc_dateentry.o \
+		../datebook/moc_repeatentrybase.o \
+		../taskbar/moc_shutdown.o \
+		../addressbook/moc_abeditorbase.o \
+		../addressbook/moc_abnamebase.o \
+		../citytime/moc_citytimebase.o \
+		../settings/moc_appearancesettingsbase.o \
+		../settings/moc_languagesettingsbase.o \
+		../settings/moc_lightsettingsbase.o \
+		../settings/moc_rotationsettingsbase.o \
+		../settings/moc_soundsettingsbase.o \
+		../inputmethods/handwriting/moc_qimpenprefbase.o \
+		../launcher/moc_lnkpropertiesbase.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: single.pro
+	tmake single.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+../taskbar/main.o: ../taskbar/main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/qcopenvelope_qws.h \
+		../taskbar/desktop.h \
+		../taskbar/shutdownimpl.h \
+		shutdown.h \
+		../taskbar/taskbar.h \
+		../taskbar/transferserver.h \
+		../login/qdmdialogimpl.h \
+		../library/global.h
+
+../calculator/calculatorimpl.o: ../calculator/calculatorimpl.cpp \
+		../library/qmath.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../calculator/calculatorimpl.h \
+		calculator.h \
+		../library/resource.h
+
+../todo/mainwindow.o: ../todo/mainwindow.cpp \
+		../todo/mainwindow.h \
+		../todo/todotable.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../todo/todoentryimpl.h \
+		todoentry.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/global.h \
+		../library/config.h
+
+../todo/todoentryimpl.o: ../todo/todoentryimpl.cpp \
+		../todo/todoentryimpl.h \
+		todoentry.h \
+		../library/datebookmonth.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/calendar.h \
+		../library/global.h \
+		../library/imageedit.h
+
+../todo/todotable.o: ../todo/todotable.cpp \
+		../todo/todotable.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/datebook.o: ../datebook/datebook.cpp \
+		../library/config.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/resource.h \
+		../library/qpedebug.h \
+		../datebook/datebook.h \
+		../library/datebookdb.h \
+		../datebook/datebookday.h \
+		../library/datebookmonth.h \
+		../library/calendar.h \
+		../datebook/datebookweek.h \
+		../datebook/dateentryimpl.h \
+		dateentry.h \
+		../datebook/datebooksettings.h \
+		datebooksettingsbase.h
+
+../datebook/datebookday.o: ../datebook/datebookday.cpp \
+		../datebook/datebookday.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../datebook/datebookdayheaderimpl.h \
+		datebookdayheader.h \
+		../library/datebookdb.h \
+		../library/resource.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/timestring.h \
+		../library/qpedebug.h
+
+../datebook/datebookdayheaderimpl.o: ../datebook/datebookdayheaderimpl.cpp \
+		../datebook/datebookdayheaderimpl.h \
+		datebookdayheader.h \
+		../library/datebookmonth.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/calendar.h
+
+../datebook/datebooksettings.o: ../datebook/datebooksettings.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../datebook/datebooksettings.h \
+		datebooksettingsbase.h
+
+../datebook/datebookweek.o: ../datebook/datebookweek.cpp \
+		../datebook/datebookweek.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../datebook/datebookweekheaderimpl.h \
+		datebookweekheader.h \
+		../library/calendar.h \
+		../library/datebookdb.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/timestring.h
+
+../datebook/datebookweekheaderimpl.o: ../datebook/datebookweekheaderimpl.cpp \
+		../datebook/datebookweekheaderimpl.h \
+		datebookweekheader.h
+
+../datebook/dateentryimpl.o: ../datebook/dateentryimpl.cpp \
+		../datebook/dateentryimpl.h \
+		dateentry.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../datebook/repeatentry.h \
+		repeatentrybase.h \
+		../library/datebookmonth.h \
+		../library/calendar.h \
+		../library/global.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/tzselect.h
+
+../datebook/repeatentry.o: ../datebook/repeatentry.cpp \
+		../datebook/repeatentry.h \
+		repeatentrybase.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/datebookmonth.h \
+		../library/calendar.h
+
+../clock/clock.o: ../clock/clock.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../clock/clock.h
+
+../library/alarmserver.o: ../library/alarmserver.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/global.h \
+		../library/qcopenvelope_qws.h \
+		../library/alarmserver.h
+
+../library/applnk.o: ../library/applnk.cpp \
+		../library/global.h \
+		../library/mimetype.h \
+		../library/config.h \
+		../library/resource.h \
+		../library/applnk.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qcopenvelope_qws.h
+
+../library/calendar.o: ../library/calendar.cpp \
+		../library/calendar.h
+
+../library/config.o: ../library/config.cpp \
+		../library/config.h
+
+../library/datebookdb.o: ../library/datebookdb.cpp \
+		../library/alarmserver.h \
+		../library/global.h \
+		../library/datebookdb.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../library/datebookmonth.o: ../library/datebookmonth.cpp \
+		../library/datebookmonth.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/calendar.h \
+		../library/datebookdb.h \
+		../library/resource.h
+
+../library/filemanager.o: ../library/filemanager.cpp \
+		../library/filemanager.h \
+		../library/applnk.h
+
+../library/fileselector.o: ../library/fileselector.cpp \
+		../library/fileselector.h \
+		../library/filemanager.h \
+		../library/applnk.h \
+		../library/global.h \
+		../library/resource.h \
+		../library/config.h
+
+../library/fontmanager.o: ../library/fontmanager.cpp \
+		../library/fontmanager.h
+
+../library/global.o: ../library/global.cpp \
+		../library/global.moc \
+		../library/qpedebug.h \
+		../library/global.h \
+		../library/qdawg.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/qcopenvelope_qws.h \
+		../library/applnk.h
+
+../library/imageedit.o: ../library/imageedit.cpp \
+		../library/imageedit.h
+
+../library/lightstyle.o: ../library/lightstyle.cpp \
+		../library/lightstyle.h
+
+../library/menubutton.o: ../library/menubutton.cpp \
+		../library/menubutton.h
+
+../library/mimetype.o: ../library/mimetype.cpp \
+		../library/mimetype.h \
+		../library/applnk.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h
+
+../library/organizer.o: ../library/organizer.cpp \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../library/process.o: ../library/process.cpp \
+		../library/process.h
+
+../library/process_unix.o: ../library/process_unix.cpp \
+		../library/process_unix.moc \
+		../library/process.h
+
+../library/qcopenvelope_qws.o: ../library/qcopenvelope_qws.cpp \
+		../library/qcopenvelope_qws.h \
+		../library/global.h
+
+../library/qdawg.o: ../library/qdawg.cpp \
+		../library/qdawg.h
+
+../library/qmath.o: ../library/qmath.c \
+		../library/qmath.h
+
+../library/qpeapplication.o: ../library/qpeapplication.cpp \
+		../library/qcopenvelope_qws.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qpestyle.h \
+		../library/lightstyle.h \
+		../library/global.h \
+		../library/resource.h \
+		../library/config.h \
+		../library/fontmanager.h \
+		../library/alarmserver.h
+
+../library/qpedecoration_qws.o: ../library/qpedecoration_qws.cpp \
+		../library/qcopenvelope_qws.h \
+		../library/qpedecoration_qws.h \
+		../library/qpeapplication.h \
+		../library/resource.h \
+		../library/global.h
+
+../library/qpestyle.o: ../library/qpestyle.cpp \
+		../library/qpestyle.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h
+
+../library/quuid.o: ../library/quuid.cpp \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../library/resource.o: ../library/resource.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/inlinepics.h
+
+../library/sound.o: ../library/sound.cpp \
+		../library/resource.h \
+		../library/sound.h
+
+../library/timestring.o: ../library/timestring.cpp \
+		../library/timestring.h
+
+../library/tzselect.o: ../library/tzselect.cpp \
+		../library/tzselect.h \
+		../library/resource.h \
+		../library/global.h \
+		../library/config.h
+
+../library/xmlreader.o: ../library/xmlreader.cpp \
+		../library/xmlreader.h
+
+../minesweep/minefield.o: ../minesweep/minefield.cpp \
+		../minesweep/minefield.h \
+		../library/config.h
+
+../minesweep/minesweep.o: ../minesweep/minesweep.cpp \
+		../minesweep/minesweep.h \
+		../minesweep/minefield.h \
+		../library/resource.h \
+		../library/config.h
+
+../taskbar/appicons.o: ../taskbar/appicons.cpp \
+		../taskbar/appicons.moc \
+		../taskbar/appicons.h \
+		../library/qcopenvelope_qws.h
+
+../taskbar/background.o: ../taskbar/background.cpp \
+		../library/resource.h \
+		../taskbar/background.h \
+		../taskbar/desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/shutdownimpl.h \
+		shutdown.h
+
+../taskbar/desktop.o: ../taskbar/desktop.cpp \
+		../launcher/launcher.h \
+		../launcher/launcherview.h \
+		../taskbar/shutdownimpl.h \
+		shutdown.h \
+		../taskbar/desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/info.h \
+		../taskbar/background.h \
+		../taskbar/mrulist.h \
+		../library/applnk.h \
+		../taskbar/taskbar.h \
+		../library/global.h \
+		../library/config.h
+
+../taskbar/info.o: ../taskbar/info.cpp \
+		../library/resource.h \
+		../taskbar/info.h \
+		../taskbar/background.h \
+		../taskbar/desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/shutdownimpl.h \
+		shutdown.h \
+		../library/version.h
+
+../taskbar/inputmethods.o: ../taskbar/inputmethods.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/inputmethods.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h \
+		../library/config.h \
+		../library/qlibrary.h \
+		../inputmethods/handwriting/handwritingimpl.h \
+		../inputmethods/keyboard/keyboardimpl.h \
+		../inputmethods/pickboard/pickboardimpl.h
+
+../taskbar/mrulist.o: ../taskbar/mrulist.cpp \
+		../library/global.h \
+		../library/applnk.h \
+		../library/resource.h \
+		../taskbar/mrulist.h
+
+../taskbar/quicklauncher.o: ../taskbar/quicklauncher.cpp \
+		../library/applnk.h \
+		../library/resource.h \
+		../taskbar/quicklauncher.h
+
+../taskbar/sidething.o: ../taskbar/sidething.cpp \
+		../library/resource.h \
+		../taskbar/sidething.h
+
+../taskbar/startmenu.o: ../taskbar/startmenu.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/applnk.h \
+		../library/global.h \
+		../library/resource.h \
+		../taskbar/sidething.h \
+		../taskbar/mrulist.h \
+		../taskbar/info.h \
+		../taskbar/background.h \
+		../taskbar/startmenu.h
+
+../taskbar/systray.o: ../taskbar/systray.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/quicklauncher.h \
+		../taskbar/systray.h \
+		../taskbar/taskbarappletinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h \
+		../library/qlibrary.h \
+		../library/config.h \
+		../taskbar/clockapplet/clockappletimpl.h
+
+../taskbar/taskbar.o: ../taskbar/taskbar.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qcopenvelope_qws.h \
+		../taskbar/taskbar.h \
+		../taskbar/inputmethods.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h \
+		../taskbar/mrulist.h \
+		../library/applnk.h \
+		../taskbar/systray.h \
+		../taskbar/taskbarappletinterface.h \
+		../library/global.h \
+		../calibrate/calibrate.h \
+		../taskbar/wait.h \
+		../library/resource.h \
+		../taskbar/appicons.h \
+		../taskbar/apps.h \
+		../addressbook/addressbook.h \
+		../datebook/datebook.h \
+		../library/datebookdb.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../helpbrowser/helpbrowser.h \
+		../minesweep/minesweep.h \
+		../textedit/textedit.h \
+		../library/filemanager.h \
+		../todo/mainwindow.h \
+		../citytime/citytime.h \
+		citytimebase.h \
+		../clock/clock.h \
+		../calculator/calculatorimpl.h \
+		calculator.h \
+		../tetrix/qtetrix.h \
+		../tetrix/qtetrixb.h \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h \
+		../sysinfo/sysinfo.h \
+		../settings/appearance/settings.h \
+		appearancesettingsbase.h \
+		../settings/language/settings.h \
+		languagesettingsbase.h \
+		../settings/light-and-power/settings.h \
+		lightsettingsbase.h \
+		../settings/rotation/settings.h \
+		rotationsettingsbase.h \
+		../filebrowser/filebrowser.h \
+		../spreadsheet/pimspreadsheetwindow.h \
+		spreadsheetwidget.h \
+		../snake/interface.h \
+		../tux/tux.h \
+		../parashoot/interface.h \
+		../library/sound.h \
+		../embeddedkonsole/konsole.h \
+		../wordgame/wordgame.h \
+		../library/qdawg.h \
+		newgamebase.h \
+		rulesbase.h
+
+../taskbar/wait.o: ../taskbar/wait.cpp \
+		../library/resource.h \
+		../taskbar/wait.h
+
+../taskbar/clockapplet/clock.o: ../taskbar/clockapplet/clock.cpp \
+		../library/global.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../clock/clock.h \
+		../library/config.h
+
+../taskbar/clockapplet/clockappletimpl.o: ../taskbar/clockapplet/clockappletimpl.cpp \
+		../clock/clock.h \
+		../taskbar/clockapplet/clockappletimpl.h \
+		../taskbar/taskbarappletinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../textedit/textedit.o: ../textedit/textedit.cpp \
+		../textedit/textedit.h \
+		../library/filemanager.h \
+		../library/fileselector.h \
+		../library/applnk.h \
+		../library/global.h \
+		../library/resource.h
+
+../sysinfo/graph.o: ../sysinfo/graph.cpp \
+		../sysinfo/graph.h
+
+../sysinfo/load.o: ../sysinfo/load.cpp \
+		../sysinfo/load.h
+
+../sysinfo/memory.o: ../sysinfo/memory.cpp \
+		../sysinfo/graph.h \
+		../sysinfo/memory.h
+
+../sysinfo/storage.o: ../sysinfo/storage.cpp \
+		../sysinfo/graph.h \
+		../sysinfo/storage.h
+
+../sysinfo/sysinfo.o: ../sysinfo/sysinfo.cpp \
+		../sysinfo/memory.h \
+		../sysinfo/load.h \
+		../sysinfo/storage.h \
+		../library/version.h \
+		../sysinfo/sysinfo.h \
+		../library/resource.h
+
+../sysinfo/version.o: ../sysinfo/version.cpp \
+		../library/resource.h \
+		../library/version.h
+
+../calibrate/calibrate.o: ../calibrate/calibrate.cpp \
+		../library/resource.h \
+		../calibrate/calibrate.h
+
+../addressbook/abeditor.o: ../addressbook/abeditor.cpp \
+		../addressbook/abeditor.h \
+		../library/config.h \
+		abeditorbase.h \
+		../addressbook/abeditorpage2.h \
+		../addressbook/abentry.h
+
+../addressbook/abentry.o: ../addressbook/abentry.cpp \
+		../addressbook/abentry.h \
+		../library/xmlreader.h
+
+../addressbook/ablabel.o: ../addressbook/ablabel.cpp \
+		../addressbook/ablabel.h \
+		../addressbook/abentry.h
+
+../addressbook/ablineedit.o: ../addressbook/ablineedit.cpp
+
+../addressbook/abmultilineedit.o: ../addressbook/abmultilineedit.cpp
+
+../addressbook/abname.o: ../addressbook/abname.cpp
+
+../addressbook/abtable.o: ../addressbook/abtable.cpp \
+		../addressbook/abtable.h \
+		../addressbook/abentry.h \
+		../library/config.h
+
+../addressbook/addressbook.o: ../addressbook/addressbook.cpp \
+		../addressbook/addressbook.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/global.h \
+		../library/resource.h \
+		../addressbook/abentry.h \
+		../addressbook/abeditor.h \
+		../addressbook/ablabel.h \
+		../addressbook/addresssettings.h \
+		../addressbook/abtable.h
+
+../tetrix/gtetrix.o: ../tetrix/gtetrix.cpp \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h
+
+../tetrix/qtetrix.o: ../tetrix/qtetrix.cpp \
+		../tetrix/qtetrix.h \
+		../tetrix/qtetrixb.h \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h \
+		../library/resource.h
+
+../tetrix/qtetrixb.o: ../tetrix/qtetrixb.cpp \
+		../tetrix/qtetrixb.h \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h \
+		../tetrix/qtetrix.h
+
+../tetrix/tpiece.o: ../tetrix/tpiece.cpp \
+		../tetrix/tpiece.h
+
+../citytime/citytime.o: ../citytime/citytime.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/tzselect.h \
+		../library/timestring.h \
+		../citytime/zonemap.h \
+		../citytime/stylusnormalizer.h \
+		../citytime/citytime.h \
+		citytimebase.h
+
+../citytime/stylusnormalizer.o: ../citytime/stylusnormalizer.cpp \
+		../citytime/stylusnormalizer.h
+
+../citytime/sun.o: ../citytime/sun.c \
+		../citytime/sun.h \
+		../library/qmath.h
+
+../citytime/zonemap.o: ../citytime/zonemap.cpp \
+		../citytime/sun.h \
+		../citytime/zonemap.h \
+		../citytime/stylusnormalizer.h \
+		../library/resource.h \
+		../library/timestring.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h
+
+../settings/settime.o: ../settings/settime.cpp
+
+../settings/settings.o: ../settings/settings.cpp
+
+../inputmethods/pickboard/pickboard.o: ../inputmethods/pickboard/pickboard.cpp \
+		../inputmethods/pickboard/pickboard.h \
+		../inputmethods/pickboard/pickboardpicks.h \
+		../inputmethods/pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../library/global.h
+
+../inputmethods/pickboard/pickboardcfg.o: ../inputmethods/pickboard/pickboardcfg.cpp \
+		../inputmethods/pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../inputmethods/pickboard/pickboardpicks.h \
+		../library/global.h
+
+../inputmethods/pickboard/pickboardimpl.o: ../inputmethods/pickboard/pickboardimpl.cpp \
+		../inputmethods/pickboard/pickboard.h \
+		../inputmethods/pickboard/pickboardimpl.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../inputmethods/pickboard/pickboardpicks.o: ../inputmethods/pickboard/pickboardpicks.cpp \
+		../inputmethods/pickboard/pickboardpicks.h \
+		../inputmethods/pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../library/global.h
+
+../inputmethods/handwriting/handwritingimpl.o: ../inputmethods/handwriting/handwritingimpl.cpp \
+		../inputmethods/handwriting/qimpeninput.h \
+		../inputmethods/handwriting/qimpenprofile.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../library/qdawg.h \
+		../inputmethods/handwriting/handwritingimpl.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../inputmethods/handwriting/qimpenchar.o: ../inputmethods/handwriting/qimpenchar.cpp \
+		../inputmethods/handwriting/qimpencombining.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/qimpencombining.o: ../inputmethods/handwriting/qimpencombining.cpp \
+		../inputmethods/handwriting/qimpencombining.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/qimpenhelp.o: ../inputmethods/handwriting/qimpenhelp.cpp \
+		../library/xmlreader.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/global.h \
+		../library/config.h \
+		../inputmethods/handwriting/qimpenwidget.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../inputmethods/handwriting/qimpencombining.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../library/qdawg.h \
+		../inputmethods/handwriting/qimpenhelp.h \
+		../inputmethods/handwriting/qimpenprofile.h
+
+../inputmethods/handwriting/qimpeninput.o: ../inputmethods/handwriting/qimpeninput.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/config.h \
+		../library/global.h \
+		../inputmethods/handwriting/qimpenwidget.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../inputmethods/handwriting/qimpensetup.h \
+		../inputmethods/handwriting/qimpenprofile.h \
+		../inputmethods/handwriting/qimpeninput.h \
+		../library/qdawg.h \
+		../inputmethods/handwriting/qimpencombining.h \
+		../inputmethods/handwriting/qimpenwordpick.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpenhelp.h
+
+../inputmethods/handwriting/qimpenmatch.o: ../inputmethods/handwriting/qimpenmatch.cpp \
+		../library/qdawg.h \
+		../library/global.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/qimpensetup.o: ../inputmethods/handwriting/qimpensetup.cpp \
+		../inputmethods/handwriting/qimpenwidget.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		qimpenprefbase.h \
+		../inputmethods/handwriting/qimpensetup.h \
+		../inputmethods/handwriting/qimpenprofile.h
+
+../inputmethods/handwriting/qimpenstroke.o: ../inputmethods/handwriting/qimpenstroke.cpp \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/qimpenwidget.o: ../inputmethods/handwriting/qimpenwidget.cpp \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../inputmethods/handwriting/qimpenwidget.h
+
+../inputmethods/handwriting/qimpenwordpick.o: ../inputmethods/handwriting/qimpenwordpick.cpp \
+		../inputmethods/handwriting/qimpenwordpick.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../library/qdawg.h
+
+../inputmethods/keyboard/keyboard.o: ../inputmethods/keyboard/keyboard.cpp \
+		../library/global.h \
+		../inputmethods/keyboard/keyboard.h \
+		../inputmethods/pickboard/../pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../inputmethods/pickboard/../pickboard/pickboardpicks.h
+
+../inputmethods/keyboard/keyboardimpl.o: ../inputmethods/keyboard/keyboardimpl.cpp \
+		../inputmethods/keyboard/keyboard.h \
+		../inputmethods/pickboard/../pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../inputmethods/pickboard/../pickboard/pickboardpicks.h \
+		../inputmethods/keyboard/keyboardimpl.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../launcher/categorylist.o: ../launcher/categorylist.cpp \
+		../launcher/categorylist.h \
+		../library/config.h
+
+../launcher/launcher.o: ../launcher/launcher.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/qcopenvelope_qws.h \
+		../library/resource.h \
+		../library/applnk.h \
+		../library/config.h \
+		../launcher/launcherview.h \
+		../launcher/launcher.h \
+		../library/global.h \
+		../launcher/lnkproperties.h \
+		../taskbar/lnkpropertiesbase.h \
+		../taskbar/mrulist.h \
+		../library/mimetype.h
+
+../launcher/launcherview.o: ../launcher/launcherview.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/applnk.h \
+		../library/qpedebug.h \
+		../launcher/launcherview.h \
+		../library/menubutton.h
+
+../launcher/lnkproperties.o: ../launcher/lnkproperties.cpp \
+		../launcher/lnkproperties.h \
+		../taskbar/lnkpropertiesbase.h \
+		../library/applnk.h \
+		../library/global.h \
+		../library/qcopenvelope_qws.h \
+		../library/filemanager.h \
+		../library/config.h \
+		../launcher/categorylist.h
+
+../helpbrowser/helpbrowser.o: ../helpbrowser/helpbrowser.cpp \
+		../helpbrowser/helpbrowser.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h
+
+../calculator/calculator.h: ../calculator/calculator.ui
+	$(UIC) ../calculator/calculator.ui -o $(INTERFACE_DECL_PATH)/../calculator/calculator.h
+
+calculator.h: ../calculator/calculator.ui
+	$(UIC) ../calculator/calculator.ui -o calculator.h
+
+../calculator/calculator.cpp: ../calculator/calculator.ui
+	$(UIC) ../calculator/calculator.ui -i calculator.h -o ../calculator/calculator.cpp
+
+../todo/todoentry.h: ../todo/todoentry.ui
+	$(UIC) ../todo/todoentry.ui -o $(INTERFACE_DECL_PATH)/../todo/todoentry.h
+
+todoentry.h: ../todo/todoentry.ui
+	$(UIC) ../todo/todoentry.ui -o todoentry.h
+
+../todo/todoentry.cpp: ../todo/todoentry.ui
+	$(UIC) ../todo/todoentry.ui -i todoentry.h -o ../todo/todoentry.cpp
+
+../datebook/datebookdayheader.h: ../datebook/datebookdayheader.ui
+	$(UIC) ../datebook/datebookdayheader.ui -o $(INTERFACE_DECL_PATH)/../datebook/datebookdayheader.h
+
+datebookdayheader.h: ../datebook/datebookdayheader.ui
+	$(UIC) ../datebook/datebookdayheader.ui -o datebookdayheader.h
+
+../datebook/datebookdayheader.cpp: ../datebook/datebookdayheader.ui
+	$(UIC) ../datebook/datebookdayheader.ui -i datebookdayheader.h -o ../datebook/datebookdayheader.cpp
+
+../datebook/datebooksettingsbase.h: ../datebook/datebooksettingsbase.ui
+	$(UIC) ../datebook/datebooksettingsbase.ui -o $(INTERFACE_DECL_PATH)/../datebook/datebooksettingsbase.h
+
+datebooksettingsbase.h: ../datebook/datebooksettingsbase.ui
+	$(UIC) ../datebook/datebooksettingsbase.ui -o datebooksettingsbase.h
+
+../datebook/datebooksettingsbase.cpp: ../datebook/datebooksettingsbase.ui
+	$(UIC) ../datebook/datebooksettingsbase.ui -i datebooksettingsbase.h -o ../datebook/datebooksettingsbase.cpp
+
+../datebook/datebookweekheader.h: ../datebook/datebookweekheader.ui
+	$(UIC) ../datebook/datebookweekheader.ui -o $(INTERFACE_DECL_PATH)/../datebook/datebookweekheader.h
+
+datebookweekheader.h: ../datebook/datebookweekheader.ui
+	$(UIC) ../datebook/datebookweekheader.ui -o datebookweekheader.h
+
+../datebook/datebookweekheader.cpp: ../datebook/datebookweekheader.ui
+	$(UIC) ../datebook/datebookweekheader.ui -i datebookweekheader.h -o ../datebook/datebookweekheader.cpp
+
+../datebook/dateentry.h: ../datebook/dateentry.ui
+	$(UIC) ../datebook/dateentry.ui -o $(INTERFACE_DECL_PATH)/../datebook/dateentry.h
+
+dateentry.h: ../datebook/dateentry.ui
+	$(UIC) ../datebook/dateentry.ui -o dateentry.h
+
+../datebook/dateentry.cpp: ../datebook/dateentry.ui
+	$(UIC) ../datebook/dateentry.ui -i dateentry.h -o ../datebook/dateentry.cpp
+
+../datebook/repeatentrybase.h: ../datebook/repeatentrybase.ui
+	$(UIC) ../datebook/repeatentrybase.ui -o $(INTERFACE_DECL_PATH)/../datebook/repeatentrybase.h
+
+repeatentrybase.h: ../datebook/repeatentrybase.ui
+	$(UIC) ../datebook/repeatentrybase.ui -o repeatentrybase.h
+
+../datebook/repeatentrybase.cpp: ../datebook/repeatentrybase.ui
+	$(UIC) ../datebook/repeatentrybase.ui -i repeatentrybase.h -o ../datebook/repeatentrybase.cpp
+
+../taskbar/shutdown.h: ../taskbar/shutdown.ui
+	$(UIC) ../taskbar/shutdown.ui -o $(INTERFACE_DECL_PATH)/../taskbar/shutdown.h
+
+shutdown.h: ../taskbar/shutdown.ui
+	$(UIC) ../taskbar/shutdown.ui -o shutdown.h
+
+../taskbar/shutdown.cpp: ../taskbar/shutdown.ui
+	$(UIC) ../taskbar/shutdown.ui -i shutdown.h -o ../taskbar/shutdown.cpp
+
+../addressbook/abeditorbase.h: ../addressbook/abeditorbase.ui
+	$(UIC) ../addressbook/abeditorbase.ui -o $(INTERFACE_DECL_PATH)/../addressbook/abeditorbase.h
+
+abeditorbase.h: ../addressbook/abeditorbase.ui
+	$(UIC) ../addressbook/abeditorbase.ui -o abeditorbase.h
+
+../addressbook/abeditorbase.cpp: ../addressbook/abeditorbase.ui
+	$(UIC) ../addressbook/abeditorbase.ui -i abeditorbase.h -o ../addressbook/abeditorbase.cpp
+
+../addressbook/abnamebase.h: ../addressbook/abnamebase.ui
+	$(UIC) ../addressbook/abnamebase.ui -o $(INTERFACE_DECL_PATH)/../addressbook/abnamebase.h
+
+abnamebase.h: ../addressbook/abnamebase.ui
+	$(UIC) ../addressbook/abnamebase.ui -o abnamebase.h
+
+../addressbook/abnamebase.cpp: ../addressbook/abnamebase.ui
+	$(UIC) ../addressbook/abnamebase.ui -i abnamebase.h -o ../addressbook/abnamebase.cpp
+
+../citytime/citytimebase.h: ../citytime/citytimebase.ui
+	$(UIC) ../citytime/citytimebase.ui -o $(INTERFACE_DECL_PATH)/../citytime/citytimebase.h
+
+citytimebase.h: ../citytime/citytimebase.ui
+	$(UIC) ../citytime/citytimebase.ui -o citytimebase.h
+
+../citytime/citytimebase.cpp: ../citytime/citytimebase.ui
+	$(UIC) ../citytime/citytimebase.ui -i citytimebase.h -o ../citytime/citytimebase.cpp
+
+../settings/appearancesettingsbase.h: ../settings/appearancesettingsbase.ui
+	$(UIC) ../settings/appearancesettingsbase.ui -o $(INTERFACE_DECL_PATH)/../settings/appearancesettingsbase.h
+
+appearancesettingsbase.h: ../settings/appearancesettingsbase.ui
+	$(UIC) ../settings/appearancesettingsbase.ui -o appearancesettingsbase.h
+
+../settings/appearancesettingsbase.cpp: ../settings/appearancesettingsbase.ui
+	$(UIC) ../settings/appearancesettingsbase.ui -i appearancesettingsbase.h -o ../settings/appearancesettingsbase.cpp
+
+../settings/languagesettingsbase.h: ../settings/languagesettingsbase.ui
+	$(UIC) ../settings/languagesettingsbase.ui -o $(INTERFACE_DECL_PATH)/../settings/languagesettingsbase.h
+
+languagesettingsbase.h: ../settings/languagesettingsbase.ui
+	$(UIC) ../settings/languagesettingsbase.ui -o languagesettingsbase.h
+
+../settings/languagesettingsbase.cpp: ../settings/languagesettingsbase.ui
+	$(UIC) ../settings/languagesettingsbase.ui -i languagesettingsbase.h -o ../settings/languagesettingsbase.cpp
+
+../settings/lightsettingsbase.h: ../settings/lightsettingsbase.ui
+	$(UIC) ../settings/lightsettingsbase.ui -o $(INTERFACE_DECL_PATH)/../settings/lightsettingsbase.h
+
+lightsettingsbase.h: ../settings/lightsettingsbase.ui
+	$(UIC) ../settings/lightsettingsbase.ui -o lightsettingsbase.h
+
+../settings/lightsettingsbase.cpp: ../settings/lightsettingsbase.ui
+	$(UIC) ../settings/lightsettingsbase.ui -i lightsettingsbase.h -o ../settings/lightsettingsbase.cpp
+
+../settings/rotationsettingsbase.h: ../settings/rotationsettingsbase.ui
+	$(UIC) ../settings/rotationsettingsbase.ui -o $(INTERFACE_DECL_PATH)/../settings/rotationsettingsbase.h
+
+rotationsettingsbase.h: ../settings/rotationsettingsbase.ui
+	$(UIC) ../settings/rotationsettingsbase.ui -o rotationsettingsbase.h
+
+../settings/rotationsettingsbase.cpp: ../settings/rotationsettingsbase.ui
+	$(UIC) ../settings/rotationsettingsbase.ui -i rotationsettingsbase.h -o ../settings/rotationsettingsbase.cpp
+
+../settings/soundsettingsbase.h: ../settings/soundsettingsbase.ui
+	$(UIC) ../settings/soundsettingsbase.ui -o $(INTERFACE_DECL_PATH)/../settings/soundsettingsbase.h
+
+soundsettingsbase.h: ../settings/soundsettingsbase.ui
+	$(UIC) ../settings/soundsettingsbase.ui -o soundsettingsbase.h
+
+../settings/soundsettingsbase.cpp: ../settings/soundsettingsbase.ui
+	$(UIC) ../settings/soundsettingsbase.ui -i soundsettingsbase.h -o ../settings/soundsettingsbase.cpp
+
+../inputmethods/handwriting/qimpenprefbase.h: ../inputmethods/handwriting/qimpenprefbase.ui
+	$(UIC) ../inputmethods/handwriting/qimpenprefbase.ui -o $(INTERFACE_DECL_PATH)/../inputmethods/handwriting/qimpenprefbase.h
+
+qimpenprefbase.h: ../inputmethods/handwriting/qimpenprefbase.ui
+	$(UIC) ../inputmethods/handwriting/qimpenprefbase.ui -o qimpenprefbase.h
+
+../inputmethods/handwriting/qimpenprefbase.cpp: ../inputmethods/handwriting/qimpenprefbase.ui
+	$(UIC) ../inputmethods/handwriting/qimpenprefbase.ui -i qimpenprefbase.h -o ../inputmethods/handwriting/qimpenprefbase.cpp
+
+../launcher/lnkpropertiesbase.h: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -o $(INTERFACE_DECL_PATH)/../launcher/lnkpropertiesbase.h
+
+lnkpropertiesbase.h: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -o lnkpropertiesbase.h
+
+../launcher/lnkpropertiesbase.cpp: ../launcher/lnkpropertiesbase.ui
+	$(UIC) ../launcher/lnkpropertiesbase.ui -i lnkpropertiesbase.h -o ../launcher/lnkpropertiesbase.cpp
+
+../calculator/calculator.o: ../calculator/calculator.cpp
+
+../todo/todoentry.o: ../todo/todoentry.cpp
+
+../datebook/datebookdayheader.o: ../datebook/datebookdayheader.cpp
+
+../datebook/datebooksettingsbase.o: ../datebook/datebooksettingsbase.cpp
+
+../datebook/datebookweekheader.o: ../datebook/datebookweekheader.cpp
+
+../datebook/dateentry.o: ../datebook/dateentry.cpp
+
+../datebook/repeatentrybase.o: ../datebook/repeatentrybase.cpp
+
+../taskbar/shutdown.o: ../taskbar/shutdown.cpp
+
+../addressbook/abeditorbase.o: ../addressbook/abeditorbase.cpp
+
+../addressbook/abnamebase.o: ../addressbook/abnamebase.cpp
+
+../citytime/citytimebase.o: ../citytime/citytimebase.cpp
+
+../settings/appearancesettingsbase.o: ../settings/appearancesettingsbase.cpp
+
+../settings/languagesettingsbase.o: ../settings/languagesettingsbase.cpp
+
+../settings/lightsettingsbase.o: ../settings/lightsettingsbase.cpp
+
+../settings/rotationsettingsbase.o: ../settings/rotationsettingsbase.cpp
+
+../settings/soundsettingsbase.o: ../settings/soundsettingsbase.cpp
+
+../inputmethods/handwriting/qimpenprefbase.o: ../inputmethods/handwriting/qimpenprefbase.cpp
+
+../launcher/lnkpropertiesbase.o: ../launcher/lnkpropertiesbase.cpp
+
+../calculator/moc_calculatorimpl.o: ../calculator/moc_calculatorimpl.cpp \
+		../calculator/calculatorimpl.h \
+		calculator.h
+
+../todo/moc_mainwindow.o: ../todo/moc_mainwindow.cpp \
+		../todo/mainwindow.h
+
+../todo/moc_todoentryimpl.o: ../todo/moc_todoentryimpl.cpp \
+		../todo/todoentryimpl.h \
+		todoentry.h
+
+../todo/moc_todotable.o: ../todo/moc_todotable.cpp \
+		../todo/todotable.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/moc_datebook.o: ../datebook/moc_datebook.cpp \
+		../datebook/datebook.h \
+		../library/datebookdb.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/moc_datebookday.o: ../datebook/moc_datebookday.cpp \
+		../datebook/datebookday.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/moc_datebookdayheaderimpl.o: ../datebook/moc_datebookdayheaderimpl.cpp \
+		../datebook/datebookdayheaderimpl.h \
+		datebookdayheader.h
+
+../datebook/moc_datebookweek.o: ../datebook/moc_datebookweek.cpp \
+		../datebook/datebookweek.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/moc_datebookweekheaderimpl.o: ../datebook/moc_datebookweekheaderimpl.cpp \
+		../datebook/datebookweekheaderimpl.h \
+		datebookweekheader.h
+
+../datebook/moc_dateentryimpl.o: ../datebook/moc_dateentryimpl.cpp \
+		../datebook/dateentryimpl.h \
+		dateentry.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../datebook/moc_repeatentry.o: ../datebook/moc_repeatentry.cpp \
+		../datebook/repeatentry.h \
+		repeatentrybase.h \
+		../library/organizer.h \
+		../library/xmlreader.h
+
+../clock/moc_clock.o: ../clock/moc_clock.cpp \
+		../clock/clock.h
+
+../library/moc_datebookmonth.o: ../library/moc_datebookmonth.cpp \
+		../library/datebookmonth.h \
+		../library/organizer.h \
+		../library/xmlreader.h \
+		../library/calendar.h
+
+../library/moc_fileselector.o: ../library/moc_fileselector.cpp \
+		../library/fileselector.h \
+		../library/filemanager.h \
+		../library/applnk.h
+
+../library/moc_imageedit.o: ../library/moc_imageedit.cpp \
+		../library/imageedit.h
+
+../library/moc_menubutton.o: ../library/moc_menubutton.cpp \
+		../library/menubutton.h
+
+../library/moc_process.o: ../library/moc_process.cpp \
+		../library/process.h
+
+../library/moc_qpeapplication.o: ../library/moc_qpeapplication.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h
+
+../library/moc_qpedecoration_qws.o: ../library/moc_qpedecoration_qws.cpp \
+		../library/qpedecoration_qws.h
+
+../library/moc_tzselect.o: ../library/moc_tzselect.cpp \
+		../library/tzselect.h
+
+../minesweep/moc_minefield.o: ../minesweep/moc_minefield.cpp \
+		../minesweep/minefield.h
+
+../minesweep/moc_minesweep.o: ../minesweep/moc_minesweep.cpp \
+		../minesweep/minesweep.h
+
+../taskbar/moc_appicons.o: ../taskbar/moc_appicons.cpp \
+		../taskbar/appicons.h
+
+../taskbar/moc_background.o: ../taskbar/moc_background.cpp \
+		../taskbar/background.h
+
+../taskbar/moc_desktop.o: ../taskbar/moc_desktop.cpp \
+		../taskbar/desktop.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../taskbar/shutdownimpl.h \
+		shutdown.h
+
+../taskbar/moc_info.o: ../taskbar/moc_info.cpp \
+		../taskbar/info.h \
+		../taskbar/background.h
+
+../taskbar/moc_inputmethods.o: ../taskbar/moc_inputmethods.cpp \
+		../taskbar/inputmethods.h \
+		../taskbar/inputmethodinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../taskbar/moc_quicklauncher.o: ../taskbar/moc_quicklauncher.cpp \
+		../taskbar/quicklauncher.h
+
+../taskbar/moc_sidething.o: ../taskbar/moc_sidething.cpp \
+		../taskbar/sidething.h
+
+../taskbar/moc_startmenu.o: ../taskbar/moc_startmenu.cpp \
+		../taskbar/startmenu.h
+
+../taskbar/moc_systray.o: ../taskbar/moc_systray.cpp \
+		../taskbar/systray.h \
+		../taskbar/taskbarappletinterface.h \
+		../library/qcom.h \
+		../library/quuid.h \
+		../sysinfo/memory.h
+
+../taskbar/moc_taskbar.o: ../taskbar/moc_taskbar.cpp \
+		../taskbar/taskbar.h
+
+../taskbar/clockapplet/moc_clock.o: ../taskbar/clockapplet/moc_clock.cpp \
+		../taskbar/clockapplet/clock.h
+
+../textedit/moc_textedit.o: ../textedit/moc_textedit.cpp \
+		../textedit/textedit.h \
+		../library/filemanager.h
+
+../sysinfo/moc_graph.o: ../sysinfo/moc_graph.cpp \
+		../sysinfo/graph.h
+
+../sysinfo/moc_load.o: ../sysinfo/moc_load.cpp \
+		../sysinfo/load.h
+
+../sysinfo/moc_memory.o: ../sysinfo/moc_memory.cpp \
+		../sysinfo/memory.h
+
+../sysinfo/moc_storage.o: ../sysinfo/moc_storage.cpp \
+		../sysinfo/storage.h
+
+../sysinfo/moc_sysinfo.o: ../sysinfo/moc_sysinfo.cpp \
+		../sysinfo/sysinfo.h
+
+../sysinfo/moc_version.o: ../sysinfo/moc_version.cpp \
+		../sysinfo/version.h
+
+../calibrate/moc_calibrate.o: ../calibrate/moc_calibrate.cpp \
+		../calibrate/calibrate.h
+
+../addressbook/moc_abeditor.o: ../addressbook/moc_abeditor.cpp \
+		../addressbook/abeditor.h
+
+../addressbook/moc_ablabel.o: ../addressbook/moc_ablabel.cpp \
+		../addressbook/ablabel.h
+
+../addressbook/moc_abtable.o: ../addressbook/moc_abtable.cpp \
+		../addressbook/abtable.h
+
+../addressbook/moc_addressbook.o: ../addressbook/moc_addressbook.cpp \
+		../addressbook/addressbook.h
+
+../tetrix/moc_qtetrix.o: ../tetrix/moc_qtetrix.cpp \
+		../tetrix/qtetrix.h \
+		../tetrix/qtetrixb.h \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h
+
+../tetrix/moc_qtetrixb.o: ../tetrix/moc_qtetrixb.cpp \
+		../tetrix/qtetrixb.h \
+		../tetrix/gtetrix.h \
+		../tetrix/tpiece.h
+
+../citytime/moc_citytime.o: ../citytime/moc_citytime.cpp \
+		../citytime/citytime.h \
+		citytimebase.h
+
+../citytime/moc_stylusnormalizer.o: ../citytime/moc_stylusnormalizer.cpp \
+		../citytime/stylusnormalizer.h
+
+../citytime/moc_zonemap.o: ../citytime/moc_zonemap.cpp \
+		../citytime/zonemap.h \
+		../citytime/stylusnormalizer.h
+
+../inputmethods/pickboard/moc_pickboard.o: ../inputmethods/pickboard/moc_pickboard.cpp \
+		../inputmethods/pickboard/pickboard.h
+
+../inputmethods/pickboard/moc_pickboardcfg.o: ../inputmethods/pickboard/moc_pickboardcfg.cpp \
+		../inputmethods/pickboard/pickboardcfg.h \
+		../library/qdawg.h
+
+../inputmethods/pickboard/moc_pickboardpicks.o: ../inputmethods/pickboard/moc_pickboardpicks.cpp \
+		../inputmethods/pickboard/pickboardpicks.h
+
+../inputmethods/handwriting/moc_qimpenhelp.o: ../inputmethods/handwriting/moc_qimpenhelp.cpp \
+		../inputmethods/handwriting/qimpenhelp.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../inputmethods/handwriting/qimpenprofile.h
+
+../inputmethods/handwriting/moc_qimpeninput.o: ../inputmethods/handwriting/moc_qimpeninput.cpp \
+		../inputmethods/handwriting/qimpeninput.h \
+		../inputmethods/handwriting/qimpenprofile.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../library/qdawg.h
+
+../inputmethods/handwriting/moc_qimpenmatch.o: ../inputmethods/handwriting/moc_qimpenmatch.cpp \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../library/qdawg.h
+
+../inputmethods/handwriting/moc_qimpensetup.o: ../inputmethods/handwriting/moc_qimpensetup.cpp \
+		../inputmethods/handwriting/qimpensetup.h \
+		../inputmethods/handwriting/qimpenprofile.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/moc_qimpenwidget.o: ../inputmethods/handwriting/moc_qimpenwidget.cpp \
+		../inputmethods/handwriting/qimpenwidget.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h
+
+../inputmethods/handwriting/moc_qimpenwordpick.o: ../inputmethods/handwriting/moc_qimpenwordpick.cpp \
+		../inputmethods/handwriting/qimpenwordpick.h \
+		../inputmethods/handwriting/qimpenmatch.h \
+		../inputmethods/handwriting/qimpenchar.h \
+		../inputmethods/handwriting/qimpenstroke.h \
+		../library/qdawg.h
+
+../inputmethods/keyboard/moc_keyboard.o: ../inputmethods/keyboard/moc_keyboard.cpp \
+		../inputmethods/keyboard/keyboard.h \
+		../inputmethods/pickboard/../pickboard/pickboardcfg.h \
+		../library/qdawg.h \
+		../inputmethods/pickboard/../pickboard/pickboardpicks.h
+
+../launcher/moc_categorylist.o: ../launcher/moc_categorylist.cpp \
+		../launcher/categorylist.h
+
+../launcher/moc_launcher.o: ../launcher/moc_launcher.cpp \
+		../launcher/launcher.h \
+		../launcher/launcherview.h
+
+../launcher/moc_launcherview.o: ../launcher/moc_launcherview.cpp \
+		../launcher/launcherview.h
+
+../launcher/moc_lnkproperties.o: ../launcher/moc_lnkproperties.cpp \
+		../launcher/lnkproperties.h \
+		../taskbar/lnkpropertiesbase.h
+
+../helpbrowser/moc_helpbrowser.o: ../helpbrowser/moc_helpbrowser.cpp \
+		../helpbrowser/helpbrowser.h
+
+../calculator/moc_calculator.o: ../library/global.moc \
+		../library/global.cpp \
+		../library/qpedebug.h \
+		../library/global.h \
+		../library/qdawg.h \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		../library/resource.h \
+		../library/qcopenvelope_qws.h \
+		../library/applnk.h
+
+../todo/moc_todoentry.o: ../library/process_unix.moc \
+		../library/process_unix.cpp \
+		../library/process.h
+
+../datebook/moc_datebookdayheader.o: ../taskbar/appicons.moc \
+		../taskbar/appicons.cpp \
+		../taskbar/appicons.h \
+		../library/qcopenvelope_qws.h
+
+../datebook/moc_datebooksettingsbase.o: ../calculator/moc_calculator.cpp \
+		../calculator/calculator.h
+
+../datebook/moc_datebookweekheader.o: ../todo/moc_todoentry.cpp \
+		../todo/todoentry.h
+
+../datebook/moc_dateentry.o: ../datebook/moc_datebookdayheader.cpp \
+		../datebook/datebookdayheader.h
+
+../datebook/moc_repeatentrybase.o: ../datebook/moc_datebooksettingsbase.cpp \
+		../datebook/datebooksettingsbase.h
+
+../taskbar/moc_shutdown.o: ../datebook/moc_datebookweekheader.cpp \
+		../datebook/datebookweekheader.h
+
+../addressbook/moc_abeditorbase.o: ../datebook/moc_dateentry.cpp \
+		../datebook/dateentry.h
+
+../addressbook/moc_abnamebase.o: ../datebook/moc_repeatentrybase.cpp \
+		../datebook/repeatentrybase.h
+
+../citytime/moc_citytimebase.o: ../taskbar/moc_shutdown.cpp \
+		../taskbar/shutdown.h
+
+../settings/moc_appearancesettingsbase.o: ../addressbook/moc_abeditorbase.cpp \
+		../addressbook/abeditorbase.h
+
+../settings/moc_languagesettingsbase.o: ../addressbook/moc_abnamebase.cpp \
+		../addressbook/abnamebase.h
+
+../settings/moc_lightsettingsbase.o: ../citytime/moc_citytimebase.cpp \
+		../citytime/citytimebase.h
+
+../settings/moc_rotationsettingsbase.o: ../settings/moc_appearancesettingsbase.cpp \
+		../settings/appearancesettingsbase.h
+
+../settings/moc_soundsettingsbase.o: ../settings/moc_languagesettingsbase.cpp \
+		../settings/languagesettingsbase.h
+
+../inputmethods/handwriting/moc_qimpenprefbase.o: ../settings/moc_lightsettingsbase.cpp \
+		../settings/lightsettingsbase.h
+
+../launcher/moc_lnkpropertiesbase.o: ../settings/moc_rotationsettingsbase.cpp \
+		../settings/rotationsettingsbase.h
+
+../calculator/moc_calculatorimpl.cpp: ../calculator/calculatorimpl.h
+	$(MOC) ../calculator/calculatorimpl.h -o ../calculator/moc_calculatorimpl.cpp
+
+../todo/moc_mainwindow.cpp: ../todo/mainwindow.h
+	$(MOC) ../todo/mainwindow.h -o ../todo/moc_mainwindow.cpp
+
+../todo/moc_todoentryimpl.cpp: ../todo/todoentryimpl.h
+	$(MOC) ../todo/todoentryimpl.h -o ../todo/moc_todoentryimpl.cpp
+
+../todo/moc_todotable.cpp: ../todo/todotable.h
+	$(MOC) ../todo/todotable.h -o ../todo/moc_todotable.cpp
+
+../datebook/moc_datebook.cpp: ../datebook/datebook.h
+	$(MOC) ../datebook/datebook.h -o ../datebook/moc_datebook.cpp
+
+../datebook/moc_datebookday.cpp: ../datebook/datebookday.h
+	$(MOC) ../datebook/datebookday.h -o ../datebook/moc_datebookday.cpp
+
+../datebook/moc_datebookdayheaderimpl.cpp: ../datebook/datebookdayheaderimpl.h
+	$(MOC) ../datebook/datebookdayheaderimpl.h -o ../datebook/moc_datebookdayheaderimpl.cpp
+
+../datebook/moc_datebookweek.cpp: ../datebook/datebookweek.h
+	$(MOC) ../datebook/datebookweek.h -o ../datebook/moc_datebookweek.cpp
+
+../datebook/moc_datebookweekheaderimpl.cpp: ../datebook/datebookweekheaderimpl.h
+	$(MOC) ../datebook/datebookweekheaderimpl.h -o ../datebook/moc_datebookweekheaderimpl.cpp
+
+../datebook/moc_dateentryimpl.cpp: ../datebook/dateentryimpl.h
+	$(MOC) ../datebook/dateentryimpl.h -o ../datebook/moc_dateentryimpl.cpp
+
+../datebook/moc_repeatentry.cpp: ../datebook/repeatentry.h
+	$(MOC) ../datebook/repeatentry.h -o ../datebook/moc_repeatentry.cpp
+
+../clock/moc_clock.cpp: ../clock/clock.h
+	$(MOC) ../clock/clock.h -o ../clock/moc_clock.cpp
+
+../library/moc_datebookmonth.cpp: ../library/datebookmonth.h
+	$(MOC) ../library/datebookmonth.h -o ../library/moc_datebookmonth.cpp
+
+../library/moc_fileselector.cpp: ../library/fileselector.h
+	$(MOC) ../library/fileselector.h -o ../library/moc_fileselector.cpp
+
+../library/moc_imageedit.cpp: ../library/imageedit.h
+	$(MOC) ../library/imageedit.h -o ../library/moc_imageedit.cpp
+
+../library/moc_menubutton.cpp: ../library/menubutton.h
+	$(MOC) ../library/menubutton.h -o ../library/moc_menubutton.cpp
+
+../library/moc_process.cpp: ../library/process.h
+	$(MOC) ../library/process.h -o ../library/moc_process.cpp
+
+../library/moc_qpeapplication.cpp: ../library/qpeapplication.h
+	$(MOC) ../library/qpeapplication.h -o ../library/moc_qpeapplication.cpp
+
+../library/moc_qpedecoration_qws.cpp: ../library/qpedecoration_qws.h
+	$(MOC) ../library/qpedecoration_qws.h -o ../library/moc_qpedecoration_qws.cpp
+
+../library/moc_tzselect.cpp: ../library/tzselect.h
+	$(MOC) ../library/tzselect.h -o ../library/moc_tzselect.cpp
+
+../minesweep/moc_minefield.cpp: ../minesweep/minefield.h
+	$(MOC) ../minesweep/minefield.h -o ../minesweep/moc_minefield.cpp
+
+../minesweep/moc_minesweep.cpp: ../minesweep/minesweep.h
+	$(MOC) ../minesweep/minesweep.h -o ../minesweep/moc_minesweep.cpp
+
+../taskbar/moc_appicons.cpp: ../taskbar/appicons.h
+	$(MOC) ../taskbar/appicons.h -o ../taskbar/moc_appicons.cpp
+
+../taskbar/moc_background.cpp: ../taskbar/background.h
+	$(MOC) ../taskbar/background.h -o ../taskbar/moc_background.cpp
+
+../taskbar/moc_desktop.cpp: ../taskbar/desktop.h
+	$(MOC) ../taskbar/desktop.h -o ../taskbar/moc_desktop.cpp
+
+../taskbar/moc_info.cpp: ../taskbar/info.h
+	$(MOC) ../taskbar/info.h -o ../taskbar/moc_info.cpp
+
+../taskbar/moc_inputmethods.cpp: ../taskbar/inputmethods.h
+	$(MOC) ../taskbar/inputmethods.h -o ../taskbar/moc_inputmethods.cpp
+
+../taskbar/moc_quicklauncher.cpp: ../taskbar/quicklauncher.h
+	$(MOC) ../taskbar/quicklauncher.h -o ../taskbar/moc_quicklauncher.cpp
+
+../taskbar/moc_sidething.cpp: ../taskbar/sidething.h
+	$(MOC) ../taskbar/sidething.h -o ../taskbar/moc_sidething.cpp
+
+../taskbar/moc_startmenu.cpp: ../taskbar/startmenu.h
+	$(MOC) ../taskbar/startmenu.h -o ../taskbar/moc_startmenu.cpp
+
+../taskbar/moc_systray.cpp: ../taskbar/systray.h
+	$(MOC) ../taskbar/systray.h -o ../taskbar/moc_systray.cpp
+
+../taskbar/moc_taskbar.cpp: ../taskbar/taskbar.h
+	$(MOC) ../taskbar/taskbar.h -o ../taskbar/moc_taskbar.cpp
+
+../taskbar/clockapplet/moc_clock.cpp: ../taskbar/clockapplet/clock.h
+	$(MOC) ../taskbar/clockapplet/clock.h -o ../taskbar/clockapplet/moc_clock.cpp
+
+../textedit/moc_textedit.cpp: ../textedit/textedit.h
+	$(MOC) ../textedit/textedit.h -o ../textedit/moc_textedit.cpp
+
+../sysinfo/moc_graph.cpp: ../sysinfo/graph.h
+	$(MOC) ../sysinfo/graph.h -o ../sysinfo/moc_graph.cpp
+
+../sysinfo/moc_load.cpp: ../sysinfo/load.h
+	$(MOC) ../sysinfo/load.h -o ../sysinfo/moc_load.cpp
+
+../sysinfo/moc_memory.cpp: ../sysinfo/memory.h
+	$(MOC) ../sysinfo/memory.h -o ../sysinfo/moc_memory.cpp
+
+../sysinfo/moc_storage.cpp: ../sysinfo/storage.h
+	$(MOC) ../sysinfo/storage.h -o ../sysinfo/moc_storage.cpp
+
+../sysinfo/moc_sysinfo.cpp: ../sysinfo/sysinfo.h
+	$(MOC) ../sysinfo/sysinfo.h -o ../sysinfo/moc_sysinfo.cpp
+
+../sysinfo/moc_version.cpp: ../sysinfo/version.h
+	$(MOC) ../sysinfo/version.h -o ../sysinfo/moc_version.cpp
+
+../calibrate/moc_calibrate.cpp: ../calibrate/calibrate.h
+	$(MOC) ../calibrate/calibrate.h -o ../calibrate/moc_calibrate.cpp
+
+../addressbook/moc_abeditor.cpp: ../addressbook/abeditor.h
+	$(MOC) ../addressbook/abeditor.h -o ../addressbook/moc_abeditor.cpp
+
+../addressbook/moc_ablabel.cpp: ../addressbook/ablabel.h
+	$(MOC) ../addressbook/ablabel.h -o ../addressbook/moc_ablabel.cpp
+
+../addressbook/moc_abtable.cpp: ../addressbook/abtable.h
+	$(MOC) ../addressbook/abtable.h -o ../addressbook/moc_abtable.cpp
+
+../addressbook/moc_addressbook.cpp: ../addressbook/addressbook.h
+	$(MOC) ../addressbook/addressbook.h -o ../addressbook/moc_addressbook.cpp
+
+../tetrix/moc_qtetrix.cpp: ../tetrix/qtetrix.h
+	$(MOC) ../tetrix/qtetrix.h -o ../tetrix/moc_qtetrix.cpp
+
+../tetrix/moc_qtetrixb.cpp: ../tetrix/qtetrixb.h
+	$(MOC) ../tetrix/qtetrixb.h -o ../tetrix/moc_qtetrixb.cpp
+
+../citytime/moc_citytime.cpp: ../citytime/citytime.h
+	$(MOC) ../citytime/citytime.h -o ../citytime/moc_citytime.cpp
+
+../citytime/moc_stylusnormalizer.cpp: ../citytime/stylusnormalizer.h
+	$(MOC) ../citytime/stylusnormalizer.h -o ../citytime/moc_stylusnormalizer.cpp
+
+../citytime/moc_zonemap.cpp: ../citytime/zonemap.h
+	$(MOC) ../citytime/zonemap.h -o ../citytime/moc_zonemap.cpp
+
+../inputmethods/pickboard/moc_pickboard.cpp: ../inputmethods/pickboard/pickboard.h
+	$(MOC) ../inputmethods/pickboard/pickboard.h -o ../inputmethods/pickboard/moc_pickboard.cpp
+
+../inputmethods/pickboard/moc_pickboardcfg.cpp: ../inputmethods/pickboard/pickboardcfg.h
+	$(MOC) ../inputmethods/pickboard/pickboardcfg.h -o ../inputmethods/pickboard/moc_pickboardcfg.cpp
+
+../inputmethods/pickboard/moc_pickboardpicks.cpp: ../inputmethods/pickboard/pickboardpicks.h
+	$(MOC) ../inputmethods/pickboard/pickboardpicks.h -o ../inputmethods/pickboard/moc_pickboardpicks.cpp
+
+../inputmethods/handwriting/moc_qimpenhelp.cpp: ../inputmethods/handwriting/qimpenhelp.h
+	$(MOC) ../inputmethods/handwriting/qimpenhelp.h -o ../inputmethods/handwriting/moc_qimpenhelp.cpp
+
+../inputmethods/handwriting/moc_qimpeninput.cpp: ../inputmethods/handwriting/qimpeninput.h
+	$(MOC) ../inputmethods/handwriting/qimpeninput.h -o ../inputmethods/handwriting/moc_qimpeninput.cpp
+
+../inputmethods/handwriting/moc_qimpenmatch.cpp: ../inputmethods/handwriting/qimpenmatch.h
+	$(MOC) ../inputmethods/handwriting/qimpenmatch.h -o ../inputmethods/handwriting/moc_qimpenmatch.cpp
+
+../inputmethods/handwriting/moc_qimpensetup.cpp: ../inputmethods/handwriting/qimpensetup.h
+	$(MOC) ../inputmethods/handwriting/qimpensetup.h -o ../inputmethods/handwriting/moc_qimpensetup.cpp
+
+../inputmethods/handwriting/moc_qimpenwidget.cpp: ../inputmethods/handwriting/qimpenwidget.h
+	$(MOC) ../inputmethods/handwriting/qimpenwidget.h -o ../inputmethods/handwriting/moc_qimpenwidget.cpp
+
+../inputmethods/handwriting/moc_qimpenwordpick.cpp: ../inputmethods/handwriting/qimpenwordpick.h
+	$(MOC) ../inputmethods/handwriting/qimpenwordpick.h -o ../inputmethods/handwriting/moc_qimpenwordpick.cpp
+
+../inputmethods/keyboard/moc_keyboard.cpp: ../inputmethods/keyboard/keyboard.h
+	$(MOC) ../inputmethods/keyboard/keyboard.h -o ../inputmethods/keyboard/moc_keyboard.cpp
+
+../launcher/moc_categorylist.cpp: ../launcher/categorylist.h
+	$(MOC) ../launcher/categorylist.h -o ../launcher/moc_categorylist.cpp
+
+../launcher/moc_launcher.cpp: ../launcher/launcher.h
+	$(MOC) ../launcher/launcher.h -o ../launcher/moc_launcher.cpp
+
+../launcher/moc_launcherview.cpp: ../launcher/launcherview.h
+	$(MOC) ../launcher/launcherview.h -o ../launcher/moc_launcherview.cpp
+
+../launcher/moc_lnkproperties.cpp: ../launcher/lnkproperties.h
+	$(MOC) ../launcher/lnkproperties.h -o ../launcher/moc_lnkproperties.cpp
+
+../helpbrowser/moc_helpbrowser.cpp: ../helpbrowser/helpbrowser.h
+	$(MOC) ../helpbrowser/helpbrowser.h -o ../helpbrowser/moc_helpbrowser.cpp
+
+../library/global.moc: ../library/global.cpp
+	$(MOC) ../library/global.cpp -o ../library/global.moc
+
+../library/process_unix.moc: ../library/process_unix.cpp
+	$(MOC) ../library/process_unix.cpp -o ../library/process_unix.moc
+
+../taskbar/appicons.moc: ../taskbar/appicons.cpp
+	$(MOC) ../taskbar/appicons.cpp -o ../taskbar/appicons.moc
+
+../calculator/moc_calculator.cpp: ../calculator/calculator.h
+	$(MOC) ../calculator/calculator.h -o ../calculator/moc_calculator.cpp
+
+../todo/moc_todoentry.cpp: ../todo/todoentry.h
+	$(MOC) ../todo/todoentry.h -o ../todo/moc_todoentry.cpp
+
+../datebook/moc_datebookdayheader.cpp: ../datebook/datebookdayheader.h
+	$(MOC) ../datebook/datebookdayheader.h -o ../datebook/moc_datebookdayheader.cpp
+
+../datebook/moc_datebooksettingsbase.cpp: ../datebook/datebooksettingsbase.h
+	$(MOC) ../datebook/datebooksettingsbase.h -o ../datebook/moc_datebooksettingsbase.cpp
+
+../datebook/moc_datebookweekheader.cpp: ../datebook/datebookweekheader.h
+	$(MOC) ../datebook/datebookweekheader.h -o ../datebook/moc_datebookweekheader.cpp
+
+../datebook/moc_dateentry.cpp: ../datebook/dateentry.h
+	$(MOC) ../datebook/dateentry.h -o ../datebook/moc_dateentry.cpp
+
+../datebook/moc_repeatentrybase.cpp: ../datebook/repeatentrybase.h
+	$(MOC) ../datebook/repeatentrybase.h -o ../datebook/moc_repeatentrybase.cpp
+
+../taskbar/moc_shutdown.cpp: ../taskbar/shutdown.h
+	$(MOC) ../taskbar/shutdown.h -o ../taskbar/moc_shutdown.cpp
+
+../addressbook/moc_abeditorbase.cpp: ../addressbook/abeditorbase.h
+	$(MOC) ../addressbook/abeditorbase.h -o ../addressbook/moc_abeditorbase.cpp
+
+../addressbook/moc_abnamebase.cpp: ../addressbook/abnamebase.h
+	$(MOC) ../addressbook/abnamebase.h -o ../addressbook/moc_abnamebase.cpp
+
+../citytime/moc_citytimebase.cpp: ../citytime/citytimebase.h
+	$(MOC) ../citytime/citytimebase.h -o ../citytime/moc_citytimebase.cpp
+
+../settings/moc_appearancesettingsbase.cpp: ../settings/appearancesettingsbase.h
+	$(MOC) ../settings/appearancesettingsbase.h -o ../settings/moc_appearancesettingsbase.cpp
+
+../settings/moc_languagesettingsbase.cpp: ../settings/languagesettingsbase.h
+	$(MOC) ../settings/languagesettingsbase.h -o ../settings/moc_languagesettingsbase.cpp
+
+../settings/moc_lightsettingsbase.cpp: ../settings/lightsettingsbase.h
+	$(MOC) ../settings/lightsettingsbase.h -o ../settings/moc_lightsettingsbase.cpp
+
+../settings/moc_rotationsettingsbase.cpp: ../settings/rotationsettingsbase.h
+	$(MOC) ../settings/rotationsettingsbase.h -o ../settings/moc_rotationsettingsbase.cpp
+
+../settings/moc_soundsettingsbase.cpp: ../settings/soundsettingsbase.h
+	$(MOC) ../settings/soundsettingsbase.h -o ../settings/moc_soundsettingsbase.cpp
+
+../inputmethods/handwriting/moc_qimpenprefbase.cpp: ../inputmethods/handwriting/qimpenprefbase.h
+	$(MOC) ../inputmethods/handwriting/qimpenprefbase.h -o ../inputmethods/handwriting/moc_qimpenprefbase.cpp
+
+../launcher/moc_lnkpropertiesbase.cpp: ../launcher/lnkpropertiesbase.h
+	$(MOC) ../launcher/lnkpropertiesbase.h -o ../launcher/moc_lnkpropertiesbase.cpp
+
+

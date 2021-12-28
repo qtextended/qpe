@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/menubutton.cpp:24 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>MenuButton Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>MenuButton Class Reference</h1>
+
+<p>The MenuButton class is a pushbutton with a menu.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="menubutton-h.html">menubutton.h</a>&gt;</tt>
+<p><a href="menubutton-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#MenuButton"><b>MenuButton</b></a>&nbsp;(&nbsp;QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name&nbsp;=&nbsp;0&nbsp;)</div></li>
+<li><div class=fn><a href="#MenuButton-2"><b>MenuButton</b></a>&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;items, QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name&nbsp;=&nbsp;0&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#clear"><b>clear</b></a>&nbsp;()</div></li>
+<li><div class=fn>int&nbsp;<a href="#currentItem"><b>currentItem</b></a>&nbsp;() const</div></li>
+<li><div class=fn>QString&nbsp;<a href="#currentText"><b>currentText</b></a>&nbsp;() const</div></li>
+<li><div class=fn>void&nbsp;<a href="#insertItems"><b>insertItems</b></a>&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;items&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#insertItem"><b>insertItem</b></a>&nbsp;(&nbsp;const&nbsp;QIconSet&nbsp;&amp;&nbsp;icon, const&nbsp;QString&nbsp;&amp;&nbsp;text&nbsp;=&nbsp;QString::null&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#insertItem-2"><b>insertItem</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;text&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#insertSeparator"><b>insertSeparator</b></a>&nbsp;()</div></li>
+<li><div class=fn>void&nbsp;<a href="#setLabel"><b>setLabel</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;label&nbsp;)</div></li>
+</ul>
+<h2>Public Slots</h2>
+<ul>
+<li><div class=fn>void&nbsp;<a href="#select"><b>select</b></a>&nbsp;(&nbsp;int&nbsp;s&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#select-2"><b>select</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;s&nbsp;)</div></li>
+</ul>
+<h2>Signals</h2>
+<ul>
+<li><div class=fn>void&nbsp;<a href="#selected"><b>selected</b></a>&nbsp;(&nbsp;int&nbsp;index&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#selected-2"><b>selected</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;text&nbsp;)</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The MenuButton class is a pushbutton with a menu.
+<p> Similar in function to a QComboBox.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="MenuButton"></a>MenuButton::MenuButton&nbsp;(&nbsp;QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name = 0&nbsp;)
+</h3>
+Constructs an empty MenuButton.
+The standard <em>parent</em> an <em>name</em> arguments are passed to the base class.
+<p> <p>See also <a href="#insertItems">insertItems</a>().
+
+<h3 class=fn><a name="MenuButton-2"></a>MenuButton::MenuButton&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;items, QWidget&nbsp;*&nbsp;parent, const&nbsp;char&nbsp;*&nbsp;name = 0&nbsp;)
+</h3>
+Constructs a MenuButton with the given <em>items</em> added (see <a href="#insertItems">insertItems</a>()).
+The standard <em>parent</em> an <em>name</em> arguments are passed to the base class.
+
+<h3 class=fn>void&nbsp;<a name="clear"></a>MenuButton::clear&nbsp;()
+</h3>
+Removes all items from the button and menu.
+
+<h3 class=fn>int&nbsp;<a name="currentItem"></a>MenuButton::currentItem&nbsp;() const
+</h3>
+Returns the index of the current item.
+
+<h3 class=fn>QString&nbsp;<a name="currentText"></a>MenuButton::currentText&nbsp;() const
+</h3>
+Returns the text of the current item.
+
+<h3 class=fn>void&nbsp;<a name="insertItem"></a>MenuButton::insertItem&nbsp;(&nbsp;const&nbsp;QIconSet&nbsp;&amp;&nbsp;icon, const&nbsp;QString&nbsp;&amp;&nbsp;text = QString::null&nbsp;)
+</h3>
+Inserts an <em>icon</em> and <em>text</em> into the menu.
+
+<h3 class=fn>void&nbsp;<a name="insertItem-2"></a>MenuButton::insertItem&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;text&nbsp;)
+</h3>
+Inserts <em>text</em> into the menu.
+
+<h3 class=fn>void&nbsp;<a name="insertItems"></a>MenuButton::insertItems&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;items&nbsp;)
+</h3>
+Inserts string <em>items</em> into the menu. The string "--" represents
+a separator.
+
+<h3 class=fn>void&nbsp;<a name="insertSeparator"></a>MenuButton::insertSeparator&nbsp;()
+</h3>
+Inserts a visual separator into the menu.
+
+<h3 class=fn>void&nbsp;<a name="select"></a>MenuButton::select&nbsp;(&nbsp;int&nbsp;s&nbsp;)<tt> [slot]</tt>
+</h3>
+Selects the item at index <em>s</em>.
+
+<h3 class=fn>void&nbsp;<a name="select-2"></a>MenuButton::select&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;s&nbsp;)<tt> [slot]</tt>
+</h3>
+Selects the items with text <em>s</em>.
+
+<h3 class=fn>void&nbsp;<a name="selected"></a>MenuButton::selected&nbsp;(&nbsp;int&nbsp;index&nbsp;)<tt> [signal]</tt>
+</h3>
+
+<p> This signal is emitted when the item at <em>index</em> is selected.
+
+<h3 class=fn>void&nbsp;<a name="selected-2"></a>MenuButton::selected&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;text&nbsp;)<tt> [signal]</tt>
+</h3>
+
+<p> This signal is emitted when the item with the given <em>text</em> is selected.
+
+<h3 class=fn>void&nbsp;<a name="setLabel"></a>MenuButton::setLabel&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;label&nbsp;)
+</h3>
+Sets the label. If <em>label</em> is empty, the
+current item text is displayed, otherwise <em>label</em> should contain
+"%1", which will be replaced by the current item text.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

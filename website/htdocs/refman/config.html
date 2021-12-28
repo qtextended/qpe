@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/config.cpp:56 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Config Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>Config Class Reference</h1>
+
+<p>The Config class provides for saving application cofniguration state.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="config-h.html">config.h</a>&gt;</tt>
+<p><a href="config-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn>enum <a href="#Domain-enum"><b>Domain</b></a> { File, User }</div></li>
+<li><div class=fn><a href="#Config"><b>Config</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name, Domain&nbsp;domain&nbsp;=&nbsp;User&nbsp;)</div></li>
+<li><div class=fn><a href="#~Config"><b>~Config</b></a>&nbsp;()</div></li>
+<li><div class=fn>bool&nbsp;<a href="#isValid"><b>isValid</b></a>&nbsp;() const</div></li>
+<li><div class=fn>bool&nbsp;<a href="#hasKey"><b>hasKey</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key&nbsp;) const</div></li>
+<li><div class=fn>void&nbsp;<a href="#setGroup"><b>setGroup</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;gname&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#writeEntry"><b>writeEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QString&nbsp;&amp;&nbsp;value&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#writeEntry-2"><b>writeEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, int&nbsp;num&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#writeEntry-3"><b>writeEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QStringList&nbsp;&amp;&nbsp;lst, const&nbsp;QChar&nbsp;&amp;&nbsp;sep&nbsp;)</div></li>
+<li><div class=fn>QString&nbsp;<a href="#readEntry"><b>readEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QString&nbsp;&amp;&nbsp;deflt&nbsp;=&nbsp;QString::null&nbsp;)</div></li>
+<li><div class=fn>int&nbsp;<a href="#readNumEntry"><b>readNumEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, int&nbsp;deflt&nbsp;=&nbsp;-1&nbsp;)</div></li>
+<li><div class=fn>bool&nbsp;<a href="#readBoolEntry"><b>readBoolEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, bool&nbsp;deflt&nbsp;=&nbsp;FALSE&nbsp;)</div></li>
+<li><div class=fn>QStringList&nbsp;<a href="#readListEntry"><b>readListEntry</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QChar&nbsp;&amp;&nbsp;sep&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#clearGroup"><b>clearGroup</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The Config class provides for saving application cofniguration state.
+<p> You should keep a Config in existence only while you do not want others
+to be able to change the state. There is no locking currently, but there
+may be in the future.
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class=fn><a name="Domain-enum"></a>Config::Domain</h3>
+
+<ul>
+<li><tt>Config::File</tt>
+<li><tt>Config::User</tt>
+</ul><p> See Config for details.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="Config"></a>Config::Config&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name, <a href="config.html#Domain-enum">Domain</a>&nbsp;domain = User&nbsp;)
+</h3>
+Constructs a config that will load or create a configuration with the
+given <em>name</em> in the given <em>domain</em>.
+<p> You must call <a href="#setGroup">setGroup</a>() before doing much else with the Config.
+<p> In the default Domain, <em>User</em>,
+the configuration is user-specific. <em>name</em> should not contain "/" in
+this case, and in general should be the name of the C++ class that is
+primarily responsible for maintaining the configuration.
+<p> In the File Domain, <em>name</em> is an absolute filename.
+
+<h3 class=fn><a name="~Config"></a>Config::~Config&nbsp;()
+</h3>
+Writes any changes to disk and destroys the in-memory object.
+
+<h3 class=fn>void&nbsp;<a name="clearGroup"></a>Config::clearGroup&nbsp;()
+</h3>
+Removes all entries from the current group.
+
+<h3 class=fn>bool&nbsp;<a name="hasKey"></a>Config::hasKey&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key&nbsp;) const
+</h3>
+Returns whether the current group has an entry called <em>key</em>.
+
+<h3 class=fn>bool&nbsp;<a name="isValid"></a>Config::isValid&nbsp;() const
+</h3>
+Returns whether the Config is in a valid state.
+
+<h3 class=fn>bool&nbsp;<a name="readBoolEntry"></a>Config::readBoolEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, bool&nbsp;deflt = FALSE&nbsp;)
+</h3>
+Reads a bool entry stored with <em>key</em>, defaulting to <em>deflt</em> if there is no entry.
+
+<h3 class=fn>QString&nbsp;<a name="readEntry"></a>Config::readEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QString&nbsp;&amp;&nbsp;deflt = QString::null&nbsp;)
+</h3>
+Reads a string entry stored with <em>key</em>, defaulting to <em>deflt</em> if there is no entry.
+
+<h3 class=fn>QStringList&nbsp;<a name="readListEntry"></a>Config::readListEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QChar&nbsp;&amp;&nbsp;sep&nbsp;)
+</h3>
+Reads a string list entry stored with <em>key</em>, and with <em>sep</em> as the separator.
+
+<h3 class=fn>int&nbsp;<a name="readNumEntry"></a>Config::readNumEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, int&nbsp;deflt = -1&nbsp;)
+</h3>
+Reads a numeric entry stored with <em>key</em>, defaulting to <em>deflt</em> if there is no entry.
+
+<h3 class=fn>void&nbsp;<a name="setGroup"></a>Config::setGroup&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;gname&nbsp;)
+</h3>
+Sets the current group for subsequent reading and writing of
+entries to <em>gname</em>. Grouping allows the application to partition the namespace.
+<p> This function must be called prior to any reading or writing
+of entries.
+<p> The <em>gname</em> must not be empty.
+
+<h3 class=fn>void&nbsp;<a name="writeEntry"></a>Config::writeEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QString&nbsp;&amp;&nbsp;value&nbsp;)
+</h3>
+Writes a (<em>key</em>, <em>value</em>) entry to the current group.
+<p> <p>See also <a href="#readEntry">readEntry</a>().
+
+<h3 class=fn>void&nbsp;<a name="writeEntry-2"></a>Config::writeEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, int&nbsp;num&nbsp;)
+</h3>
+Writes a (<em>key</em>, <em>num</em>) entry to the current group.
+<p> <p>See also <a href="#readNumEntry">readNumEntry</a>().
+
+<h3 class=fn>void&nbsp;<a name="writeEntry-3"></a>Config::writeEntry&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;key, const&nbsp;QStringList&nbsp;&amp;&nbsp;lst, const&nbsp;QChar&nbsp;&amp;&nbsp;sep&nbsp;)
+</h3>
+Writes a (<em>key</em>, <em>lst</em>) entry to the current group. The list
+is separated by <em>sep</em>, so the strings must not contain that character.
+<p> <p>See also <a href="#readListEntry">readListEntry</a>().
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

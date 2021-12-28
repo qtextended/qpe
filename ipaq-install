@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Just a quick script to install on an iPAQ. Read it before you run it!
+
+LANG=""
+QTDIR=../qt/main/build/ipaq-qpe
+
+rm -rf $QPEDIR
+mkdir $QPEDIR
+cp -v -r bin apps sounds pics $QPEDIR
+cp -v -a etc/init.d etc/rc2.d /etc
+ln -s ../init.d/qpe /etc/rc2.d/S98qpe
+mkdir $QPEDIR/etc
+mkdir $QPEDIR/etc/dict
+cp -v etc/dict/dawg$LANG $QPEDIR/etc/dict
+cp -v -a etc/qperc $QPEDIR/etc
+cp -v -a etc/unit_conversion.dat $QPEDIR/etc
+cp -v -a etc/colors $QPEDIR/etc
+cp -v -a etc/qimpen $QPEDIR/etc
+cp -v -a $QTDIR/lib/libq?e.so* /usr/lib
+mkdir $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/fontdir $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/helvetica_* $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/fixed_* $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/micro_* $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/smallsmooth_* $QPEDIR/etc/fonts
+cp -v -a $QTDIR/dist/embedded/etc/fonts/smoothtimes_{170,100}_50*.qpf $QPEDIR/etc/fonts

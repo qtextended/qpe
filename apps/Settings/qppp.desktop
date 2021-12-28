@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=qppp
+Icon=PPPConnect
+Type=Application
+Name=PPP Network
+Name[hu]=PPP hálózat

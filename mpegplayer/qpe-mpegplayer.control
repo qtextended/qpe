@@ -1,0 +1,9 @@
+Files: bin/mpegplayer pics/mpegplayer/* apps/Applications/mpegplayer.desktop
+Priority: optional
+Section: qpe
+Maintainer: John Ryland <jryland@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: MPEG video/audio player
+ The mpegplayer for the Qt Palmtop environment.

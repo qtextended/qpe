@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		= qt warn_on release
+DESTDIR		= ../bin
+HEADERS		= tux.h
+SOURCES		= tux.cpp main.cpp
+INTERFACES	= 
+INCLUDEPATH	+= ../library
+DEPENDPATH	+= ../library
+LIBS            += -lqpe
+TARGET		= tux

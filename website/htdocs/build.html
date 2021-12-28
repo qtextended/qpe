@@ -1,0 +1,229 @@
+<h2>Building from Source Code</h2>
+
+<p>
+This package should work fine with Qt/X11 and Qt/Windows, but
+it is targetted at small handheld devices such as the Compaq iPAQ, and
+includes some Qt/Embedded specifics such as additional input methods for
+virtual keyboards and handwriting recognition. Similarly, it's easy
+to make an existing Qt-base program part of Qt Palmtop, but usually you will
+make changes such as simplifying the UI and reducing the screen-space
+required by the application.
+
+<p>
+The source code to Qt Palmtop is available from the
+<a href=http://sourceforge.net/projects/qpe/>SourceForge respository</a>,
+via <a href=http://sourceforge.net/cvs/?group_id=16158>CVS</a>, or download
+a recent <a href=ftp://ftp.trolltech.com/qt/embedded/palmtop/>source code release</a>.
+
+<p>
+To build the package, you have a number of options, each described
+in detail below. The instructions assume you have unpacked the source code
+and all commands are relative to the top-level source directory, which is
+also referred to as $QPEDIR.
+
+<p>
+Before building Qt Palmtop, you need to have
+<a href=http://www.trolltech.com/products/download/freelicense/qtfree-dl.html>Qt/X11</a>
+installed on your development system, because you need the <tt>uic</tt> command
+from Qt/X11 (uic needs the "Everything" configuration as it uses properties).
+Having Qt/X11 on your system will also allow you to use the Qt Designer under X11,
+which is a great way to build user interfaces (most of the applications in
+Qt Palmtop have been designed with the Designer). Note that since Qt/Embedded and
+Qt/X11 have different library names (libqte and libqt), both can
+safely be on your $LD_LIBRARY_PATH, or even stored in the same
+directory.
+
+<p>
+For all build types you will need to build Qt/Embedded in some way. You can download
+Qt/Embedded from <a href=http://www.trolltech.com/products/download/freelicense/qtfree-dl-emb.html>the Trolltech website</a>.
+<p>
+Sometimes, the latest CVS snapshot will require a snapshot of Qt/Embedded. Look
+<a href=http://qpe.sourceforge.net/snapshots/qte/>here</a> for available snapshots
+and use the latest if there is no more-recent public Qt/Embedded release.
+<p>
+Before building it, check to see if there is a patch required for Qt Palmtop by
+looking at $QPEDIR/qt/*.patch for a patch matching the Qt/Embedded version
+you are compiling with, and apply the patch with:
+
+<pre>
+    cd $QTDIR
+    patch -p0 -s &lt;$QPEDIR/qt/qte???-for-qpe.patch
+</pre>
+
+Try to always use the latest Qt/Embedded version and the
+latest Qt Palmtop version.
+
+<ul>
+ <li><a href=#single>Static single-application build</a>
+ <li><a href=#dynamic>Dynamic build</a>
+ <li><a href=#ipaqbuild>Building for the iPAQ</a>
+</ul>
+
+<a name=single>
+<h3>Static single-application build</h3>
+</a>
+
+<p>
+This build method gives the smallest and fastest result, and reflects
+a type of build that an embedded device might use when the application
+suite is more-or-less fixed.
+
+<ol>
+    <li> Install the Qt Palmtop configurations, which are tuned to the requirements
+	    of Qt Palmtop and exclude certain functionality from the Qt library in
+	    order to minimize the size of the resulting executable:
+<pre>
+    cp ./qt/qconfig*.h $QTDIR/src/tools
+</pre>
+    </p>
+    <li> Build Qt/Embedded statically and with the "-qconfig qpe-single"
+	    configuration which uses the files copied above.
+	    Be sure to delete any
+	    existing dynamic versions as the linker will prefer those:
+<pre>
+    cd $QTDIR
+    make clean
+    ./configure -static -qconfig qpe-single
+    make
+</pre>
+
+	<p>This creates <tt>$QTDIR/lib/libqte.a</tt>.
+
+    </p>
+    <li> Build the entire Qt Palmtop package as a single application:
+<pre>
+    cd <i>back-here</i>
+    make clean
+    ./configure -static
+    make single
+</pre>
+
+	<p>This creates <tt>$QTDIR/lib/libqpe.a</tt> and <tt>single/qpe</tt>.
+    </p>
+
+    <li> Strip the executable:
+<pre>
+    strip -R .note -R .comment single/qpe
+</pre>
+    </p>
+
+    <li>
+	Set the QPEDIR environment variable to the
+	base directory of Qt Palmtop, e.g <tt>export QPEDIR=~/qpe</tt>
+    </p>
+
+    <li> You now have an executable "single/qpe", which includes a complete
+	windowing system, multiple input methods, and a reasonable collection
+	of nifty little applications.
+    </p>
+</ol>
+
+<a name=dynamic>
+<h3>Dynamic build</h3>
+</a>
+
+<p>
+This build method gives the most extensible result, and reflects
+a kind of build that an embedded device might use when the application
+suite is extended by the end-user.
+
+<ol>
+    <li> Install the Qt Palmtop configurations, which are tuned to the requirements
+	    of Qt Palmtop and exclude certain functionality from the Qt library in
+	    order to minimize the size of the resulting executable:
+<pre>
+    cp ./qt/qconfig*.h $QTDIR/src/tools
+</pre>
+    </p>
+    <li> Build Qt/Embedded dynamically and with the "-qconfig qpe"
+	    option which uses the files copied above:
+<pre>
+    cd $QTDIR
+    make clean
+    ./configure -qconfig qpe
+    make
+</pre>
+
+	<p>This creates <tt>$QTDIR/lib/libqte.so*</tt>.
+
+	You can of course use the default "Everything" Qt configuration, which
+	isn't in the spirit of making small applications, but is useful if you
+	want to have the entire Qt API available.
+
+    </p>
+
+    <li> Build the entire Qt Palmtop package:
+<pre>
+    cd <i>back-here</i>
+    make clean
+    ./configure
+    make
+</pre>
+
+	<p>This creates <tt>$QTDIR/lib/libqpe.so*</tt> and <tt>bin/*</tt>,
+	including a <tt>bin/qpe</tt> that launchers applications as separate
+	processes (rather than as built-ins which the single-application
+	build does).
+    </p>
+
+    <li> Strip the executables, libraries, and plugins:
+<pre>
+    strip -R .note -R .comment bin/*
+    strip -R .note -R .comment $QTDIR/lib/libqte.so* $QTDIR/lib/libqpe.so*
+    strip -R .note -R .comment plugins/*/*
+</pre>
+    </p>
+
+    <li>
+	Set the QPEDIR environment variable to the
+	base directory of Qt Palmtop, e.g <tt>export QPEDIR=~/qpe</tt>
+    </p>
+
+    <li> You now have a collection of applications in the <tt>bin/</tt>
+	directory, which includes
+	a complete windowing system, multiple input methods, and a
+	collection of applications.
+    </p>
+
+    <li> To add more applications, see the section below on
+	<a href=development.html>writing your own applications</a>.
+    </p>
+</ol>
+
+<p>
+Note that the memory consumption with this type of build is currently excessive
+due to the details of ELF, but there are a number of tools in production to
+alleviate this, such as
+<a href=ftp://people.redhat.com/jakub/prelink/>ELF Prelink</a>.
+
+<a name=ipaqbuild>
+<h3>Build for iPAQ</h3>
+</a>
+
+<p>
+To build Qt Palmtop from the sources:
+
+<ol>
+    <li> <a href=ipaq.html>Install Linux on the iPAQ</a>,
+	    and possible also some existing parts or Qt Palmtop by following.
+    <li> Install
+	<a href=ftp://ftp.handhelds.org/pub/linux/arm/toolchain/>the
+	ARM cross-compiler from handhelds.org</a>.
+    </p>
+    <li> Build the Qt library and the Qt Palmtop package
+	by following the instructions above for
+	the <a href=#dynamic>Dynamic</a> build, but
+	add the <tt>-xplatform linux-ipaq-g++</tt> options
+	when you run both <tt>configure</tt> commands (you can also
+	add the <tt>-depths 16,32</tt> option when compiling Qt since
+	16bpp is the depth of the iPAQ screen and adding 32 means you can
+	also have pixmaps with alpha-channels).
+	You can also use the <>a href=#single>Single</a> build, but then
+	you'll not be able to interoperate with Qt Palmtop installations on
+	other iPAQs.
+    </p>
+    <li> Run <tt>mkipks */*.control</tt> to regenerate <tt>.ipk</tt> files
+	which you can then install. You can also just run <tt>mkipks</tt> with
+	a single control file to regenerate just that package.
+    </p>
+</ol>

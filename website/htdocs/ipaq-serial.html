@@ -1,0 +1,70 @@
+<h1>Installing on an iPAQ <i>without</i> Internet access</h1>
+
+<ul>
+<li>
+Go to <a href=http://familiar.handhelds.org/familiar/releases/latest/install/H3600/install.html>http://familiar.handhelds.org</a>,
+and install Familiar Linux on your iPAQ. You need only install the bootstrap
+installation (ie. you can stop before installing X11, etc.). 
+</p>
+
+<li>
+To install additional packages on you iPAQ, you must transfer them
+(via ZModem or XModem) to the <tt>/tmp</tt> directory on the iPAQ, them install them
+manually using <tt>ipkg</tt>.
+You must ensure all dependencies are maintained. So, to install
+a package called <tt>foo</tt>, download the <tt>foo_*.ipk</tt> package 
+from the Internet and transfer it to <tt>/tmp</tt> on your iPAQ, then run:
+<pre>
+   ipkg install /tmp/foo_*.ipk
+</pre>
+Then, check that you have installed all the packages it depends on:
+<pre>
+   ipkg info foo
+</pre>
+This will give you full details.
+<p>
+The web site for Qt Palmtop <tt>.ipk</tt> files is:
+<a href=http://qpe.sourceforge.net/packages/ipaq/>http://qpe.sourceforge.net/packages/ipaq/</a>.
+Detailed descriptions of the packages are in the
+<a href=http://qpe.sourceforge.net/packages/ipaq/Packages>Packages</a> file.
+</p>
+
+<li>
+Install <tt>h3600-utils</tt> and <tt>apmd</tt> if you want backlight and power
+management to work (you do).
+</p>
+
+<li>
+Before you proceed, you'll need at least 2.5M free flash. The <tt>df</tt>
+command will tell you how much you have free.
+Use <tt>ipkg remove </tt><i>packagename</i> to remove some packages
+(<tt>ipkg list</tt> will show you a list of them).
+</p>
+
+<li>
+Install the base Qt Palmtop packages:
+  <ul>
+    <li>qt-embedded
+    <li>qpe-taskbar
+    <li>qpe-base
+    <li>qpe-sounds
+    <li>qpe-pics
+  </ul>
+</p>
+
+<li>
+Reboot your iPAQ:
+<pre>
+    reboot
+</pre>
+</p>
+
+<li>
+Install any additional Qt Palmtop packages.
+</ul>
+
+<p>
+If you want to use the Terminal, you should probably install the
+<tt>bash</tt> package, since the Terminal and <tt>ash</tt> don't seem
+to like each other.
+

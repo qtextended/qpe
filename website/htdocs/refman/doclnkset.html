@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/applnk.cpp:655 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>DocLnkSet Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>DocLnkSet Class Reference</h1>
+
+<p>The DocLnkSet class is a set of DocLnk objects.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="applnk-h.html">applnk.h</a>&gt;</tt>
+<p>Inherits <a href="applnkset.html">AppLnkSet</a>.
+<p><a href="doclnkset-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#DocLnkSet"><b>DocLnkSet</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;directory, const&nbsp;QString&nbsp;&amp;&nbsp;mimefilter&nbsp;=&nbsp;QString::null&nbsp;)</div></li>
+<li><div class=fn>const QList&lt;DocLnk&gt; &amp;&nbsp;<a href="#children"><b>children</b></a>&nbsp;() const</div></li>
+<li><div class=fn>void&nbsp;<a href="#appendFrom"><b>appendFrom</b></a>&nbsp;(&nbsp;DocLnkSet&nbsp;&amp;&nbsp;other&nbsp;)</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The DocLnkSet class is a set of <a href="doclnk.html">DocLnk</a> objects.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="DocLnkSet"></a>DocLnkSet::DocLnkSet&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;directory, const&nbsp;QString&nbsp;&amp;&nbsp;mimefilter = QString::null&nbsp;)
+</h3>
+Constructs an DocLnkSet that contains <a href="doclnk.html">DocLnk</a> objects representing
+all the files in a <em>directory</em> (recursively).
+<p> If <em>mimefilter</em> is not null,
+only documents with a MIME type matching <em>mimefilter</em> are selected.
+The value may contain multiple wild-card patterns separated by ";",
+such as "*o/mpeg;audio/x-wav".
+
+<h3 class=fn>void&nbsp;<a name="appendFrom"></a>DocLnkSet::appendFrom&nbsp;(&nbsp;<a href="doclnkset.html">DocLnkSet</a>&nbsp;&amp;&nbsp;other&nbsp;)
+</h3>
+Transfers all <a href="doclnk.html">DocLnk</a> objects from <em>other</em> to this set. <em>other</em> becomes
+empty.
+
+<h3 class=fn>const QList&lt;DocLnk&gt; &amp;&nbsp;<a name="children"></a>DocLnkSet::children&nbsp;() const
+</h3>
+
+<p> Returns the members of the set.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

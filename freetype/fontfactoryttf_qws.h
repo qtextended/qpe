@@ -1,0 +1,75 @@
+/****************************************************************************
+** $Id: fontfactoryttf_qws.h,v 1.1 2001/08/27 06:23:21 martinj Exp $
+**
+** Definition of QFontFactory for Truetype class for Embedded Qt
+**
+** Created : 940721
+**
+** Copyright (C) 1992-2000 Trolltech AS.  All rights reserved.
+**
+** This file is part of the kernel module of the Qt GUI Toolkit.
+**
+** This file may be distributed and/or modified under the terms of the
+** GNU General Public License version 2 as published by the Free Software
+** Foundation and appearing in the file LICENSE.GPL included in the
+** packaging of this file.
+**
+** Licensees holding valid Qt Enterprise Edition or Qt Professional Edition
+** licenses for Qt/Embedded may use this file in accordance with the
+** Qt Embedded Commercial License Agreement provided with the Software.
+**
+** This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+** WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+**
+** See http://www.trolltech.com/pricing.html or email sales@trolltech.com for
+**   information about Qt Commercial License Agreements.
+** See http://www.trolltech.com/gpl/ for GPL licensing information.
+**
+** Contact info@trolltech.com if any conditions of this licensing are
+** not clear to you.
+**
+**********************************************************************/
+
+#ifndef FONTFACTORY_FT_H
+#define FONTFACTORY_FT_H
+
+#include <qfontmanager_qws.h>
+#if QT_VERSION >= 300
+# include <private/qfontdata_p.h>
+#else
+# include "qfontdata_p.h"
+#endif
+
+
+#ifdef QT_NO_FREETYPE
+
+extern "C" {
+#include <ft2build.h>
+#include FT_FREETYPE_H
+}
+
+// ascent, descent, width(ch), width(string), maxwidth?
+// leftbearing, rightbearing, minleftbearing,minrightbearing
+// leading
+
+class QFontFactoryFT : public QFontFactory {
+
+public:
+
+    QFontFactoryFT();
+    virtual ~QFontFactoryFT();
+
+    QRenderedFont * get(const QFontDef &,QDiskFont *);
+    virtual void load(QDiskFont *) const;
+    virtual QString name();
+
+private:
+
+    friend class QRenderedFontFT;
+    FT_Library library;
+};
+
+#endif // QT_NO_FREETYPE
+
+#endif // QFONTFACTORY_FT_H
+

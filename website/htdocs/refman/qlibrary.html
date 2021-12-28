@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/qlibrary.cpp:129 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QLibrary Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>QLibrary Class Reference</h1>
+
+<p>The QLibrary class provides a wrapper for handling shared libraries.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="qlibrary-h.html">qlibrary.h</a>&gt;</tt>
+<p><a href="qlibrary-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn>enum <a href="#Policy-enum"><b>Policy</b></a> { Delayed, Immediately, Manual }</div></li>
+<li><div class=fn><a href="#QLibrary"><b>QLibrary</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;filename, Policy&nbsp;pol&nbsp;=&nbsp;Delayed&nbsp;)</div></li>
+<li><div class=fn><a href="#~QLibrary"><b>~QLibrary</b></a>&nbsp;()</div></li>
+<li><div class=fn>void *&nbsp;<a href="#resolve"><b>resolve</b></a>&nbsp;(&nbsp;const&nbsp;char&nbsp;*&nbsp;symb&nbsp;)</div></li>
+<li><div class=fn>bool&nbsp;<a href="#unload"><b>unload</b></a>&nbsp;(&nbsp;bool&nbsp;force&nbsp;=&nbsp;FALSE&nbsp;)</div></li>
+<li><div class=fn>bool&nbsp;<a href="#isLoaded"><b>isLoaded</b></a>&nbsp;() const</div></li>
+<li><div class=fn>void&nbsp;<a href="#setPolicy"><b>setPolicy</b></a>&nbsp;(&nbsp;Policy&nbsp;pol&nbsp;)</div></li>
+<li><div class=fn>Policy&nbsp;<a href="#policy"><b>policy</b></a>&nbsp;() const</div></li>
+<li><div class=fn>QString&nbsp;<a href="#library"><b>library</b></a>&nbsp;() const</div></li>
+<li><div class=fn>QRESULT&nbsp;<a href="#queryInterface"><b>queryInterface</b></a>&nbsp;(&nbsp;const&nbsp;QUuid&nbsp;&amp;&nbsp;request, QUnknownInterface&nbsp;**&nbsp;iface&nbsp;)</div></li>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class=fn>void *&nbsp;<a href="#resolve-2"><b>resolve</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;filename, const&nbsp;char&nbsp;*&nbsp;symb&nbsp;)</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+<p> The QLibrary class provides a wrapper for handling shared libraries.
+<p> This class is temporarily copied from Qt 3.0.
+
+<hr><h2>Member Type Documentation</h2>
+<h3 class=fn><a name="Policy-enum"></a>QLibrary::Policy</h3>
+
+<p> This enum type defines the various policies a QLibrary can have with respect to
+loading and unloading the shared library.
+<p> The <em>policy</em> can be:
+<ul>
+<li><tt>QLibrary::Delayed</tt> - The library get's loaded as soon as needed and unloaded in the destructor
+<li><tt>QLibrary::Immediately</tt> - The library is loaded immediately and unloaded in the destructor
+<li><tt>QLibrary::Manual</tt> - Like delayed, and library has to be unloaded manually
+</ul>
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="QLibrary"></a>QLibrary::QLibrary&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;filename, <a href="qlibrary.html#Policy-enum">Policy</a>&nbsp;pol = Delayed&nbsp;)
+</h3>
+Creates a QLibrary object for the shared library <em>filename</em>.
+The library get's loaded if <em>pol</em> is Immediately.
+<p> Note that <em>filename</em> does not need to include the (platform specific)
+file extension, so calling
+<p> <pre>
+  QLibrary lib( "mylib" );
+  </pre>
+ 
+<p> would be equivalent to
+<p> <pre>
+  QLibrary lib( "mylib.dll" );
+  </pre>
+ 
+<p> on Windows. But <em>"mylib.dll"</em> will obviously not work on other platforms.
+<p> <p>See also <a href="#setPolicy">setPolicy</a>() and <a href="#unload">unload</a>().
+
+<h3 class=fn><a name="~QLibrary"></a>QLibrary::~QLibrary&nbsp;()
+</h3>
+Deletes the QLibrary object.
+The library will be unloaded if the policy is not Manual.
+<p> <p>See also <a href="#unload">unload</a>() and <a href="#setPolicy">setPolicy</a>().
+
+<h3 class=fn>bool&nbsp;<a name="isLoaded"></a>QLibrary::isLoaded&nbsp;() const
+</h3>
+Returns whether the library is loaded.
+<p> <p>See also <a href="#unload">unload</a>().
+
+<h3 class=fn>QString&nbsp;<a name="library"></a>QLibrary::library&nbsp;() const
+</h3>
+Returns the filename of the shared library this QLibrary object handles,
+including the platform specific file extension.
+<p> <pre>
+  QLibrary lib( "mylib" );
+  QString str = lib.<a href="#library">library</a>();
+  </pre>
+ 
+<p> will set <em>str</em> to "mylib.dll" on Windows, and "libmylib.so" on Linux.
+
+<h3 class=fn><a href="qlibrary.html#Policy-enum">Policy</a>&nbsp;<a name="policy"></a>QLibrary::policy&nbsp;() const
+</h3>
+Returns the current policy.
+<p> <p>See also <a href="#setPolicy">setPolicy</a>().
+
+<h3 class=fn>QRESULT&nbsp;<a name="queryInterface"></a>QLibrary::queryInterface&nbsp;(&nbsp;const&nbsp;<a href="quuid.html">QUuid</a>&nbsp;&amp;&nbsp;request, QUnknownInterface&nbsp;**&nbsp;iface&nbsp;)
+</h3>
+Forwards the query to the component and returns the result. <em>request</em> and <em>iface</em>
+are propagated to the component's queryInterface implementation.
+<p> The library gets loaded if necessary.
+
+<h3 class=fn>void *&nbsp;<a name="resolve"></a>QLibrary::resolve&nbsp;(&nbsp;const&nbsp;char&nbsp;*&nbsp;symb&nbsp;)
+</h3>
+Returns the address of the exported symbol <em>symb</em>. The library gets
+loaded if necessary. The function returns NULL if the symbol could
+not be resolved, or if loading the library failed.
+<p> <pre>
+  typedef int (*addProc)( int, int );
+
+  addProc add = (addProc) library-&gt;resolve( "add" );
+  if ( add )
+      return add( 5, 8 );
+  else
+      return 5 + 8;
+  </pre>
+ 
+<p> <p>See also <a href="#queryInterface">queryInterface</a>().
+
+<h3 class=fn>void *&nbsp;<a name="resolve-2"></a>QLibrary::resolve&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;filename, const&nbsp;char&nbsp;*&nbsp;symb&nbsp;)<tt> [static]</tt>
+</h3>
+This is an overloaded member function, provided for convenience. It behaves essentially like the above function.
+<p> Loads the library <em>filename</em> and returns the address of the exported symbol <em>symb</em>.
+Note that like for the constructor, <em>filename</em> does not need to include the (platform specific)
+file extension. The library staying loaded until the process exits.
+<p> The function returns a null pointer if the symbol could not be resolved or if loading
+the library failed.
+
+<h3 class=fn>void&nbsp;<a name="setPolicy"></a>QLibrary::setPolicy&nbsp;(&nbsp;<a href="qlibrary.html#Policy-enum">Policy</a>&nbsp;pol&nbsp;)
+</h3>
+Sets the current policy to <em>pol</em>.
+The library is loaded if <em>pol</em> is set to Immediately.
+
+<h3 class=fn>bool&nbsp;<a name="unload"></a>QLibrary::unload&nbsp;(&nbsp;bool&nbsp;force = FALSE&nbsp;)
+</h3>
+Releases the component and unloads the library when successful.
+Returns TRUE if the library could be unloaded, otherwise FALSE.
+If the component implements the QLibraryInterface, the cleanup()
+function of this interface will be called. The unloading will be
+cancelled if the subsequent call to canUnload() returns FALSE.
+<p> This function gets called automatically in the destructor if
+the policy is not Manual.
+<p> <b>Warning:</b>
+If <em>force</em> is set to TRUE, the library gets unloaded at any cost,
+which is in most cases a segmentation fault, so you should know what
+you're doing!
+<p> <p>See also <a href="#queryInterface">queryInterface</a>() and <a href="#resolve">resolve</a>().
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

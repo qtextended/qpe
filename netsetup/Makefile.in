@@ -1,0 +1,141 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= netsetup
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	networksettings.h
+SOURCES =	main.cpp \
+		networksettings.cpp
+OBJECTS =	main.o \
+		networksettings.o \
+		networksettingsbase.o
+INTERFACES =    networksettingsbase.ui
+UICDECLS =      networksettingsbase.h
+UICIMPLS =      networksettingsbase.cpp
+SRCMOC	=	moc_networksettings.cpp \
+		moc_networksettingsbase.cpp
+OBJMOC	=	moc_networksettings.o \
+		moc_networksettingsbase.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: netsetup.pro
+	tmake netsetup.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+main.o: main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		networksettings.h \
+		networksettingsbase.h
+
+networksettings.o: networksettings.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		networksettings.h \
+		networksettingsbase.h
+
+networksettingsbase.h: networksettingsbase.ui
+	$(UIC) networksettingsbase.ui -o $(INTERFACE_DECL_PATH)/networksettingsbase.h
+
+networksettingsbase.cpp: networksettingsbase.ui
+	$(UIC) networksettingsbase.ui -i networksettingsbase.h -o networksettingsbase.cpp
+
+networksettingsbase.o: networksettingsbase.cpp \
+		networksettingsbase.h \
+		networksettingsbase.ui
+
+moc_networksettings.o: moc_networksettings.cpp \
+		networksettings.h \
+		networksettingsbase.h
+
+moc_networksettingsbase.o: moc_networksettingsbase.cpp \
+		networksettingsbase.h
+
+moc_networksettings.cpp: networksettings.h
+	$(MOC) networksettings.h -o moc_networksettings.cpp
+
+moc_networksettingsbase.cpp: networksettingsbase.h
+	$(MOC) networksettingsbase.h -o moc_networksettingsbase.cpp
+
+

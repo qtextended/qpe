@@ -1,0 +1,131 @@
+<h1>Installing Qt Palmtop on an iPAQ</h1>
+
+<p>
+The best way to setup Familiar Linux on your iPAQ is to bootstrap the minimal
+setup, then install additional packages directly from the Internet. If you wish
+to do this, follow the instructions below.
+
+<p>If however, you only have a serial
+connection to your iPAQ, read the <a href=ipaq-serial.html>Serial Install HOWTO</a>.
+
+<p>If you want to use the Intimate distribution rather than the Familiar distribution,
+<a href=http://www.cardiothink.com/QPE-on-iPAQ-intimate-distribution.html>this
+other page</a> is probably more useful to you.
+
+<p><b>NOTE:</b><i>If you have installed an earlier version of Qt Palmtop on your iPAQ, you
+may need to explicitly remove some files, since some versions of <tt>ipkg</tt>
+do not remove old files when upgrading. You should terminate Qt Palmtop and
+then in a console run "ipkg remove qt-embedded",
+"ipkg remove qpe-base", and "ipkg remove qpe-pics" prior to re-installing them.
+Finally, just "ipkg upgrade" and you should get upgrades of everything you had
+installed.</i>
+
+<h2>Installing on an iPAQ with Internet access</h2>
+
+<ul>
+<li>
+Go to <a href=http://familiar.handhelds.org/familiar/releases/latest/install/H3600/install.html>http://familiar.handhelds.org</a>,
+and install Familiar Linux on your iPAQ. You need only install the bootstrap
+installation (ie. you can stop before installing X11, etc.). 
+</p>
+<li>
+You should now have access to the Internet with your iPAQ (ie. you have setup 
+a network connection to your iPAQ, such as by
+<a href=http://www.handhelds.org:8080/wiki/PPPHowto>
+    setting up a PPP connection</a>, or use an Ethernet card).
+
+<li>
+Install <tt>h3600-utils</tt> and <tt>apmd</tt> if you want backlight and power
+management to work (you do):
+<pre>
+        ipkg install h3600-utils apmd
+</pre>
+
+<li>
+Edit your <tt>/etc/ipkg.conf</tt>. If your file has a line starting with
+<tt>IPKG_SOURCE=</tt>, then you have the old ipkg. In this case, comment out the
+old line and add the Qt Palmtop source URL, like this:
+<pre>
+#IPKG_SOURCE="http://familiar.handhelds.org/familiar/....
+IPKG_SOURCE="http://qpe.sourceforge.net/packages/ipaq/"
+</pre>
+</p>
+If your file has a line starting with <tt>src</tt>, then you have the new ipkg.
+In this case, add the Qt Palmtop source URL, like this:
+<pre>
+src Qt-Palmtop http://qpe.sourceforge.net/packages/ipaq
+</pre>
+
+
+<li>
+Update your system's package list (you will see "Spooky:..." messages
+if you're using the old ipkg that didn't understand multiple servers, ignore them):
+<pre>
+        ipkg update
+</pre>
+</p>
+
+<li>
+If you are using the old <tt>ipkg</tt> and at this point <tt>ipkg</tt> is
+prompting you about anything (eg. pending packages), stop the prompting before
+you proceed (eg. install and delete the packages).
+
+<li>
+Before you proceed, you'll need at least 2.5M free flash. The <tt>df</tt>
+command will tell you how much you have free.
+Use <tt>ipkg remove </tt><i>packagename</i> to remove some packages
+(<tt>ipkg list</tt> will show you a list of them).
+</p>
+
+<li>
+Install the <b>Add/Remove Software</b> program (it depends on Qt Palmtop and
+    other files, so you'll get a few packages at once - be prepared to wait
+    while these download and unpack):
+<pre>
+        ipkg install qpe-qipkg
+</pre>
+</p>
+
+<li>
+Reboot your iPAQ:
+<pre>
+        reboot
+</pre>
+</p>
+</ul>
+
+<p>
+Your iPAQ now runs a minimal Qt Palmtop environment.  In the "Settings"
+tab (the little toggle switch icon near the top of the screen), you
+will find "Add/Remove software". If you already have a lot of software
+on your iPAQ (eg. X11, GTk libraries, etc.), you may need to remove
+some before adding more Qt Palmtop software. Note that this program
+doesn't currently give very good feedback, so be patient...  
+
+<p>
+In the Add/Remove Software program, you can remove installed software
+(those with a small blue bullet next to them) and install uninstalled
+software (those with an closed box next to them) by clicking on the
+icons; when you have selected the packages you want to add and remove,
+select the "OK" button in the top-righthand corner of
+the dialog.
+
+<p>
+The "Size" field shows the uncompressed size of the packages you are
+installing. They'll actually take up less space than that. But use
+the <b>System Info</b> application to keep an eye on the
+available storage space remaining.
+
+<p>
+Note that you can still install and upgrade packages from the Familiar
+distribution - just select the Familiar server in the settings dialog
+of the Add/Remove Software program.  Note that although you cannot
+run X11 and Qt Palmtop at the same time, you can (space permitting)
+have both installed. The links in the system's <tt>/etc/rc2.d</tt>
+directory determine which is run.
+
+<p>
+If you want to use the Terminal, you should probably install the
+<tt>bash</tt> package, since the Terminal and <tt>ash</tt> don't seem
+to like each other.
+

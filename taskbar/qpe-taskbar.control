@@ -1,0 +1,10 @@
+Files: bin/qpe
+Priority: required
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Pre-Depends: libc6 (>= 2.1.2)
+Depends: qt-embedded (>=$QTE_VERSION)
+Description: Launcher for QPE
+ The "finder" or "explorer", or whatever you want to call it.

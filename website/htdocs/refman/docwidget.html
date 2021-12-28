@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/doc/indices.doc:51 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The main document widget</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>The main document widget</h1>
+
+
+<p> 
+<p> Applications which view or edit a particular type or types of files are
+called <i>document-oriented</i> applications. Qt Palmtop has framework
+support to simplify the implementation of such applications. The
+<a href=mainfunc.html>main()</a> function is slightly different in
+these applications.
+<p> The top-level widget of a document-oriented application must have a
+Qt slot named:
+<p> <pre>
+public slot:
+    void setDocument( const QString&amp; applnk_filename );
+</pre>
+ 
+<p> This slot should then be implemented to save the applications current
+document (if any) and show/edit the specified document. An example
+implementation is:
+<p> <pre>
+void Main::setDocument( const QString&amp; applnk_filename )
+{
+    <a href="filemanager.html">FileManager</a> fm;
+
+    if ( current ) {
+        if ( !fm.<a href="filemanager.html#saveFile">saveFile</a>( *current, data ) ) {
+            // error
+            return;
+        }
+        delete current;
+    }
+
+    current = new <a href="doclnk.html">DocLnk</a>(applnk_filename);
+
+    if ( !fm.<a href="filemanager.html#loadFile">loadFile</a>(*current, data ) ) {
+        // error
+    }
+}
+</pre>
+ 
+<p> 
+<!-- eof -->
+<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/fontdatabase.cpp:55 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>FontDatabase Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>FontDatabase Class Reference</h1>
+
+<p>The FontDatabase class provides information about available fonts.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="fontdatabase-h.html">fontdatabase.h</a>&gt;</tt>
+<p><a href="fontdatabase-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#FontDatabase"><b>FontDatabase</b></a>&nbsp;()</div></li>
+<li><div class=fn>QStringList&nbsp;<a href="#families"><b>families</b></a>&nbsp;() const</div></li>
+</ul>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class=fn>void&nbsp;<a href="#loadRenderers"><b>loadRenderers</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The FontDatabase class provides information about available fonts.
+<p> Provides information about available fonts. 
+<p> FontDatabase provides information about the available fonts of the
+underlying window system. 
+<p> Most often you will simply want to query the database for all font
+<a href="#families">families</a>(), and their respective pointSizes(), styles() and charSets().
+<p> Use FontDatabase rather than QFontDatabase when you may need access to
+fonts not normally available.  For example, if the freetype library and
+Qt Palmtop freetype plugin are installed TrueType fonts will be available
+to your application.  Font renderer plugins have greater resource
+requirements than the system fonts so they should be used only when
+necessary.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="FontDatabase"></a>FontDatabase::FontDatabase&nbsp;()
+</h3>
+Constructs the FontDatabase class.
+
+<h3 class=fn>QStringList&nbsp;<a name="families"></a>FontDatabase::families&nbsp;() const
+</h3>
+Returns a list of names of all available font families.
+
+<h3 class=fn>void&nbsp;<a name="loadRenderers"></a>FontDatabase::loadRenderers&nbsp;()<tt> [static]</tt>
+</h3>
+Load any font renderer plugins that are available and make fonts that
+the plugins can read available.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

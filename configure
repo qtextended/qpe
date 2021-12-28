@@ -1,0 +1,157 @@
+#!/bin/sh
+#
+# Configures to build the Qt Palmtop Environment
+#
+# Copyright 1999-2000 Trolltech AS.  All rights reserved.
+#
+
+PLATFORM=linux-generic-g++
+SHARING=shared
+DEBUG=
+QCONFIGARG=
+
+VERSION_MAJ=$(sed -n -e 's/.*QPE_VERSION "\([0-9]*\)\.[0-9]*\.[0-9]*.*".*/\1/p' <library/version.h)
+VERSION_MIN=$(sed -n -e 's/.*QPE_VERSION "[0-9]*\.\([0-9]\)\.[0-9]*.*".*/\1/p' <library/version.h)
+VERSION_PAT=$(sed -n -e 's/.*QPE_VERSION "[0-9]*\.[0-9]*\.\([0-9]*\).*".*/\1/p' <library/version.h)
+
+if grep -q 'VERSION_STR.*"3' $QTDIR/include/qglobal.h
+then
+    QT3=yes
+else
+    QT3=no
+fi
+
+# Parse the arguments, setting things to "yes" or "no".
+
+while [ -n "$1" ]; do
+   case $1 in
+   -platform|-xplatform) # No difference since we don't need to build moc, etc.
+        shift; PLATFORM=$1
+	;;
+   -release)
+       DEBUG=
+	;;
+   -debug)
+       DEBUG=-debug
+	;;
+   -shared)
+       SHARING=shared
+	;;
+   -static)
+       SHARING=static
+	;;
+   -qconfig)
+	# optional way to specify the qconfig-qpe.h is to pass -qconfig qpe
+	shift; QCONFIGARG=DEFINES+=QCONFIG='\"'$1'\"' # Don't quote me on that.
+	;;
+   -qt3)
+       QT3=yes
+       ;;
+    *)
+	HELP=yes;;
+   esac
+   shift
+done
+
+TARGET=configs/$PLATFORM-$SHARING$DEBUG
+
+if [ '!' -f $TARGET ]
+then
+    if [ -f configs/linux-$PLATFORM-g++-$SHARING$DEBUG ]
+    then
+	TARGET=configs/linux-$PLATFORM-g++-$SHARING$DEBUG
+    else
+	echo
+	echo '    The specified platform/compiler not supported: ' $TARGET
+	echo
+	exit 2
+    fi
+fi
+
+# Next, emit a usage message if something failed.
+
+if [ "$HELP" = "yes" ]; then
+    cat <<EOF
+Usage: $0 [-debug] [-release] [-shared] [-static] [-qt3] [-platform ...]
+
+The defaults (*) are usually acceptable.  Here is a short explanation of
+each option:
+
+ *  -release ........... Compile and link Qt with debugging turned off.
+    -debug ............. Compile and link Qt with debugging turned on.
+
+ *  -shared ............ Create and use a shared Qt library (libqt.so)
+    -static ............ Create and use a static Qt library (libqt.a)
+
+    -qt3 ............... Configure for use with Qt 3.x
+
+    -platform target ... The platform you are building on ($PLATFORM)
+EOF
+   exit 0;
+fi
+
+
+# Hack for libmpeg3 configuration; assumes $PLATFORM is compiler prefix part
+(
+cd mpegplayer/libmpeg3
+if [ "$PLATFORM" = linux-x86-g++ ]
+then
+    ./configure
+elif [ "$PLATFORM" = linux-generic-g++ ]
+then
+    ./configure --no-mmx --no-css --fixed-point
+elif [ "$PLATFORM" = linux-ipaq-g++ ]
+then
+    PREF=`sed -n '/^SYSCONF_CC.*=/ s/.*= *\(.*\)gcc/\1/p' ../../$TARGET`
+    ./configure --gcc-prefix=$PREF --no-mmx --no-css --fixed-point
+else
+    PREF=`sed -n '/^SYSCONF_CC.*=/ s/.*= *\(.*\)gcc/\1/p' ../../$TARGET`
+    ./configure --gcc-prefix=$PREF --no-mmx --no-css --lessopt --fixed-point
+fi
+)
+
+
+echo Creating makefiles...
+
+sed -e 's/^\(VERSION.*= \).*/\1'$VERSION_MAJ.$VERSION_MIN.$VERSION_PAT/ <library/library.pro >library/library.pro-v
+mv library/library.pro-v library/library.pro
+
+if [ "$QT3" = yes ]
+then
+    VCONFIG="CONFIG+=qt3"
+else
+    VCONFIG="CONFIG+=qt2"
+fi
+
+if [ -f $TMAKEPATH/tmake.conf ]
+then
+    # You have tmake. We'll regenerate the file for you...
+    echo "Makefiles will be regenerated."
+fi
+
+H=`pwd`
+for a in `make showcomponents` ; do
+    N=$a/Makefile
+    M=$a/Makefile.in
+    f=`basename $a`
+
+    if [ -f $TMAKEPATH/tmake.conf -a -f $a/$f.pro ]
+    then
+	(cd $a; TMAKEPATH=$QTDIR/tmake:$TMAKEPATH tmake $QCONFIGARG CONFIG+=embedded $VCONFIG -t $H/qt/tmake/propagate.t -o Makefile.in $f.pro)
+    fi
+
+    cat > $N <<EOF
+#############################################################################
+# Automatically generated from $M
+# Build options from $1
+#############################################################################
+
+EOF
+
+    cat $TARGET $M >> $N
+done
+
+MAKE=make
+echo "QPE is now configured for building. Just run $MAKE (or $MAKE single)."
+echo "To reconfigure, run $MAKE clean and configure."
+echo

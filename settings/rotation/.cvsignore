@@ -1,0 +1,4 @@
+moc_*
+Makefile
+rotationsettingsbase.h
+rotationsettingsbase.cpp

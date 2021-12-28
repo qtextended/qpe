@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/applnk.cpp:449 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>AppLnkSet Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>AppLnkSet Class Reference</h1>
+
+<p>The AppLnkSet class is a set of AppLnk objects.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="applnk-h.html">applnk.h</a>&gt;</tt>
+<p>Inherited by <a href="doclnkset.html">DocLnkSet</a>.
+<p><a href="applnkset-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#AppLnkSet"><b>AppLnkSet</b></a>&nbsp;()</div></li>
+<li><div class=fn><a href="#AppLnkSet-2"><b>AppLnkSet</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;directory&nbsp;)</div></li>
+<li><div class=fn><a href="#~AppLnkSet"><b>~AppLnkSet</b></a>&nbsp;()</div></li>
+<li><div class=fn>const AppLnk *&nbsp;<a href="#find"><b>find</b></a>&nbsp;(&nbsp;int&nbsp;id&nbsp;) const</div></li>
+<li><div class=fn>QStringList&nbsp;<a href="#types"><b>types</b></a>&nbsp;() const</div></li>
+<li><div class=fn>QString&nbsp;<a href="#typeName"><b>typeName</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const</div></li>
+<li><div class=fn>QPixmap&nbsp;<a href="#typePixmap"><b>typePixmap</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const</div></li>
+<li><div class=fn>QPixmap&nbsp;<a href="#typeBigPixmap"><b>typeBigPixmap</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const</div></li>
+<li><div class=fn>void&nbsp;<a href="#add"><b>add</b></a>&nbsp;(&nbsp;AppLnk&nbsp;*&nbsp;f&nbsp;)</div></li>
+<li><div class=fn>bool&nbsp;<a href="#remove"><b>remove</b></a>&nbsp;(&nbsp;AppLnk&nbsp;*&nbsp;f&nbsp;)</div></li>
+<li><div class=fn>const QList&lt;AppLnk&gt; &amp;&nbsp;<a href="#children"><b>children</b></a>&nbsp;() const</div></li>
+<li><div class=fn>void&nbsp;<a href="#detachChildren"><b>detachChildren</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The AppLnkSet class is a set of <a href="applnk.html">AppLnk</a> objects.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="AppLnkSet"></a>AppLnkSet::AppLnkSet&nbsp;()
+</h3>
+Constructs an empty AppLnkSet.
+
+<h3 class=fn><a name="AppLnkSet-2"></a>AppLnkSet::AppLnkSet&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;directory&nbsp;)
+</h3>
+Constructs an AppLnkSet that contains <a href="applnk.html">AppLnk</a> objects representing
+all the files in a <em>directory</em> (recursively).
+<p> The directories may contain ".directory" files which overrides
+any <a href="applnk.html#type">AppLnk::type</a>() value of AppLnk objects found in the directory.
+This allows simple localization of application types.
+
+<h3 class=fn><a name="~AppLnkSet"></a>AppLnkSet::~AppLnkSet&nbsp;()
+</h3>
+Destroys the set, deleting all <a href="applnk.html">AppLnk</a> objects it contains.
+<p> <p>See also <a href="#detachChildren">detachChildren</a>().
+
+<h3 class=fn>void&nbsp;<a name="add"></a>AppLnkSet::add&nbsp;(&nbsp;<a href="applnk.html">AppLnk</a>&nbsp;*&nbsp;f&nbsp;)
+</h3>
+Adds <em>f</em> to the set. The set takes over responsibility for deleting <em>f</em>.
+<p> <p>See also <a href="#remove">remove</a>().
+
+<h3 class=fn>const QList&lt;AppLnk&gt; &amp;&nbsp;<a name="children"></a>AppLnkSet::children&nbsp;() const
+</h3>
+
+<p> Returns the members of the set.
+
+<h3 class=fn>void&nbsp;<a name="detachChildren"></a>AppLnkSet::detachChildren&nbsp;()
+</h3>
+Detaches all <a href="applnk.html">AppLnk</a> objects from the set. The set become empty
+and the call becomes responsible for deleting the AppLnk objects.
+
+<h3 class=fn>const&nbsp;<a href="applnk.html">AppLnk</a>&nbsp;*&nbsp;<a name="find"></a>AppLnkSet::find&nbsp;(&nbsp;int&nbsp;id&nbsp;) const
+</h3>
+Returns the <a href="applnk.html">AppLnk</a> with the given <em>id</em>.
+
+<h3 class=fn>bool&nbsp;<a name="remove"></a>AppLnkSet::remove&nbsp;(&nbsp;<a href="applnk.html">AppLnk</a>&nbsp;*&nbsp;f&nbsp;)
+</h3>
+Removes <em>f</em> to the set, returning whether <em>f</em> was in the set.
+The caller becomes responsible for deleting <em>f</em>.
+<p> <p>See also <a href="#add">add</a>().
+
+<h3 class=fn>QPixmap&nbsp;<a name="typeBigPixmap"></a>AppLnkSet::typeBigPixmap&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const
+</h3>
+Returns the large pixmap associated with type <em>t</em>.
+
+<h3 class=fn>QString&nbsp;<a name="typeName"></a>AppLnkSet::typeName&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const
+</h3>
+Returns the localized name for type <em>t</em>.
+
+<h3 class=fn>QPixmap&nbsp;<a name="typePixmap"></a>AppLnkSet::typePixmap&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;t&nbsp;) const
+</h3>
+Returns the small pixmap associated with type <em>t</em>.
+
+<h3 class=fn>QStringList&nbsp;<a name="types"></a>AppLnkSet::types&nbsp;() const
+</h3>
+
+<p> Returns the list of types in the set.
+<p> <p>See also <a href="applnk.html#type">AppLnk::type</a>(), <a href="#typeName">typeName</a>(), <a href="#typePixmap">typePixmap</a>() and <a href="#typeBigPixmap">typeBigPixmap</a>().
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

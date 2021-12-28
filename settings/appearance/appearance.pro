@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		+= qt warn_on release
+DESTDIR		= ../../bin
+HEADERS		= settings.h
+SOURCES		= appearance.cpp main.cpp
+INTERFACES	= appearancesettingsbase.ui
+INCLUDEPATH	+= ../../library
+DEPENDPATH	+= ../../library
+LIBS            += -lqpe
+TARGET		= appearance

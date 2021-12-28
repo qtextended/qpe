@@ -1,0 +1,16 @@
+Access to named resources. | Resource
+Alarms to be scheduled. | AlarmServer
+Allows the user to select DocLnk objects. | FileSelector
+Assists with AppLnk input/output. | FileManager
+Collects application-wide global functions. | Global
+Defines a Universally Unique Identifier (UUID). | QUuid
+Encapsulates QCop message sending. | QCopEnvelope
+For saving application cofniguration state. | Config
+Implements various system services that are available to all Qt Palmtop applications. | QPEApplication
+Information about available fonts. | FontDatabase
+Pushbutton with a menu. | MenuButton
+Represents an application available on the system. | AppLnk
+Represents loaded document references. | DocLnk
+Set of AppLnk objects. | AppLnkSet
+Set of DocLnk objects. | DocLnkSet
+Wrapper for handling shared libraries. | QLibrary

@@ -1,0 +1,58 @@
+<html>
+<h1><a href=/>Qt Palmtop</a> FAQ</h1>
+
+<ol>
+ <li><b>How do I open files? (MP3s, MPEGs, etc.)</b>
+    <p>
+    Currenltly, you can use
+    the File Browser to find you file and click-and-hold to bring up a menu
+    where you can then Add to Documents, and the file will appear in the
+    Documents tab.  
+    </p>
+    <p>
+    The File Browser can Open files directly (ie. invoke applications to edit them).  
+    </p>
+    <p>
+    Qt Palmtop supports a document model which is not directly keyed to
+    files. Of course, ultimately files need to be accessed, but the
+    interface to that is still under development.
+    </p>
+    <p>
+    The advantages of having a layer above the file system include:
+    <ul>
+     <li>Two documents can have the same name (eg. you could have lots of
+	    "Letter to Dad" documents, and you might access them by date
+	    or by a search engine, rather than by ever-more-ridiculously
+	    complex "Letter to Dad about dog", or the more typical "letter1",
+	    "letter2", "letter3").
+     <li>Categorization doesn't have to be partitioning (eg. you "Letter to Dad"
+	    documents might be categorized in the "Dad" category and the "Letter"
+	    category, while in a traditional hierarchical filesystem you would
+	    have to decide on <i>ONE</i> structure from the possible choices of
+	    "letters/dad" and "dad/letters"; if you chose the first option, then
+	    your letters to mum would be conveniently in "letters/mum", but
+	    pictures of Dad would be in a completely different area - "pictures/dad"; 
+	    the reverse problem arises with the second choice.
+    </ul>
+    </p>
+ <li><b>Is there a Web Browser?</b>
+    <p>There are at least 2...
+    <ol>
+	<li><a href=http://www.opera.com/linux/>Opera</a>
+	<li><a href=http://www.konqueror.org/embedded.html>Konqueror</a>
+    </ol>
+    </p>
+    <p>and another on the way...
+    <ol continue seqnum=3 start=3>
+	<li><a href=http://www.geocrawler.com/mail/msg.php3?msg_id=5453266&list=135>Qt Mozilla</a>
+    </ol>
+    </p>
+    <p>
+    If you just want to view HTML <i>files</i>, the Help Browser can do that, though in
+    QPE 1.4.0, it is hard-wired to access the HTML files in <tt>$QPEDIR/doc</tt>.
+<!--
+ <li><b>QUESTION</b>
+    <p>ANSWER
+    </p>
+-->
+</ol>

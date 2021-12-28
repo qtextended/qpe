@@ -1,0 +1,9 @@
+Files: i18n/hu/.directory i18n/hu/*.qm etc/dict/dawg.hu
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: i18n: Magyar
+ Hungarian UI texts and dictionary for Qt Palmtop environment.

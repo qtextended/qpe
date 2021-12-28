@@ -1,0 +1,9 @@
+Files: i18n/ja/.directory i18n/ja/*.qm
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION), qpf-cyberbit-120-50-t10
+Description: i18n: Japanese
+ Japanese UI texts for Qt Palmtop environment.

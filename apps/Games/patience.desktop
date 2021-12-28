@@ -1,0 +1,10 @@
+[Desktop Entry]
+Comment=A Game of Patience
+Exec=solitaire
+Icon=Solitaire
+Type=Application
+Name=Patience
+Name[no]=Kabal
+Name[de]=Solitaire
+Name[ja]=ソリティア
+Name[hu]=Passziánsz

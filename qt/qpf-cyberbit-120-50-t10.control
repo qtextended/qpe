@@ -1,0 +1,8 @@
+Files: $QTDIR/lib/fonts/cyberbit_120_50_t10.qpf
+Priority: required
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: 2.3.0-3
+Description: Unicode font
+ A pre-rendered Unicode font.

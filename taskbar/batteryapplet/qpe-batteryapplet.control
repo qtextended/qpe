@@ -1,0 +1,9 @@
+Files: plugins/applets/libbatteryapplet.so*
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Battery Monitor applet
+ Battery Monitor applet for the Qt Palmtop environment taskbar.

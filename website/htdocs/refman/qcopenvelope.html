@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/qcopenvelope_qws.cpp:42 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>QCopEnvelope Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>QCopEnvelope Class Reference</h1>
+
+<p>The QCopEnvelope class encapsulates QCop message sending.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="qcopenvelope_qws-h.html">qcopenvelope_qws.h</a>&gt;</tt>
+<p><a href="qcopenvelope-members.html">List of all member functions.</a>
+<h2>Public Members</h2>
+<ul>
+<li><div class=fn><a href="#QCopEnvelope"><b>QCopEnvelope</b></a>&nbsp;(&nbsp;const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message&nbsp;)</div></li>
+<li><div class=fn><a href="#~QCopEnvelope"><b>~QCopEnvelope</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The QCopEnvelope class encapsulates QCop message sending.
+<p> QCop messages allow applications to communicate with each other.
+These messages are send using QCopEnvelope, and received by connecting
+to a QCopChannel.
+<p> To send a message, use the following protocol:
+<p> <pre>
+     QCopEnvelope e(channelname, messagename);
+     e &lt;&lt; parameter1 &lt;&lt; parameter2 &lt;&lt; ...;
+  </pre>
+ 
+<p> For messages without parameters, you can simply use:
+<p> <pre>
+     <a href="#QCopEnvelope">QCopEnvelope</a> (channelname, messagename);
+  </pre>
+ 
+<p> Do not try to simplify further as some compilers may not do
+as you expect.
+<p> The <tt>channelname</tt> of channels within Qt Palmtop all start with "QPE/".
+The <tt>messagename</tt> is a function identifier followed by a list of types
+in parentheses. There are no spaces in the message name.
+<p> To receive a message, you will generally just use your applications
+predefined QPE/Application/<i>appname</i> channel
+(see <a href="qpeapplication.html#appMessage">QPEApplication::appMessage</a>()), but you can make another channel
+and connect it to a slot with:
+<p> <pre>
+      myChannel = new QCopChannel( "QPE/FooBar", this );
+      connect( myChannel, SIGNAL(received(const QCString &amp;, const QByteArray &amp;)),
+               this, SLOT(fooBarMessage( const QCString &amp;, const QByteArray &amp;)) );
+  </pre>
+ 
+<p> See also, the <a href="qcop.html">list of Qt Palmtop messages</a>.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn><a name="QCopEnvelope"></a>QCopEnvelope::QCopEnvelope&nbsp;(&nbsp;const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message&nbsp;)
+</h3>
+Constructs a QCopEnvelope that will write <em>message</em> to <em>channel</em>.
+If <em>message</em> has parameters, you must then user operator<<() to
+write the parameters.
+
+<h3 class=fn><a name="~QCopEnvelope"></a>QCopEnvelope::~QCopEnvelope&nbsp;()
+</h3>
+Writes the completed message and destroys the QCopEnvelope.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

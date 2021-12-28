@@ -1,0 +1,142 @@
+#############################################################################
+
+####### Compiler, tools and options
+
+CXX	=	$(SYSCONF_CXX) $(QT_CXX_MT)
+CXXFLAGS=	$(SYSCONF_CXXFLAGS_QT) $(SYSCONF_CXXFLAGS)
+CC	=	$(SYSCONF_CC) $(QT_C_MT)
+CFLAGS	=	$(SYSCONF_CFLAGS)
+INCPATH =	-I../library
+LFLAGS	=	$(SYSCONF_LFLAGS_QT) $(SYSCONF_RPATH_QT) $(SYSCONF_LFLAGS) $(QT_LFLAGS_MT)
+LIBS	=	$(SUBLIBS) -lqpe $(SYSCONF_LIBS_QT) $(SYSCONF_LIBS) $(SYSCONF_LIBS_QTAPP)
+MOC	=	$(SYSCONF_MOC)
+UIC	=	$(SYSCONF_UIC)
+
+####### Target
+
+DESTDIR = ../bin/
+VER_MAJ = 1
+VER_MIN = 0
+VER_PATCH = 0
+TARGET	= qppp
+TARGET1 = lib$(TARGET).so.$(VER_MAJ)
+
+####### Files
+
+HEADERS =	pppconnect.h
+SOURCES =	main.cpp \
+		pppconnect.cpp
+OBJECTS =	main.o \
+		pppconnect.o \
+		pppconnectbase.o
+INTERFACES =    pppconnectbase.ui
+UICDECLS =      pppconnectbase.h
+UICIMPLS =      pppconnectbase.cpp
+SRCMOC	=	moc_pppconnect.cpp \
+		moc_pppconnectbase.cpp
+OBJMOC	=	moc_pppconnect.o \
+		moc_pppconnectbase.o
+
+
+####### Implicit rules
+
+.SUFFIXES: .cpp .cxx .cc .C .c
+
+.cpp.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cxx.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.cc.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.C.o:
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+.c.o:
+	$(CC) -c $(CFLAGS) $(INCPATH) -o $@ $<
+
+####### Build rules
+
+
+all: $(DESTDIR)$(TARGET)
+
+$(DESTDIR)$(TARGET): $(UICDECLS) $(OBJECTS) $(OBJMOC) $(SUBLIBS)
+	$(SYSCONF_LINK) $(LFLAGS) -o $(DESTDIR)$(TARGET) $(OBJECTS) $(OBJMOC) $(LIBS)
+
+moc: $(SRCMOC)
+
+tmake: Makefile.in
+
+Makefile.in: qppp.pro
+	tmake qppp.pro -o Makefile.in
+
+clean:
+	-rm -f $(OBJECTS) $(OBJMOC) $(SRCMOC) $(UICIMPLS) $(UICDECLS)
+	-rm -f *~ core
+	-rm -f allmoc.cpp
+
+####### Extension Modules
+
+listpromodules:
+	@echo 
+
+listallmodules:
+	@echo 
+
+listaddonpromodules:
+	@echo 
+
+listaddonentmodules:
+	@echo 
+
+
+REQUIRES=
+
+####### Sub-libraries
+
+
+###### Combined headers
+
+
+
+####### Compile
+
+main.o: main.cpp \
+		../library/qpeapplication.h \
+		../library/qpedecoration_qws.h \
+		pppconnect.h \
+		pppconnectbase.h \
+		../library/config.h
+
+pppconnect.o: pppconnect.cpp \
+		pppconnect.h \
+		pppconnectbase.h \
+		../library/config.h
+
+pppconnectbase.h: pppconnectbase.ui
+	$(UIC) pppconnectbase.ui -o $(INTERFACE_DECL_PATH)/pppconnectbase.h
+
+pppconnectbase.cpp: pppconnectbase.ui
+	$(UIC) pppconnectbase.ui -i pppconnectbase.h -o pppconnectbase.cpp
+
+pppconnectbase.o: pppconnectbase.cpp \
+		pppconnectbase.h \
+		pppconnectbase.ui
+
+moc_pppconnect.o: moc_pppconnect.cpp \
+		pppconnect.h \
+		pppconnectbase.h \
+		../library/config.h
+
+moc_pppconnectbase.o: moc_pppconnectbase.cpp \
+		pppconnectbase.h
+
+moc_pppconnect.cpp: pppconnect.h
+	$(MOC) pppconnect.h -o moc_pppconnect.cpp
+
+moc_pppconnectbase.cpp: pppconnectbase.h
+	$(MOC) pppconnectbase.h -o moc_pppconnectbase.cpp
+
+

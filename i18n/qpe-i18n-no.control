@@ -1,0 +1,9 @@
+Files: i18n/no/.directory i18n/no/*.qm etc/dict/dawg.no
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: i18n: Norsk
+ Norwegian UI texts and dictionary for Qt Palmtop environment.

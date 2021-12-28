@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/global.cpp:144 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Global Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>Global Class Reference</h1>
+
+<p>The Global class collects application-wide global functions.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="global-h.html">global.h</a>&gt;</tt>
+<p><a href="global-members.html">List of all member functions.</a>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class=fn>const QDawg &amp;&nbsp;<a href="#fixedDawg"><b>fixedDawg</b></a>&nbsp;()</div></li>
+<li><div class=fn>const QDawg &amp;&nbsp;<a href="#addedDawg"><b>addedDawg</b></a>&nbsp;()</div></li>
+<li><div class=fn>const QDawg &amp;&nbsp;<a href="#dawg"><b>dawg</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#addWords"><b>addWords</b></a>&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;wordlist&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#addWords-2"><b>addWords</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;dictname, const&nbsp;QStringList&nbsp;&amp;&nbsp;wordlist&nbsp;)</div></li>
+<li><div class=fn>QString&nbsp;<a href="#applicationFileName"><b>applicationFileName</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;appname, const&nbsp;QString&nbsp;&amp;&nbsp;filename&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#execute"><b>execute</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;c, const&nbsp;QString&nbsp;&amp;&nbsp;document&nbsp;=&nbsp;QString::null&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#statusMessage"><b>statusMessage</b></a>&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;message&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#hideInputMethod"><b>hideInputMethod</b></a>&nbsp;()</div></li>
+<li><div class=fn>void&nbsp;<a href="#showInputMethod"><b>showInputMethod</b></a>&nbsp;()</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The Global class collects application-wide global functions.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn>void&nbsp;<a name="addWords"></a>Global::addWords&nbsp;(&nbsp;const&nbsp;QStringList&nbsp;&amp;&nbsp;wordlist&nbsp;)<tt> [static]</tt>
+</h3>
+Adds <em>wordlist</em> to the <a href="#addedDawg">addedDawg</a>().
+
+<h3 class=fn>void&nbsp;<a name="addWords-2"></a>Global::addWords&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;dictname, const&nbsp;QStringList&nbsp;&amp;&nbsp;wordlist&nbsp;)<tt> [static]</tt>
+</h3>
+Adds <em>wordlist</em> to the <a href="#dawg">dawg</a>() named <em>dictname</em>.
+
+<h3 class=fn>const QDawg &amp;&nbsp;<a name="addedDawg"></a>Global::addedDawg&nbsp;()<tt> [static]</tt>
+</h3>
+Returns the changeable QDawg that contains general
+words for the current locale.
+<p> <p>See also <a href="#fixedDawg">fixedDawg</a>().
+
+<h3 class=fn>QString&nbsp;<a name="applicationFileName"></a>Global::applicationFileName&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;appname, const&nbsp;QString&nbsp;&amp;&nbsp;filename&nbsp;)<tt> [static]</tt>
+</h3>
+Returns a full path for the application named <em>appname</em>, with the
+given <em>filename</em>.  If <em>filename</em> contains "/", it is the caller's
+responsibility to ensure the directories exist.
+
+<h3 class=fn>const QDawg &amp;&nbsp;<a name="dawg"></a>Global::dawg&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;name&nbsp;)<tt> [static]</tt>
+</h3>
+Returns the QDawg with the given <em>name</em>.
+This is an application-specific word list.
+<p> <em>name</em> should not contain "/".
+
+<h3 class=fn>void&nbsp;<a name="execute"></a>Global::execute&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;c, const&nbsp;QString&nbsp;&amp;&nbsp;document = QString::null&nbsp;)<tt> [static]</tt>
+</h3>
+Executes application identfied by <em>c</em>, passing <em>document</em>.
+<p> Note that you might be better off sending a QCop message to
+the application's QPE/Application/<i>appname</i> channel.
+
+<h3 class=fn>const QDawg &amp;&nbsp;<a name="fixedDawg"></a>Global::fixedDawg&nbsp;()<tt> [static]</tt>
+</h3>
+Returns the unchangeable QDawg that contains general
+words for the current locale.
+<p> <p>See also <a href="#addedDawg">addedDawg</a>().
+
+<h3 class=fn>void&nbsp;<a name="hideInputMethod"></a>Global::hideInputMethod&nbsp;()<tt> [static]</tt>
+</h3>
+Explicitly hide the current input method.
+
+<h3 class=fn>void&nbsp;<a name="showInputMethod"></a>Global::showInputMethod&nbsp;()<tt> [static]</tt>
+</h3>
+Explicitly show the current input method.
+
+<h3 class=fn>void&nbsp;<a name="statusMessage"></a>Global::statusMessage&nbsp;(&nbsp;const&nbsp;QString&nbsp;&amp;&nbsp;message&nbsp;)<tt> [static]</tt>
+</h3>
+Displays a status <em>message</em> to the user. This generally appears
+in the taskbar for some amount of time, then disappears.
+
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

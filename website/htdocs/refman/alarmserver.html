@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- /home/warwick/qtpalmtop/main/library/alarmserver.cpp:132 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>AlarmServer Class</title>
+<style type="text/css"><!--
+h3.fn,span.fn { margin-left: 1cm; text-indent: -1cm; }
+a:link { color: #004faf; text-decoration: none }
+a:visited { color: #672967; text-decoration: none }
+body { background: #ffffff; color: black; }
+--></style>
+</head>
+<body>
+
+<table width=100% cellspacing=0>
+<tr><td bgcolor="black">
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+<b>
+<a href="classes.html"><font color="white">Classes</font></a>
+ &nbsp; <a href="functions.html"><font color="white">Functions</font></a>
+ &nbsp; <a href="index.html"><font color="white">Start</font></a>
+</b></font></td>
+<td bgcolor="black" align=right>
+<font color=white face="Arial,Helvetica,Geneva,Swiss,SunSans-Regular">
+Qt Palmtop developer documentation</td>
+</font></td>
+</tr>
+</table><h1 align=center>AlarmServer Class Reference</h1>
+
+<p>The AlarmServer class provides alarms to be scheduled.
+<a href="#details">More...</a>
+<p><tt>#include &lt;<a href="alarmserver-h.html">alarmserver.h</a>&gt;</tt>
+<p><a href="alarmserver-members.html">List of all member functions.</a>
+<h2>Static Public Members</h2>
+<ul>
+<li><div class=fn>void&nbsp;<a href="#addAlarm"><b>addAlarm</b></a>&nbsp;(&nbsp;QDateTime&nbsp;when, const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message, int&nbsp;data&nbsp;=&nbsp;0&nbsp;)</div></li>
+<li><div class=fn>void&nbsp;<a href="#deleteAlarm"><b>deleteAlarm</b></a>&nbsp;(&nbsp;QDateTime&nbsp;when, const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message, int&nbsp;data&nbsp;=&nbsp;0&nbsp;)</div></li>
+</ul>
+<hr><a name="details"></a><h2>Detailed Description</h2>
+
+
+The AlarmServer class provides alarms to be scheduled.
+<p> Applications which wish to be informed when a certain time instant
+passes use the functions of AlarmServer to request so.
+
+<hr><h2>Member Function Documentation</h2>
+<h3 class=fn>void&nbsp;<a name="addAlarm"></a>AlarmServer::addAlarm&nbsp;(&nbsp;QDateTime&nbsp;when, const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message, int&nbsp;data = 0&nbsp;)<tt> [static]</tt>
+</h3>
+Schedules an alarm for <em>when</em>. Soon after this time,
+<em>message</em> will be sent to <em>channel</em>, with <em>data</em> as
+a parameter. <em>message</em> must be of the form "someMessage(int)".
+<p> <p>See also <a href="#deleteAlarm">deleteAlarm</a>().
+
+<h3 class=fn>void&nbsp;<a name="deleteAlarm"></a>AlarmServer::deleteAlarm&nbsp;(&nbsp;QDateTime&nbsp;when, const&nbsp;QCString&nbsp;&amp;&nbsp;channel, const&nbsp;QCString&nbsp;&amp;&nbsp;message, int&nbsp;data = 0&nbsp;)<tt> [static]</tt>
+</h3>
+Deletes previously scheduled alarms which match <em>when</em>, <em>channel</em>, <em>message</em>,
+and <em>data</em>.
+<p> Passing null values for <em>when</em>, <em>channel</em>, or <em>message</em> indicates "any".
+Passing -1 for <em>data</em> indicates "any".
+<p> <p>See also 
+<!-- eof -->
+<hr><p>
+This file is part of the <a href="index.html">Qt Palmtop environment</a>,
+copyright &copy; 1995-2001
+<a href="http://www.trolltech.com/">Trolltech</a>, all rights reserved.<p><address><hr><div align=center>
+<table width=100% cellspacing=0 border=0><tr>
+<td>Copyright &copy; 2001 Trolltech<td><a href="http://www.trolltech.com/trademarks.html">Trademarks</a>
+<td align=right><div align=right>Qt Palmtop version 1.3.1 unstable</div>
+</table></div></address></body>
+</html>

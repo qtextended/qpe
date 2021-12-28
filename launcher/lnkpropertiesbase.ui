@@ -1,0 +1,314 @@
+<!DOCTYPE UI><UI>
+<class>LnkPropertiesBase</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>Form1</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>420</width>
+            <height>495</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Details</string>
+    </property>
+    <property>
+        <name>layoutMargin</name>
+    </property>
+    <property>
+        <name>layoutSpacing</name>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>0</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>0</number>
+        </property>
+        <widget>
+            <class>QFrame</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Frame8</cstring>
+            </property>
+            <property>
+                <name>layoutMargin</name>
+            </property>
+            <grid>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>6</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget row="2"  column="0" >
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>preload</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Fast load (consumes memory)</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QLayoutWidget</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>Layout2</cstring>
+                    </property>
+                    <hbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>0</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QLabel</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>TextLabel1</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>Name:</string>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QLineEdit</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>docname</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget row="4"  column="0" >
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>categoriesgrp</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>Categories</string>
+                    </property>
+                    <property>
+                        <name>layoutMargin</name>
+                    </property>
+                    <property>
+                        <name>layoutSpacing</name>
+                    </property>
+                    <grid>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget row="0"  column="0"  rowspan="1"  colspan="4" >
+                            <class>CategoryList</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>categories</cstring>
+                            </property>
+                        </widget>
+                        <widget row="1"  column="3" >
+                            <class>QToolButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>editcats</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>...</string>
+                            </property>
+                        </widget>
+                        <widget row="1"  column="0" >
+                            <class>QLineEdit</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>cat</cstring>
+                            </property>
+                        </widget>
+                        <widget row="1"  column="1" >
+                            <class>QToolButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>addcat</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>Add</string>
+                            </property>
+                        </widget>
+                        <widget row="1"  column="2" >
+                            <class>QToolButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>delcat</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string></string>
+                            </property>
+                            <property stdset="1">
+                                <name>pixmap</name>
+                                <pixmap>image0</pixmap>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>info</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Type: text/plain&lt;br&gt;Date: 10 March 2001, 10:15am</string>
+                    </property>
+                </widget>
+                <widget row="3"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>spacer</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>7</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string></string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <widget>
+            <class>Line</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Line1</cstring>
+            </property>
+            <property stdset="1">
+                <name>orientation</name>
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget>
+            <class>QFrame</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>Frame9</cstring>
+            </property>
+            <property>
+                <name>layoutMargin</name>
+            </property>
+            <hbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>6</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>unlink</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Delete File</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>duplicate</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Duplicate</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget>
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>open</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Open</string>
+                    </property>
+                    <property stdset="1">
+                        <name>autoDefault</name>
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<customwidgets>
+    <customwidget>
+        <class>CategoryList</class>
+        <header location="local">categorylist.h</header>
+        <sizehint>
+            <width>-1</width>
+            <height>-1</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>7</hordata>
+            <verdata>7</verdata>
+        </sizepolicy>
+        <pixmap>image1</pixmap>
+    </customwidget>
+</customwidgets>
+<images>
+    <image>
+        <name>image0</name>
+        <data format="XPM.GZ" length="499">789ccd904d6ac3301046f73e85f0ec4c71a2ca2a36214748e9b250b2188d4649164e203f8b527af7ea934963e805fa49a0790f4948b368ccfbdbc6348bea72e5eb418cecf96c9a781bc7cf8fedfaabaaed8bc97330b67eaaead688793d1d1535e59a9625c01dd059b77465a7003dfbc13330017bd7dbde0103903bb6dc0115285e9ec503191815031881a9a4bc0121626aa74c8eb2092479a1bba318a3aa26520d74771cb46811a1dfb38939e4a4448ffb0a8ba4dddcc5c0b0ffc1f15f87aee48fa4d28276d6aba92970dfabea074d4776b4</data>
+    </image>
+    <image>
+        <name>image1</name>
+        <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b7229d1be245fc04c5a3201e4615f430059d0711ff5ddb2e6bb236ec90eed134cb5a19d8ef36602af5ecdbfeeac05dda0798d3abebde87e3faa374d3807fa0d633a52d38d8de6f679fe33fc776e196f53cd010188256a3600a292882096246517815ca99884606e18044a3a40d91824820924265a7923a2e8bcd05f33db1173e002913175f2a6be6d3294871a2d95fa00e8a94ee017b69d339d90df1e77c57ea072ede6758</data>
+    </image>
+</images>
+</UI>

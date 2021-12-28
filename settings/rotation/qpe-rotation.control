@@ -1,0 +1,10 @@
+Files: bin/rotation apps/Settings/Rotation.desktop
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION), qt-embedded-rotation
+Description: Rotation settings
+ Allows the display to be rotated. This requires
+ extra fonts, using about 240K of actual flash (jffs2).

@@ -1,0 +1,10 @@
+Files: bin/calculator apps/Applications/calculator.desktop etc/unit_conversion.dat
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Calculator
+ A multi-function calculator for the Qt Palmtop environment.
+ Includes units conversion.

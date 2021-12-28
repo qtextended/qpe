@@ -1,0 +1,10 @@
+TEMPLATE	= app
+CONFIG		+= qt warn_on release
+DESTDIR		= ../../bin
+HEADERS		= settings.h
+SOURCES		= light.cpp main.cpp
+INTERFACES	= lightsettingsbase.ui
+INCLUDEPATH	+= ../../library
+DEPENDPATH	+= ../../library
+LIBS            += -lqpe
+TARGET		= light-and-power

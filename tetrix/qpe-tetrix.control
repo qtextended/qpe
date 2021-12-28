@@ -1,0 +1,9 @@
+Files: bin/tetrix apps/Games/tetrix.desktop
+Priority: optional
+Section: qpe
+Maintainer: Warwick Allison <warwick@trolltech.com>
+Architecture: arm
+Version: $QPE_VERSION-1
+Depends: qpe-base ($QPE_VERSION)
+Description: Game: control falling blocks
+ A game for the Qt Palmtop environment.
